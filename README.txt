@@ -13,13 +13,9 @@ ADD
 ``
 
 function getJob()
-
   if PlayerData.job ~= nil then
-  
-	return PlayerData.job.name
-	
-  end
-  
+	return PlayerData.job.name	
+  end  
 end
 
 
@@ -27,9 +23,7 @@ end
 [esx]/esx_policejob/__resource.lua:
 ``
 exports {
-
-  'getJob'
-  
+  'getJob' 
 }
 
 
