@@ -11,18 +11,27 @@ ADD
 
 [esx]/esx_policejob/client/main.lua:
 ``
+
 function getJob()
+
   if PlayerData.job ~= nil then
+  
 	return PlayerData.job.name
+	
   end
+  
 end
+
 
 ``
 [esx]/esx_policejob/__resource.lua:
 ``
 exports {
+
   'getJob'
+  
 }
+
 
 ``
 
