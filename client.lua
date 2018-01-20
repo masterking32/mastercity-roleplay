@@ -144,6 +144,9 @@ doorList = {
 	-- Paleto Bay MAIN DOORS
 	[16] = { ["objName"] = "v_ilev_shrf2door", ["x"]= -443.14, ["y"]= 6015.685,["z"]= 31.716,["locked"]= true,["txtX"]=-443.14,["txtY"]=6015.685,["txtZ"]=32.00},
 	[17] = { ["objName"] = "v_ilev_shrf2door", ["x"]= -443.951, ["y"]= 6016.622,["z"]= 31.716,["locked"]= true,["txtX"]=-443.951,["txtY"]=6016.622,["txtZ"]=32.00},	
+	-- Mission Row Back Double Doors
+	[18] = { ["objName"] = "v_ilev_rc_door2", ["x"]= 467.3716, ["y"]= -1014.452,["z"]= 26.5362,["locked"]= true,["txtX"]=468.09,["txtY"]=-1014.452,["txtZ"]=27.1362},
+	[19] = { ["objName"] = "v_ilev_rc_door2", ["x"]= 469.9679, ["y"]= -1014.452,["z"]= 26.5362,["locked"]= true,["txtX"]=469.35,["txtY"]=-1014.452,["txtZ"]=27.1362},
 }
 
 
