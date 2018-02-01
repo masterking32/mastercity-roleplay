@@ -77,7 +77,7 @@ Citizen.CreateThread(function()
                     DrawText3d(doorList[i]["txtX"], doorList[i]["txtY"], doorList[i]["txtZ"], "[E] ~g~Unlocked")
                 end
 				
-                if policeskin and IsControlJustPressed(1,51) then											-- Change policeskin to "PlayerData.job.name == 'police'" for ESX
+                if policeskin() and IsControlJustPressed(1,51) then											-- Change policeskin to "PlayerData.job.name == 'police'" for ESX
                     if doorList[i]["locked"] == true then
                         FreezeEntityPosition(closeDoor, false)
                         if(i==10 or i==11) then
