@@ -109,28 +109,26 @@ doorList = {
     [9] = { ["objName"] = "v_ilev_ph_cellgate", ["x"]= 462.704, ["y"]= -1001.92,["z"]= 24.9149,["locked"]= true,["txtX"]=461.806,["txtY"]=-1002.450,["txtZ"]=25.064},
     -- Mission Row Backdoor in
     [10] = { ["objName"] = "v_ilev_gtdoor", ["x"]= 464.126, ["y"]= -1002.78,["z"]= 24.9149,["locked"]= true,["txtX"]=464.100,["txtY"]=-1003.538,["txtZ"]=26.064},
-    -- Mission Row Backdoor out
-    [11] = { ["objName"] = "v_ilev_gtdoor", ["x"]= 464.18, ["y"]= -1004.31,["z"]= 24.9152,["locked"]= true,["txtX"]=464.100,["txtY"]=-1003.538,["txtZ"]=26.064},
     -- Mission Row Rooftop In
-    [12] = { ["objName"] = "v_ilev_gtdoor02", ["x"]= 465.467, ["y"]= -983.446,["z"]= 43.6918,["locked"]= true,["txtX"]=464.361,["txtY"]=-984.050,["txtZ"]=44.834},
+    [11] = { ["objName"] = "v_ilev_gtdoor02", ["x"]= 465.467, ["y"]= -983.446,["z"]= 43.6918,["locked"]= true,["txtX"]=464.361,["txtY"]=-984.050,["txtZ"]=44.834},
     -- Mission Row Rooftop Out
-    [13] = { ["objName"] = "v_ilev_gtdoor02", ["x"]= 462.979, ["y"]= -984.163,["z"]= 43.6919,["locked"]= true,["txtX"]=464.361,["txtY"]=-984.050,["txtZ"]=44.834},
+    [12] = { ["objName"] = "v_ilev_gtdoor02", ["x"]= 462.979, ["y"]= -984.163,["z"]= 43.6919,["locked"]= true,["txtX"]=464.361,["txtY"]=-984.050,["txtZ"]=44.834},
 	-- Mission Row Locker room
-	[14] = { ["objName"] = "v_ilev_rc_door2", ["x"]= 451.98, ["y"]= -987.266,["z"]= 30.69,["locked"]= true,["txtX"]=451.98,["txtY"]=-987.266,["txtZ"]=31.30},
+	[13] = { ["objName"] = "v_ilev_rc_door2", ["x"]= 451.98, ["y"]= -987.266,["z"]= 30.69,["locked"]= true,["txtX"]=451.98,["txtY"]=-987.266,["txtZ"]=31.30},
 	-- SANDY SHORES MAIN DOOR
-    [15] = { ["objName"] = "v_ilev_shrfdoor", ["x"]= 1855.105, ["y"]= 3683.516,["z"]= 34.266,["locked"]= true,["txtX"]=1855.105,["txtY"]=3683.516,["txtZ"]=35.00},
+    [14] = { ["objName"] = "v_ilev_shrfdoor", ["x"]= 1855.105, ["y"]= 3683.516,["z"]= 34.266,["locked"]= true,["txtX"]=1855.105,["txtY"]=3683.516,["txtZ"]=35.00},
 	-- Paleto Bay MAIN DOORS
-	[16] = { ["objName"] = "v_ilev_shrf2door", ["x"]= -443.14, ["y"]= 6015.685,["z"]= 31.716,["locked"]= true,["txtX"]=-443.14,["txtY"]=6015.685,["txtZ"]=32.00},
-	[17] = { ["objName"] = "v_ilev_shrf2door", ["x"]= -443.951, ["y"]= 6016.622,["z"]= 31.716,["locked"]= true,["txtX"]=-443.951,["txtY"]=6016.622,["txtZ"]=32.00},	
+	[15] = { ["objName"] = "v_ilev_shrf2door", ["x"]= -443.14, ["y"]= 6015.685,["z"]= 31.716,["locked"]= true,["txtX"]=-443.14,["txtY"]=6015.685,["txtZ"]=32.00},
+	[16] = { ["objName"] = "v_ilev_shrf2door", ["x"]= -443.951, ["y"]= 6016.622,["z"]= 31.716,["locked"]= true,["txtX"]=-443.951,["txtY"]=6016.622,["txtZ"]=32.00},	
 	-- Mission Row Back Double Doors
-	[18] = { ["objName"] = "v_ilev_rc_door2", ["x"]= 467.3716, ["y"]= -1014.452,["z"]= 26.5362,["locked"]= true,["txtX"]=468.09,["txtY"]=-1014.452,["txtZ"]=27.1362},
-	[19] = { ["objName"] = "v_ilev_rc_door2", ["x"]= 469.9679, ["y"]= -1014.452,["z"]= 26.5362,["locked"]= true,["txtX"]=469.35,["txtY"]=-1014.452,["txtZ"]=27.1362},
+	[17] = { ["objName"] = "v_ilev_rc_door2", ["x"]= 467.3716, ["y"]= -1014.452,["z"]= 26.5362,["locked"]= true,["txtX"]=468.09,["txtY"]=-1014.452,["txtZ"]=27.1362},
+	[18] = { ["objName"] = "v_ilev_rc_door2", ["x"]= 469.9679, ["y"]= -1014.452,["z"]= 26.5362,["locked"]= true,["txtX"]=469.35,["txtY"]=-1014.452,["txtZ"]=27.1362},
 }
 
 
 RegisterNetEvent('door:state')
 AddEventHandler('door:state', function(id, isLocked)
-    if type(doorList[id]) ~= nil then -- Check if door exists
+    if id ~= nil and type(doorList[id]) ~= nil ~= nil then -- Check if door exists
         doorList[id]["locked"] = isLocked -- Change state of door
     end
 end)
