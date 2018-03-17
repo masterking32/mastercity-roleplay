@@ -1,8 +1,8 @@
-ESX = nil																					-- If you want to use this with ESX
-local PlayerData                = {}							-- If you want to use this with ESX
+ESX = nil
+local PlayerData                = {}
 
 
-Citizen.CreateThread(function()										-- If you want to use this with ESX
+Citizen.CreateThread(function()
 	while ESX == nil do
 		TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
 		Citizen.Wait(0)
@@ -36,48 +36,26 @@ function DrawText3d(x,y,z, text)
     end
 end
 
-skins = {
-  GetHashKey("s_m_y_cop_01"),
-  GetHashKey("s_f_y_cop_01"),
-  GetHashKey("copcutscene"),
-  GetHashKey("s_m_y_hwycop_01"),
-  GetHashKey("s_m_m_snowcop_01"),
-  GetHashKey("s_m_m_security_01"),
-  GetHashKey("s_m_y_sheriff_01"),
-  GetHashKey("s_f_y_sheriff_01"),
-  GetHashKey("s_m_m_fibsec_01"),
-}
-
-function policeskin()
-  for i = 1, #skins do
-    if skins[i] == GetEntityModel(PlayerPedId()) then
-      return true
-    end
-  end
-  return false
-end
 
 Citizen.CreateThread(function()
     while true do
-		Citizen.Wait(0)
+		Citizen.Wait(10)
         for i = 1, #doorList do
             local playerCoords = GetEntityCoords( GetPlayerPed(-1) )
             local closeDoor = GetClosestObjectOfType(doorList[i]["x"], doorList[i]["y"], doorList[i]["z"], 1.0, GetHashKey(doorList[i]["objName"]), false, false, false)
             
             local objectCoordsDraw = GetEntityCoords( closeDoor )            
             local playerDistance = GetDistanceBetweenCoords(playerCoords.x, playerCoords.y, playerCoords.z, doorList[i]["x"], doorList[i]["y"], doorList[i]["z"], true)
-
-
-                        
+			
             if(playerDistance < 1.25) then
                 
                 if doorList[i]["locked"] == true then
-                    DrawText3d(doorList[i]["txtX"], doorList[i]["txtY"], doorList[i]["txtZ"], "[E] ~r~Locked")
+                    DrawText3d(doorList[i]["txtX"], doorList[i]["txtY"], doorList[i]["txtZ"], "[E] ~r~Låst")
                 else
-                    DrawText3d(doorList[i]["txtX"], doorList[i]["txtY"], doorList[i]["txtZ"], "[E] ~g~Unlocked")
+                    DrawText3d(doorList[i]["txtX"], doorList[i]["txtY"], doorList[i]["txtZ"], "[E] ~g~Olåst")
                 end
 				
-                if policeskin() and IsControlJustPressed(1,51) then											-- Change policeskin to "PlayerData.job.name == 'police'" for ESX
+                if IsControlJustPressed(1,51) and GetLastInputMethod(2) and PlayerData.job ~= nil and PlayerData.job.name == 'police' then
                     if doorList[i]["locked"] == true then
                         FreezeEntityPosition(closeDoor, false)
                         if(i==10 or i==11) then
@@ -156,3 +134,4 @@ AddEventHandler('door:state', function(id, isLocked)
         doorList[id]["locked"] = isLocked -- Change state of door
     end
 end)
+
