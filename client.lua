@@ -1,6 +1,5 @@
-ESX = nil
-local PlayerData                = {}
-
+ESX              = nil
+local PlayerData = {}
 
 Citizen.CreateThread(function()
 	while ESX == nil do
@@ -11,9 +10,13 @@ end)
 
 RegisterNetEvent('esx:playerLoaded')
 AddEventHandler('esx:playerLoaded', function(xPlayer)
-    PlayerData = xPlayer
+	PlayerData = xPlayer
 end)
 
+RegisterNetEvent('esx:setJob')
+AddEventHandler('esx:setJob', function(job)
+	PlayerData.job = job
+end)
 
 function DrawText3d(x,y,z, text)
     local onScreen,_x,_y=World3dToScreen2d(x,y,z)
@@ -36,7 +39,6 @@ function DrawText3d(x,y,z, text)
     end
 end
 
-
 Citizen.CreateThread(function()
     while true do
 		Citizen.Wait(10)
@@ -44,7 +46,7 @@ Citizen.CreateThread(function()
             local playerCoords = GetEntityCoords( GetPlayerPed(-1) )
             local closeDoor = GetClosestObjectOfType(doorList[i]["x"], doorList[i]["y"], doorList[i]["z"], 1.0, GetHashKey(doorList[i]["objName"]), false, false, false)
             
-            local objectCoordsDraw = GetEntityCoords( closeDoor )            
+            local objectCoordsDraw = GetEntityCoords( closeDoor )
             local playerDistance = GetDistanceBetweenCoords(playerCoords.x, playerCoords.y, playerCoords.z, doorList[i]["x"], doorList[i]["y"], doorList[i]["z"], true)
 			
             if(playerDistance < 1.25) then
@@ -128,8 +130,8 @@ doorList = {
 
 RegisterNetEvent('door:state')
 AddEventHandler('door:state', function(id, isLocked)
-    if id ~= nil and type(doorList[id]) ~= nil ~= nil then -- Check if door exists
-        doorList[id]["locked"] = isLocked -- Change state of door
-    end
+	if id ~= nil and type(doorList[id]) ~= nil ~= nil then -- Check if door exists
+		doorList[id]["locked"] = isLocked -- Change state of door
+	end
 end)
 
