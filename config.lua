@@ -152,7 +152,7 @@ Config.DoorList = {
 		objCoords  = {x = 488.894, y = -1017.210, z = 27.146},
 		textCoords = {x = 488.894, y = -1020.210, z = 30.00},
 		locked = true,
-		distance = 10,
+		distance = 14,
 		size = 2
 	},
 

@@ -92,4 +92,3 @@ AddEventHandler('esx_celldoors:state', function(id, isLocked)
 		Config.DoorList[id].locked = isLocked -- Change state of door
 	end
 end)
-
