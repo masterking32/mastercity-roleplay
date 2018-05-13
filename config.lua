@@ -70,7 +70,7 @@ Config.DoorList = {
 		objCoords  = {x = 443.97, y = -989.033, z = 30.6896},
 		textCoords = {x = 444.020, y = -989.445, z = 31.739},
 		locked = true,
-		distance = 2.5
+		distance = 4
 	},
 
 	[9] = {
@@ -78,7 +78,7 @@ Config.DoorList = {
 		objCoords  = {x = 445.37, y = -988.705, z = 30.6896},
 		textCoords = {x = 445.350, y = -989.445, z = 31.739},
 		locked = true,
-		distance = 2.5
+		distance = 4
 	},
 
 	-- 
@@ -135,7 +135,7 @@ Config.DoorList = {
 		objCoords  = {x = 467.371, y = -1014.452, z = 26.536},
 		textCoords = {x = 468.09, y = -1014.452, z = 27.1362},
 		locked = true,
-		distance = 2.5
+		distance = 4
 	},
 
 	[16] = {
@@ -143,7 +143,7 @@ Config.DoorList = {
 		objCoords  = {x = 469.967, y = -1014.452, z = 26.536},
 		textCoords = {x = 469.35, y = -1014.452, z = 27.136},
 		locked = true,
-		distance = 2.5
+		distance = 4
 	},
 
 	-- Back Gate
