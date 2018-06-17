@@ -1,18 +1,31 @@
 ESX				= nil
-local IsLocked	= nil
-local doorList	= {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22}
+local DoorInfo	= {}
 
 TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
 
-RegisterServerEvent('esx_celldoors:update')
-AddEventHandler('esx_celldoors:update', function(id, IsLocked)
-	if id ~= nil and IsLocked ~= nil then -- Make sure values got sent
-		TriggerClientEvent('esx_celldoors:state', -1, id, IsLocked)
+RegisterServerEvent('esx_celldoors:updateState')
+AddEventHandler('esx_celldoors:updateState', function(doorID, state)
+	local xPlayer = ESX.GetPlayerFromId(source)
+	if xPlayer.job.name ~= 'police' then
+		print('esx_celldoors: ' .. xPlayer.identifier .. ' attempted to open a locked door using an injector!')
+		return
 	end
+
+	-- make each door a table, and clean it when toggled
+	DoorInfo[doorID] = {}
+
+	-- assign information
+	DoorInfo[doorID].state = state
+	DoorInfo[doorID].doorID = doorID
+
+	TriggerClientEvent('esx_celldoors:setState', -1, doorID, state)
 end)
 
-AddEventHandler('esx:playerLoaded', function(source)
-	local IsLocked = true
-	local id = doorList[i]
-	TriggerClientEvent('esx_celldoors:state', -1, id, IsLocked)
+ESX.RegisterServerCallback('esx_celldoors:getDoorInfo', function(source, cb)
+	local amount = 0
+	for i=1, #Config.DoorList, 1 do
+		amount = amount + 1
+	end
+
+	cb(DoorInfo, amount)
 end)

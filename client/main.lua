@@ -25,6 +25,15 @@ Citizen.CreateThread(function()
 	if PlayerData.job.name == 'police' then
 		IsCop = true
 	end
+
+	-- Update the door list
+	ESX.TriggerServerCallback('esx_celldoors:getDoorInfo', function(doorInfo, doorCount)
+		for localID = 1, doorCount do
+			if doorInfo[localID] ~= nil then
+				Config.DoorList[doorInfo[localID].doorID].locked = doorInfo[localID].state
+			end
+		end
+	end)
 end)
 
 RegisterNetEvent('esx:setJob')
@@ -73,7 +82,7 @@ Citizen.CreateThread(function()
 							FreezeEntityPosition(closeDoor, true)
 							Config.DoorList[i].locked = true
 						end
-						TriggerServerEvent('esx_celldoors:update', i, Config.DoorList[i].locked) -- Broadcast new state of the door to everyone
+						TriggerServerEvent('esx_celldoors:updateState', i, Config.DoorList[i].locked) -- Broadcast new state of the door to everyone
 					else
 						ESX.ShowNotification(_U('not_cop'))
 					end
@@ -85,10 +94,8 @@ Citizen.CreateThread(function()
 	end
 end)
 
-
-RegisterNetEvent('esx_celldoors:state')
-AddEventHandler('esx_celldoors:state', function(id, isLocked)
-	if id ~= nil and type(Config.DoorList[id]) ~= nil ~= nil then -- Check if door exists
-		Config.DoorList[id].locked = isLocked -- Change state of door
-	end
+-- Set state for a door
+RegisterNetEvent('esx_celldoors:setState')
+AddEventHandler('esx_celldoors:setState', function(doorID, state)
+	Config.DoorList[doorID].locked = state
 end)
