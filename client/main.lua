@@ -11,7 +11,6 @@ local Keys = {
 }
 
 ESX					= nil
-local PlayerData	= {}
 local IsCop			= false
 
 Citizen.CreateThread(function()
@@ -20,15 +19,19 @@ Citizen.CreateThread(function()
 		Citizen.Wait(0)
 	end
 
-	Citizen.Wait(5000)
-	PlayerData = ESX.GetPlayerData()
-	if PlayerData.job.name == 'police' then
+	while ESX.GetPlayerData().job == nil do
+		Citizen.Wait(10)
+	end
+
+	ESX.PlayerData = ESX.GetPlayerData()
+
+	if ESX.PlayerData.job.name == 'police' then
 		IsCop = true
 	end
 
 	-- Update the door list
-	ESX.TriggerServerCallback('esx_celldoors:getDoorInfo', function(doorInfo, doorCount)
-		for localID = 1, doorCount do
+	ESX.TriggerServerCallback('esx_celldoors:getDoorInfo', function(doorInfo, count)
+		for localID = 1, count, 1 do
 			if doorInfo[localID] ~= nil then
 				Config.DoorList[doorInfo[localID].doorID].locked = doorInfo[localID].state
 			end
@@ -38,18 +41,16 @@ end)
 
 RegisterNetEvent('esx:setJob')
 AddEventHandler('esx:setJob', function(job)
-	PlayerData.job = job
-
 	IsCop = (job.name == 'police') or false
 end)
 
 Citizen.CreateThread(function()
 	while true do
 		Citizen.Wait(10)
+		local playerCoords = GetEntityCoords(PlayerPedId())
+
 		for i=1, #Config.DoorList do
-			local playerCoords = GetEntityCoords(GetPlayerPed(-1))
-			local closeDoor    = GetClosestObjectOfType(Config.DoorList[i].objCoords.x, Config.DoorList[i].objCoords.y, Config.DoorList[i].objCoords.z, 1.0, GetHashKey(Config.DoorList[i].objName), false, false, false)
-			local distance     = GetDistanceBetweenCoords(playerCoords, Config.DoorList[i].objCoords.x, Config.DoorList[i].objCoords.y, Config.DoorList[i].objCoords.z, true)
+			local distance = GetDistanceBetweenCoords(playerCoords, Config.DoorList[i].objCoords.x, Config.DoorList[i].objCoords.y, Config.DoorList[i].objCoords.z, true)
 			
 			local maxDistance = 1.25
 			if Config.DoorList[i].distance then
@@ -57,6 +58,8 @@ Citizen.CreateThread(function()
 			end
 			
 			if distance < maxDistance then
+				ApplyDoorState(Config.DoorList[i])
+
 				local size = 1
 				if Config.DoorList[i].size then
 					size = Config.DoorList[i].size
@@ -75,24 +78,23 @@ Citizen.CreateThread(function()
 				
 				if IsControlJustReleased(0, Keys['E']) then
 					if IsCop then
-						if Config.DoorList[i].locked then
-							FreezeEntityPosition(closeDoor, false)
-							Config.DoorList[i].locked = false
-						else
-							FreezeEntityPosition(closeDoor, true)
-							Config.DoorList[i].locked = true
-						end
+						Config.DoorList[i].locked = not Config.DoorList[i].locked
+						ApplyDoorState(Config.DoorList[i])
+
 						TriggerServerEvent('esx_celldoors:updateState', i, Config.DoorList[i].locked) -- Broadcast new state of the door to everyone
 					else
 						ESX.ShowNotification(_U('not_cop'))
 					end
 				end
-			else
-				FreezeEntityPosition(closeDoor, Config.DoorList[i].locked)
 			end
 		end
 	end
 end)
+
+function ApplyDoorState(door)
+	local closeDoor = GetClosestObjectOfType(door.objCoords.x, door.objCoords.y, door.objCoords.z, 1.0, GetHashKey(door.objName), false, false, false)
+	FreezeEntityPosition(closeDoor, door.locked)
+end
 
 -- Set state for a door
 RegisterNetEvent('esx_celldoors:setState')

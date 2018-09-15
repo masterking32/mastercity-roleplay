@@ -22,10 +22,5 @@ AddEventHandler('esx_celldoors:updateState', function(doorID, state)
 end)
 
 ESX.RegisterServerCallback('esx_celldoors:getDoorInfo', function(source, cb)
-	local amount = 0
-	for i=1, #Config.DoorList, 1 do
-		amount = amount + 1
-	end
-
-	cb(DoorInfo, amount)
+	cb(DoorInfo, #DoorInfo)
 end)
