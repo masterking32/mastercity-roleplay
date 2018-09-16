@@ -92,6 +92,10 @@ function ApplyDoorState(doorID)
 end
 
 function IsAuthorized(doorID)
+	if ESX.PlayerData.job.name == nil then
+		return false
+	end
+
 	for i=1, #doorID.authorizedJobs, 1 do
 		if doorID.authorizedJobs[i] == ESX.PlayerData.job.name then
 			return true
