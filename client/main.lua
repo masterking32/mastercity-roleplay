@@ -11,7 +11,6 @@ local Keys = {
 }
 
 ESX					= nil
-local IsCop			= false
 
 Citizen.CreateThread(function()
 	while ESX == nil do
@@ -25,12 +24,8 @@ Citizen.CreateThread(function()
 
 	ESX.PlayerData = ESX.GetPlayerData()
 
-	if ESX.PlayerData.job.name == 'police' then
-		IsCop = true
-	end
-
 	-- Update the door list
-	ESX.TriggerServerCallback('esx_celldoors:getDoorInfo', function(doorInfo, count)
+	ESX.TriggerServerCallback('esx_doorlock:getDoorInfo', function(doorInfo, count)
 		for localID = 1, count, 1 do
 			if doorInfo[localID] ~= nil then
 				Config.DoorList[doorInfo[localID].doorID].locked = doorInfo[localID].state
@@ -41,7 +36,7 @@ end)
 
 RegisterNetEvent('esx:setJob')
 AddEventHandler('esx:setJob', function(job)
-	IsCop = (job.name == 'police') or false
+	ESX.PlayerData.job = job
 end)
 
 Citizen.CreateThread(function()
@@ -50,40 +45,40 @@ Citizen.CreateThread(function()
 		local playerCoords = GetEntityCoords(PlayerPedId())
 
 		for i=1, #Config.DoorList do
-			local distance = GetDistanceBetweenCoords(playerCoords, Config.DoorList[i].objCoords.x, Config.DoorList[i].objCoords.y, Config.DoorList[i].objCoords.z, true)
-			
+			local doorID   = Config.DoorList[i]
+			local distance = GetDistanceBetweenCoords(playerCoords, doorID.objCoords.x, doorID.objCoords.y, doorID.objCoords.z, true)
+			local isAuthorized = IsAuthorized(doorID)
+
 			local maxDistance = 1.25
-			if Config.DoorList[i].distance then
-				maxDistance = Config.DoorList[i].distance
+			if doorID.distance then
+				maxDistance = doorID.distance
 			end
-			
+
 			if distance < maxDistance then
-				ApplyDoorState(Config.DoorList[i])
+				ApplyDoorState(doorID)
 
 				local size = 1
-				if Config.DoorList[i].size then
-					size = Config.DoorList[i].size
+				if doorID.size then
+					size = doorID.size
 				end
 
 				local displayText = _U('unlocked')
-				if Config.DoorList[i].locked then
+				if doorID.locked then
 					displayText = _U('locked')
 				end
 
-				if IsCop then
-					displayText = _U('press_button') .. displayText
+				if isAuthorized then
+					displayText = _U('press_button', displayText)
 				end
 
-				ESX.Game.Utils.DrawText3D(Config.DoorList[i].textCoords, displayText, size)
+				ESX.Game.Utils.DrawText3D(doorID.textCoords, displayText, size)
 				
 				if IsControlJustReleased(0, Keys['E']) then
-					if IsCop then
-						Config.DoorList[i].locked = not Config.DoorList[i].locked
-						ApplyDoorState(Config.DoorList[i])
+					if isAuthorized then
+						doorID.locked = not doorID.locked
+						ApplyDoorState(doorID)
 
-						TriggerServerEvent('esx_celldoors:updateState', i, Config.DoorList[i].locked) -- Broadcast new state of the door to everyone
-					else
-						ESX.ShowNotification(_U('not_cop'))
+						TriggerServerEvent('esx_doorlock:updateState', i, doorID.locked) -- Broadcast new state of the door to everyone
 					end
 				end
 			end
@@ -91,13 +86,23 @@ Citizen.CreateThread(function()
 	end
 end)
 
-function ApplyDoorState(door)
-	local closeDoor = GetClosestObjectOfType(door.objCoords.x, door.objCoords.y, door.objCoords.z, 1.0, GetHashKey(door.objName), false, false, false)
-	FreezeEntityPosition(closeDoor, door.locked)
+function ApplyDoorState(doorID)
+	local closeDoor = GetClosestObjectOfType(doorID.objCoords.x, doorID.objCoords.y, doorID.objCoords.z, 1.0, GetHashKey(doorID.objName), false, false, false)
+	FreezeEntityPosition(closeDoor, doorID.locked)
+end
+
+function IsAuthorized(doorID)
+	for i=1, #doorID.authorizedJobs, 1 do
+		if doorID.authorizedJobs[i] == ESX.PlayerData.job.name then
+			return true
+		end
+	end
+
+	return false
 end
 
 -- Set state for a door
-RegisterNetEvent('esx_celldoors:setState')
-AddEventHandler('esx_celldoors:setState', function(doorID, state)
+RegisterNetEvent('esx_doorlock:setState')
+AddEventHandler('esx_doorlock:setState', function(doorID, state)
 	Config.DoorList[doorID].locked = state
 end)

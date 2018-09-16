@@ -1,35 +1,39 @@
-# esx_celldoors
-This is a door lock script for cops, which is used to lock certain doors that shouldn't be accessable by normal citizens.
+# esx_doorlock
+This is a door lock script for ESX, which is used to lock certain doors that shouldn't be accessable by normal citizens.
 
-This script was originally developed by Darklandz, later modified by Miss_Behavin and many others.
+This script was originally developed by Darklandz, later modified by Miss_Behavin and others.
+
+### Features
+- Well optimized script
+- Supports mutliple jobs for each door
 
 ## Download & Installation
 
 ### Using [fvm](https://github.com/qlaffont/fvm-installer)
 ```
-fvm install --save --folder=esx esx-public/esx_celldoors
+fvm install --save --folder=esx esx-public/esx_doorlock
 ```
 
 ### Using Git
 ```
 cd resources
-git clone https://github.com/ESX-PUBLIC/esx_celldoors [esx]/esx_celldoors
+git clone https://github.com/ESX-PUBLIC/esx_doorlock [esx]/esx_doorlock
 ```
 
 ### Manually
-- Download https://github.com/ESX-PUBLIC/esx_celldoors/archive/master.zip
+- Download https://github.com/ESX-PUBLIC/esx_doorlock/archive/master.zip
 - Put it in the `[esx]` directory
 
 ## Installation
 - Add this to your `server.cfg`:
 
 ```
-start esx_celldoors
+start esx_doorlock
 ```
 
 # Legal
 ### License
-esx_celldoors - celldoors for ESX
+esx_doorlock - door locks for ESX
 
 Copyright (C) 2015-2018 ElPumpo / Hawaii_Beach
 
