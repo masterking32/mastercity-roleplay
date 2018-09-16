@@ -92,7 +92,7 @@ function ApplyDoorState(doorID)
 end
 
 function IsAuthorized(doorID)
-	if ESX.PlayerData.job.name == nil then
+	if ESX.PlayerData.job == nil then
 		return false
 	end
 
