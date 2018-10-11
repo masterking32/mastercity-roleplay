@@ -58,14 +58,14 @@ AddEventHandler('es_db:updateUser', function(identifier, new, callback)
 		local length = tLength(new)
 		local cLength = 1
 		for k,v in pairs(new) do
-			if (type(k) == "string") then
-				updateString = updateString .. k .. "=@" .. k
+			if (type(k) == 'string') then
+				updateString = updateString .. k .. '=@' .. k
 				params[k] = v
 				if cLength < length then
-					updateString = updateString .. ", "
+					updateString = updateString .. ', '
 				end
-				cLength = cLength + 1
 			end
+			cLength = cLength + 1
 		end
 
 		MySQL.Async.execute('UPDATE users SET ' .. updateString .. ' WHERE `identifier`=@identifier', params, function(done)
