@@ -55,27 +55,22 @@ end)
 AddEventHandler('es_db:updateUser', function(identifier, new, callback)
 	Citizen.CreateThread(function()
 		local updateString = ""
+		local params = {identifier = identifier}
 
 		local length = tLength(new)
 		local cLength = 1
-		for k,v in pairs(new)do
-			if cLength < length then
-				if(type(v) == "number")then
-					updateString = updateString .. "`" .. k .. "`=" .. v .. ","
-				else
-					updateString = updateString .. "`" .. k .. "`='" .. v .. "',"
+		for k,v in pairs(new) do
+			if (type(k) == "string") then
+				updateString = updateString .. k .. "=@" .. k
+				params[k] = v
+				if cLength < length then
+					updateString = updateString .. ", "
 				end
-			else
-				if(type(v) == "number")then
-					updateString = updateString .. "`" .. k .. "`=" .. v .. ""
-				else
-					updateString = updateString .. "`" .. k .. "`='" .. v .. "'"
-				end
+				cLength = cLength + 1
 			end
-			cLength = cLength + 1
 		end
 
-		MySQL.Async.execute('UPDATE users SET ' .. updateString .. ' WHERE `identifier`=@identifier', {identifier = identifier}, function(done)
+		MySQL.Async.execute('UPDATE users SET ' .. updateString .. ' WHERE `identifier`=@identifier', params, function(done)
 			if callback then
 				callback(true)
 			end
@@ -88,6 +83,5 @@ function tLength(t)
 	for k,v in pairs(t)do
 		l = l + 1
 	end
-
 	return l
 end
