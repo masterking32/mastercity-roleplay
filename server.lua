@@ -52,7 +52,7 @@ end)
 
 AddEventHandler('es_db:updateUser', function(identifier, new, callback)
 	Citizen.CreateThread(function()
-		local updateString = ""
+		local updateString = ''
 		local params = {identifier = identifier}
 
 		local length = tLength(new)
