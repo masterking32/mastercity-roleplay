@@ -2,7 +2,7 @@
 -- set es_enableCustomData 1
 
 AddEventHandler('es_db:doesUserExist', function(identifier, callback)
-	MySQL.Async.fetchAll('SELECT * FROM users WHERE `identifier`=@identifier;', {identifier = identifier}, function(users)
+	MySQL.Async.fetchAll('SELECT 1 FROM users WHERE `identifier`=@identifier;', {identifier = identifier}, function(users)
 		if users[1] then
 			callback(true)
 		else
