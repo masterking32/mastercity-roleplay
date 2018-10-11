@@ -30,8 +30,6 @@ AddEventHandler('es_db:createUser', function(identifier, license, cash, bank, ca
 	end)
 end)
 
-
-
 AddEventHandler('es_db:retrieveLicensedUser', function(license, callback)
 	MySQL.Async.fetchAll('SELECT * FROM users WHERE `license`=@identifier;', {identifier = license}, function(users)
 		if users[1] then
