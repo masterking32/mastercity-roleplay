@@ -1,15 +1,5 @@
--- Make sure you set this convar: 
+-- Make sure you set this convar:
 -- set es_enableCustomData 1
-
-local mReady = false
-
-AddEventHandler('onMySQLReady', function ()
-	mReady = true
-end)
-
-AddEventHandler('es_db:firstRunCheck', function(ip, port)
-	-- Not in use
-end)
 
 AddEventHandler('es_db:doesUserExist', function(identifier, callback)
 	MySQL.Async.fetchAll('SELECT * FROM users WHERE `identifier`=@identifier;', {identifier = identifier}, function(users)
