@@ -23,7 +23,7 @@ AddEventHandler('es_db:retrieveUser', function(identifier, callback)
 end)
 
 AddEventHandler('es_db:createUser', function(identifier, license, cash, bank, callback)
-	local user = { identifier = identifier, money = cash or 0, bank = bank or 0, license = license, group = "user", permission_level = 0 }
+	local user = { identifier = identifier, money = cash or 0, bank = bank or 0, license = license, group = 'user', permission_level = 0 }
 
 	MySQL.Async.execute('INSERT INTO users (`identifier`, `money`, `bank`, `group`, `permission_level`, `license`) VALUES (@identifier, @money, @bank, @group, @permission_level, @license);', {identifier = user.identifier, money = user.money, bank = user.bank, permission_level = user.permission_level, group = user.group, license = user.license}, function(e)
 		callback()
