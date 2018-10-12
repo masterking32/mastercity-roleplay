@@ -59,7 +59,7 @@ AddEventHandler('es_db:updateUser', function(identifier, new, callback)
 		local cLength = 1
 		for k,v in pairs(new) do
 			if (type(k) == 'string') then
-				updateString = updateString .. k .. '=@' .. k
+				updateString = updateString .. '`' .. k .. '`=@' .. k
 				params[k] = v
 				if cLength < length then
 					updateString = updateString .. ', '
