@@ -23,15 +23,30 @@ AddEventHandler('es_db:retrieveUser', function(identifier, callback)
 end)
 
 AddEventHandler('es_db:createUser', function(identifier, license, cash, bank, callback)
-	local user = { identifier = identifier, money = cash or 0, bank = bank or 0, license = license, group = 'user', permission_level = 0 }
+	local user = {
+		identifier = identifier,
+		money = cash or 0,
+		bank = bank or 0,
+		license = license,
+		group = 'user',
+		permission_level = 0
+	}
 
-	MySQL.Async.execute('INSERT INTO users (`identifier`, `money`, `bank`, `group`, `permission_level`, `license`) VALUES (@identifier, @money, @bank, @group, @permission_level, @license);', {identifier = user.identifier, money = user.money, bank = user.bank, permission_level = user.permission_level, group = user.group, license = user.license}, function(e)
+	MySQL.Async.execute('INSERT INTO users (`identifier`, `money`, `bank`, `group`, `permission_level`, `license`) VALUES (@identifier, @money, @bank, @group, @permission_level, @license);',
+	{
+		identifier = user.identifier,
+		money = user.money,
+		bank = user.bank,
+		permission_level = user.permission_level,
+		group = user.group,
+		license = user.license
+	}, function(rowsChanged)
 		callback()
 	end)
 end)
 
 AddEventHandler('es_db:retrieveLicensedUser', function(license, callback)
-	MySQL.Async.fetchAll('SELECT * FROM users WHERE `license`=@identifier;', {identifier = license}, function(users)
+	MySQL.Async.fetchAll('SELECT * FROM users WHERE `license`=@license;', {license = license}, function(users)
 		if users[1] then
 			callback(users[1])
 		else
@@ -41,7 +56,7 @@ AddEventHandler('es_db:retrieveLicensedUser', function(license, callback)
 end)
 
 AddEventHandler('es_db:doesLicensedUserExist', function(license, callback)
-	MySQL.Async.fetchAll('SELECT * FROM users WHERE `license`=@identifier;', {identifier = license}, function(users)
+	MySQL.Async.fetchAll('SELECT 1 FROM users WHERE `license`=@license;', {license = license}, function(users)
 		if users[1] then
 			callback(true)
 		else
@@ -68,7 +83,7 @@ AddEventHandler('es_db:updateUser', function(identifier, new, callback)
 			cLength = cLength + 1
 		end
 
-		MySQL.Async.execute('UPDATE users SET ' .. updateString .. ' WHERE `identifier`=@identifier', params, function(done)
+		MySQL.Async.execute('UPDATE users SET ' .. updateString .. ' WHERE `identifier`=@identifier', params, function(rowsChanged)
 			if callback then
 				callback(true)
 			end
