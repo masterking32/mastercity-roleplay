@@ -76,7 +76,6 @@ Citizen.CreateThread(function()
 				if IsControlJustReleased(0, Keys['E']) then
 					if isAuthorized then
 						doorID.locked = not doorID.locked
-						ApplyDoorState(doorID)
 
 						TriggerServerEvent('esx_doorlock:updateState', i, doorID.locked) -- Broadcast new state of the door to everyone
 					end
