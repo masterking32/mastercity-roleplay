@@ -41,7 +41,7 @@ end)
 
 Citizen.CreateThread(function()
 	while true do
-		Citizen.Wait(10)
+		Citizen.Wait(0)
 		local playerCoords = GetEntityCoords(PlayerPedId())
 
 		for i=1, #Config.DoorList do
