@@ -9,28 +9,31 @@ Config.DoorList = {
 
 	-- Entrance Doors
 	{
-		objName = 'v_ilev_ph_door01',
-		objCoords  = {x = 434.747, y = -980.618, z = 30.839},
-		textCoords = {x = 434.747, y = -981.50, z = 31.50},
+		textCoords = vector3(434.7, -982.0, 31.5),
 		authorizedJobs = { 'police' },
 		locked = false,
-		distance = 2.5
-	},
+		distance = 2.5,
+		doors = {
+			{
+				objName = 'v_ilev_ph_door01',
+				objYaw = -90.0,
+				objCoords = vector3(434.7, -980.6, 30.8)
+			},
 
-	{
-		objName = 'v_ilev_ph_door002',
-		objCoords  = {x = 434.747, y = -983.215, z = 30.839},
-		textCoords = {x = 434.747, y = -982.50, z = 31.50},
-		authorizedJobs = { 'police' },
-		locked = false,
-		distance = 2.5
+			{
+				objName = 'v_ilev_ph_door002',
+				objYaw = -90.0,
+				objCoords = vector3(434.7, -983.2, 30.8)
+			}
+		}
 	},
 
 	-- To locker room & roof
 	{
 		objName = 'v_ilev_ph_gendoor004',
-		objCoords  = {x = 449.698, y = -986.469, z = 30.689},
-		textCoords = {x = 450.104, y = -986.388, z = 31.739},
+		objYaw = 90.0,
+		objCoords  = vector3(449.6, -986.4, 30.6),
+		textCoords = vector3(450.1, -986.3, 31.7),
 		authorizedJobs = { 'police' },
 		locked = true
 	},
@@ -38,8 +41,9 @@ Config.DoorList = {
 	-- Rooftop
 	{
 		objName = 'v_ilev_gtdoor02',
-		objCoords  = {x = 464.361, y = -984.678, z = 43.834},
-		textCoords = {x = 464.361, y = -984.050, z = 44.834},
+		objYaw = 90.0,
+		objCoords  = vector3(464.3, -984.6, 43.8),
+		textCoords = vector3(464.3, -984.0, 44.8),
 		authorizedJobs = { 'police' },
 		locked = true
 	},
@@ -47,8 +51,9 @@ Config.DoorList = {
 	-- Hallway to roof
 	{
 		objName = 'v_ilev_arm_secdoor',
-		objCoords  = {x = 461.286, y = -985.320, z = 30.839},
-		textCoords = {x = 461.50, y = -986.00, z = 31.50},
+		objYaw = 90.0,
+		objCoords  = vector3(461.2, -985.3, 30.8),
+		textCoords = vector3(461.5, -986.0, 31.5),
 		authorizedJobs = { 'police' },
 		locked = true
 	},
@@ -56,8 +61,9 @@ Config.DoorList = {
 	-- Armory
 	{
 		objName = 'v_ilev_arm_secdoor',
-		objCoords  = {x = 452.618, y = -982.702, z = 30.689},
-		textCoords = {x = 453.079, y = -982.600, z = 31.739},
+		objYaw = -90.0,
+		objCoords  = vector3(452.6, -982.7, 30.6),
+		textCoords = vector3(453.0, -982.6, 31.7),
 		authorizedJobs = { 'police' },
 		locked = true
 	},
@@ -65,40 +71,44 @@ Config.DoorList = {
 	-- Captain Office
 	{
 		objName = 'v_ilev_ph_gendoor002',
-		objCoords  = {x = 447.238, y = -980.630, z = 30.689},
-		textCoords = {x = 447.200, y = -980.010, z = 31.739},
+		objYaw = -180.0,
+		objCoords  = vector3(447.2, -980.6, 30.6),
+		textCoords = vector3(447.2, -980.0, 31.7),
 		authorizedJobs = { 'police' },
 		locked = true
 	},
 
 	-- To downstairs (double doors)
 	{
-		objName = 'v_ilev_ph_gendoor005',
-		objCoords  = {x = 443.97, y = -989.033, z = 30.6896},
-		textCoords = {x = 444.020, y = -989.445, z = 31.739},
+		textCoords = vector3(444.6, -989.4, 31.7),
 		authorizedJobs = { 'police' },
 		locked = true,
-		distance = 4
+		distance = 4,
+		doors = {
+			{
+				objName = 'v_ilev_ph_gendoor005',
+				objYaw = 180.0,
+				objCoords = vector3(443.9, -989.0, 30.6)
+			},
+
+			{
+				objName = 'v_ilev_ph_gendoor005',
+				objYaw = 0.0,
+				objCoords = vector3(445.3, -988.7, 30.6)
+			}
+		}
 	},
 
-	{
-		objName = 'v_ilev_ph_gendoor005',
-		objCoords  = {x = 445.37, y = -988.705, z = 30.6896},
-		textCoords = {x = 445.350, y = -989.445, z = 31.739},
-		authorizedJobs = { 'police' },
-		locked = true,
-		distance = 4
-	},
-
-	-- 
+	--
 	-- Mission Row Cells
 	--
 
 	-- Main Cells
 	{
 		objName = 'v_ilev_ph_cellgate',
-		objCoords  = {x = 463.815, y = -992.686, z = 24.9149},
-		textCoords = {x = 463.30, y = -992.686, z = 25.10},
+		objYaw = 0.0,
+		objCoords  = vector3(463.8, -992.6, 24.9),
+		textCoords = vector3(463.3, -992.6, 25.1),
 		authorizedJobs = { 'police' },
 		locked = true
 	},
@@ -106,8 +116,9 @@ Config.DoorList = {
 	-- Cell 1
 	{
 		objName = 'v_ilev_ph_cellgate',
-		objCoords  = {x = 462.381, y = -993.651, z = 24.914},
-		textCoords = {x = 461.806, y = -993.308, z = 25.064},
+		objYaw = -90.0,
+		objCoords  = vector3(462.3, -993.6, 24.9),
+		textCoords = vector3(461.8, -993.3, 25.0),
 		authorizedJobs = { 'police' },
 		locked = true
 	},
@@ -115,8 +126,9 @@ Config.DoorList = {
 	-- Cell 2
 	{
 		objName = 'v_ilev_ph_cellgate',
-		objCoords  = {x = 462.331, y = -998.152, z = 24.914},
-		textCoords = {x = 461.806, y = -998.800, z = 25.064},
+		objYaw = 90.0,
+		objCoords  = vector3(462.3, -998.1, 24.9),
+		textCoords = vector3(461.8, -998.8, 25.0),
 		authorizedJobs = { 'police' },
 		locked = true
 	},
@@ -124,8 +136,9 @@ Config.DoorList = {
 	-- Cell 3
 	{
 		objName = 'v_ilev_ph_cellgate',
-		objCoords  = {x = 462.704, y = -1001.92, z = 24.9149},
-		textCoords = {x = 461.806, y = -1002.450, z = 25.064},
+		objYaw = 90.0,
+		objCoords  = vector3(462.7, -1001.9, 24.9),
+		textCoords = vector3(461.8, -1002.4, 25.0),
 		authorizedJobs = { 'police' },
 		locked = true
 	},
@@ -133,8 +146,9 @@ Config.DoorList = {
 	-- To Back
 	{
 		objName = 'v_ilev_gtdoor',
-		objCoords  = {x = 463.478, y = -1003.538, z = 25.005},
-		textCoords = {x = 464.00, y = -1003.50, z = 25.50},
+		objYaw = 0.0,
+		objCoords  = vector3(463.4, -1003.5, 25.0),
+		textCoords = vector3(464.0, -1003.5, 25.5),
 		authorizedJobs = { 'police' },
 		locked = true
 	},
@@ -145,28 +159,31 @@ Config.DoorList = {
 
 	-- Back (double doors)
 	{
-		objName = 'v_ilev_rc_door2',
-		objCoords  = {x = 467.371, y = -1014.452, z = 26.536},
-		textCoords = {x = 468.09, y = -1014.452, z = 27.1362},
+		textCoords = vector3(468.6, -1014.4, 27.1),
 		authorizedJobs = { 'police' },
 		locked = true,
-		distance = 4
-	},
+		distance = 4,
+		doors = {
+			{
+				objName = 'v_ilev_rc_door2',
+				objYaw = 0.0,
+				objCoords  = vector3(467.3, -1014.4, 26.5)
+			},
 
-	{
-		objName = 'v_ilev_rc_door2',
-		objCoords  = {x = 469.967, y = -1014.452, z = 26.536},
-		textCoords = {x = 469.35, y = -1014.452, z = 27.136},
-		authorizedJobs = { 'police' },
-		locked = true,
-		distance = 4
+			{
+				objName = 'v_ilev_rc_door2',
+				objYaw = 180.0,
+				objCoords  = vector3(469.9, -1014.4, 26.5)
+			}
+		}
 	},
 
 	-- Back Gate
 	{
 		objName = 'hei_prop_station_gate',
-		objCoords  = {x = 488.894, y = -1017.210, z = 27.146},
-		textCoords = {x = 488.894, y = -1020.210, z = 30.00},
+		objYaw = 90.0,
+		objCoords  = vector3(488.8, -1017.2, 27.1),
+		textCoords = vector3(488.8, -1020.2, 30.0),
 		authorizedJobs = { 'police' },
 		locked = true,
 		distance = 14,
@@ -180,8 +197,9 @@ Config.DoorList = {
 	-- Entrance
 	{
 		objName = 'v_ilev_shrfdoor',
-		objCoords  = {x = 1855.105, y = 3683.516, z = 34.266},
-		textCoords = {x = 1855.105, y = 3683.516, z = 35.00},
+		objYaw = 30.0,
+		objCoords  = vector3(1855.1, 3683.5, 34.2),
+		textCoords = vector3(1855.1, 3683.5, 35.0),
 		authorizedJobs = { 'police' },
 		locked = false
 	},
@@ -192,21 +210,23 @@ Config.DoorList = {
 
 	-- Entrance (double doors)
 	{
-		objName = 'v_ilev_shrf2door',
-		objCoords  = {x = -443.14, y = 6015.685, z = 31.716},
-		textCoords = {x = -443.14, y = 6015.685, z = 32.00},
+		textCoords = vector3(-443.5, 6016.3, 32.0),
 		authorizedJobs = { 'police' },
 		locked = false,
-		distance = 2.5
-	},
+		distance = 2.5,
+		doors = {
+			{
+				objName = 'v_ilev_shrf2door',
+				objYaw = -45.0,
+				objCoords  = vector3(-443.1, 6015.6, 31.7),
+			},
 
-	{
-		objName = 'v_ilev_shrf2door',
-		objCoords  = {x = -443.951, y = 6016.622, z = 31.716},
-		textCoords = {x = -443.951, y = 6016.622, z = 32.00},
-		authorizedJobs = { 'police' },
-		locked = false,
-		distance = 2.5
+			{
+				objName = 'v_ilev_shrf2door',
+				objYaw = 135.0,
+				objCoords  = vector3(-443.9, 6016.6, 31.7)
+			}
+		}
 	},
 
 	--
@@ -216,8 +236,8 @@ Config.DoorList = {
 	-- Entrance (Two big gates)
 	{
 		objName = 'prop_gate_prison_01',
-		objCoords  = {x = 1844.998, y = 2604.810, z = 44.638},
-		textCoords = {x = 1844.998, y = 2608.50, z = 48.00},
+		objCoords  = vector3(1844.9, 2604.8, 44.6),
+		textCoords = vector3(1844.9, 2608.5, 48.0),
 		authorizedJobs = { 'police' },
 		locked = true,
 		distance = 12,
@@ -226,8 +246,8 @@ Config.DoorList = {
 
 	{
 		objName = 'prop_gate_prison_01',
-		objCoords  = {x = 1818.542, y = 2604.812, z = 44.611},
-		textCoords = {x = 1818.542, y = 2608.40, z = 48.00},
+		objCoords  = vector3(1818.5, 2604.8, 44.6),
+		textCoords = vector3(1818.5, 2608.4, 48.0),
 		authorizedJobs = { 'police' },
 		locked = true,
 		distance = 12,
@@ -242,8 +262,8 @@ Config.DoorList = {
 	-- Entrance Gate (Mission Row mod) https://www.gta5-mods.com/maps/mission-row-pd-ymap-fivem-v1
 	{
 		objName = 'prop_gate_airport_01',
-		objCoords  = {x = 420.133, y = -1017.301, z = 28.086},
-		textCoords = {x = 420.133, y = -1021.00, z = 32.00},
+		objCoords  = vector3(420.1, -1017.3, 28.0),
+		textCoords = vector3(420.1, -1021.0, 32.0),
 		authorizedJobs = { 'police' },
 		locked = true,
 		distance = 14,
