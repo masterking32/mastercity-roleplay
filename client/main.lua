@@ -2,6 +2,8 @@ mythic_action = {
     name = "",
     duration = 0,
     label = "",
+    useWhileDead = false,
+    canCancel = true,
     controlDisables = {
         disableMovement = false,
         disableCarMovement = false,
@@ -28,13 +30,14 @@ local prop_net = nil
 
 RegisterNetEvent("mythic_progbar:client:progress")
 AddEventHandler("mythic_progbar:client:progress", function(action, cb)
-    if not IsEntityDead(GetPlayerPed(-1)) then
+    mythic_action = action
+
+    if not IsEntityDead(GetPlayerPed(-1)) or mythic_action.useWhileDead then
         if not isDoingAction then
             isDoingAction = true
             wasCancelled = false
             isAnim = false
             isProp = false
-            mythic_action = action
 
             SendNUIMessage({
                 action = "mythic_progress",
@@ -45,7 +48,7 @@ AddEventHandler("mythic_progbar:client:progress", function(action, cb)
             Citizen.CreateThread(function ()
                 while isDoingAction do
                     Citizen.Wait(0)
-                    if IsControlJustPressed(0, 178) then
+                    if IsControlJustPressed(0, 178) and mythic_action.canCancel then
                         TriggerEvent("mythic_progbar:client:cancel")
                     end
                 end
@@ -54,10 +57,10 @@ AddEventHandler("mythic_progbar:client:progress", function(action, cb)
                 end
             end)
         else
-            TriggerEvent("mythic_base:client:SendAlert", { text = "Already Doing An Action", type = "error", layout = "topRight", timeout = 1500 })
+            print('Action Already Performing') -- Replace with alert call if you want the player to see this warning on-screen
         end
     else
-        TriggerEvent("mythic_base:client:SendAlert", { text = "Cannot Perform An Action While Dead", type = "error", layout = "topRight", timeout = 1500 })
+        print('Cannot do action while dead') -- Replace with alert call if you want the player to see this warning on-screen
     end
 end)
 
@@ -92,6 +95,10 @@ Citizen.CreateThread(function()
                     if mythic_action.animation.task ~= nil then
                         TaskStartScenarioInPlace(PlayerPedId(), mythic_action.animation.task, 0, true)
                     elseif mythic_action.animation.animDict ~= nil and mythic_action.animation.anim ~= nil then
+                        if mythic_action.animation.flags == nil then
+                            mythic_action.animation.flags = 1
+                        end
+
                         local player = PlayerPedId()
                         if ( DoesEntityExist( player ) and not IsEntityDead( player )) then
                             loadAnimDict( mythic_action.animation.animDict )
