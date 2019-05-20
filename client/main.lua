@@ -88,16 +88,18 @@ Citizen.CreateThread(function()
     while true do
         if isDoingAction then
             if not isAnim then
-                if mythic_action.animation.task ~= nil then
-                    TaskStartScenarioInPlace(PlayerPedId(), mythic_action.animation.task, 0, true)
-                elseif mythic_action.animation.animDict ~= nil and mythic_action.animation.anim ~= nil then
-                    local player = PlayerPedId()
-                    if ( DoesEntityExist( player ) and not IsEntityDead( player )) then
-                        loadAnimDict( mythic_action.animation.animDict )
-                        TaskPlayAnim( player, mythic_action.animation.animDict, mythic_action.animation.anim, 3.0, 1.0, -1, mythic_action.animation.flags, 0, 0, 0, 0 )     
+                if mythic_action.animation ~= nil then
+                    if mythic_action.animation.task ~= nil then
+                        TaskStartScenarioInPlace(PlayerPedId(), mythic_action.animation.task, 0, true)
+                    elseif mythic_action.animation.animDict ~= nil and mythic_action.animation.anim ~= nil then
+                        local player = PlayerPedId()
+                        if ( DoesEntityExist( player ) and not IsEntityDead( player )) then
+                            loadAnimDict( mythic_action.animation.animDict )
+                            TaskPlayAnim( player, mythic_action.animation.animDict, mythic_action.animation.anim, 3.0, 1.0, -1, mythic_action.animation.flags, 0, 0, 0, 0 )     
+                        end
+                    else
+                        TaskStartScenarioInPlace(PlayerPedId(), 'PROP_HUMAN_BUM_BIN', 0, true)
                     end
-                else
-                    TaskStartScenarioInPlace(PlayerPedId(), 'PROP_HUMAN_BUM_BIN', 0, true)
                 end
 
                 isAnim = true
