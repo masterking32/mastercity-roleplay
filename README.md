@@ -31,7 +31,7 @@ To use, you just need to add a TriggerEvent into your client script where you're
     end)
 ```
 
-Most of these flags are fairly self-explanatoryh, but theres's a few that have several options;
+Most of these flags are fairly self-explanatory, but theres's a few that have several options;
 
 
 controlDisables - This allows you to disable a few sets of controls, these are broken down into 4 sets that I've found most often I was wanting to disable at some point;
