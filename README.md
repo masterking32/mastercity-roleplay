@@ -1,5 +1,5 @@
 # Mythic Progress Bar
-A simple action bar resource which allows actions to be visually displayed to the player and provides a callback function so actions can be peformed if the evnt was cancelled or not.
+A simple action bar resource which allows actions to be visually displayed to the player and provides a callback function so actions can be peformed if the event was cancelled or not.
 
 ## How To Use:
 To use, you just need to add a TriggerEvent into your client script where you're wanting the event to happen. Example TriggerEvent call;
@@ -31,7 +31,7 @@ To use, you just need to add a TriggerEvent into your client script where you're
     end)
 ```
 
-Most of these flags are fairly self-explanator, but theres's a few that have several options;
+Most of these flags are fairly self-explanatoryh, but theres's a few that have several options;
 
 
 controlDisables - This allows you to disable a few sets of controls, these are broken down into 4 sets that I've found most often I was wanting to disable at some point;
@@ -39,6 +39,7 @@ controlDisables - This allows you to disable a few sets of controls, these are b
 * disableCarMovement | Vehicle Movement Keys
 * disableMouse | Moving mouse thus intern camera around ped
 * disableCombat | Weapon firing & Melee attacking
+
 
 animation - This allows you to define an animation to play while the event occurs. This has several options that can be used and uses a cascading options to determine which to play. Highest priority is a Task, than it'll use AnimDict & Anim, if neither of those exist but the animation list exists in the options it'll default to a hardcoded task.
 * task | Highest priority - if defined, this will be the only value used for animation
