@@ -13,7 +13,7 @@ files {
 }
 
 exports {
-    'progress',
+    'Progress',
     'ProgressWithStartEvent',
     'ProgressWithTickEvent',
     'ProgressWithStartAndTick'
