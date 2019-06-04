@@ -28,7 +28,7 @@ local isAnim = false
 local isProp = false
 local prop_net = nil
 
-function Progresss(action, finish)
+function Progress(action, finish)
     mythic_action = action
 
     if not IsEntityDead(GetPlayerPed(-1)) or mythic_action.useWhileDead then
