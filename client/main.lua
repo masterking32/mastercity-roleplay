@@ -28,8 +28,7 @@ local isAnim = false
 local isProp = false
 local prop_net = nil
 
-RegisterNetEvent("mythic_progbar:client:progress")
-AddEventHandler("mythic_progbar:client:progress", function(action, cb)
+function Progresss(action, finish)
     mythic_action = action
 
     if not IsEntityDead(GetPlayerPed(-1)) or mythic_action.useWhileDead then
@@ -52,8 +51,8 @@ AddEventHandler("mythic_progbar:client:progress", function(action, cb)
                         TriggerEvent("mythic_progbar:client:cancel")
                     end
                 end
-                if cb ~= nil then
-                    cb(wasCancelled)
+                if finish ~= nil then
+                    finish(wasCancelled)
                 end
             end)
         else
@@ -62,6 +61,143 @@ AddEventHandler("mythic_progbar:client:progress", function(action, cb)
     else
         print('Cannot do action while dead') -- Replace with alert call if you want the player to see this warning on-screen
     end
+end
+
+function ProgressWithStartEvent(action, start, finish)
+    mythic_action = action
+
+    if not IsEntityDead(GetPlayerPed(-1)) or mythic_action.useWhileDead then
+        if not isDoingAction then
+            isDoingAction = true
+            wasCancelled = false
+            isAnim = false
+            isProp = false
+
+            SendNUIMessage({
+                action = "mythic_progress",
+                duration = mythic_action.duration,
+                label = mythic_action.label
+            })
+
+            Citizen.CreateThread(function ()
+                if start ~= nil then
+                    start()
+                end
+                while isDoingAction do
+                    Citizen.Wait(1)
+                    if IsControlJustPressed(0, 178) and mythic_action.canCancel then
+                        TriggerEvent("mythic_progbar:client:cancel")
+                    end
+                end
+                if cb ~= nil then
+                    cb(wasCancelled)
+                end
+            end)
+        else
+            TriggerEvent("mythic_base:client:SendAlert", { text = "Already Doing An Action", type = "error", layout = "topRight", timeout = 1500 })
+        end
+    else
+        TriggerEvent("mythic_base:client:SendAlert", { text = "Cannot Perform An Action While Dead", type = "error", layout = "topRight", timeout = 1500 })
+    end
+end
+
+function ProgressWithTickEvent(action, tick, finish)
+    mythic_action = action
+
+    if not IsEntityDead(GetPlayerPed(-1)) or mythic_action.useWhileDead then
+        if not isDoingAction then
+            isDoingAction = true
+            wasCancelled = false
+            isAnim = false
+            isProp = false
+
+            SendNUIMessage({
+                action = "mythic_progress",
+                duration = mythic_action.duration,
+                label = mythic_action.label
+            })
+
+            Citizen.CreateThread(function ()
+                while isDoingAction do
+                    Citizen.Wait(1)
+                    if tick ~= nil then
+                        tick()
+                    end
+                    if IsControlJustPressed(0, 178) and mythic_action.canCancel then
+                        TriggerEvent("mythic_progbar:client:cancel")
+                    end
+                end
+                if finish ~= nil then
+                    finish(wasCancelled)
+                end
+            end)
+        else
+            TriggerEvent("mythic_base:client:SendAlert", { text = "Already Doing An Action", type = "error", layout = "topRight", timeout = 1500 })
+        end
+    else
+        TriggerEvent("mythic_base:client:SendAlert", { text = "Cannot Perform An Action While Dead", type = "error", layout = "topRight", timeout = 1500 })
+    end
+end
+
+function ProgressWithStartAndTick(action, start, tick, finish)
+    mythic_action = action
+
+    if not IsEntityDead(GetPlayerPed(-1)) or mythic_action.useWhileDead then
+        if not isDoingAction then
+            isDoingAction = true
+            wasCancelled = false
+            isAnim = false
+            isProp = false
+
+            SendNUIMessage({
+                action = "mythic_progress",
+                duration = mythic_action.duration,
+                label = mythic_action.label
+            })
+
+            Citizen.CreateThread(function ()
+                if start ~= nil then
+                    start()
+                end
+                while isDoingAction do
+                    Citizen.Wait(1)
+                    if tick ~= nil then
+                        tick()
+                    end
+                    if IsControlJustPressed(0, 178) and mythic_action.canCancel then
+                        TriggerEvent("mythic_progbar:client:cancel")
+                    end
+                end
+                if finish ~= nil then
+                    finish(wasCancelled)
+                end
+            end)
+        else
+            TriggerEvent("mythic_base:client:SendAlert", { text = "Already Doing An Action", type = "error", layout = "topRight", timeout = 1500 })
+        end
+    else
+        TriggerEvent("mythic_base:client:SendAlert", { text = "Cannot Perform An Action While Dead", type = "error", layout = "topRight", timeout = 1500 })
+    end
+end
+
+RegisterNetEvent("mythic_progbar:client:progress")
+AddEventHandler("mythic_progbar:client:progress", function(action, cb)
+    progress(action, cb)
+end)
+
+RegisterNetEvent("mythic_progbar:client:ProgressWithStartEvent")
+AddEventHandler("mythic_progbar:client:ProgressWithStartEvent", function(action, start, finish)
+    ProgressWithStartEvent(action, start, finish)
+end)
+
+RegisterNetEvent("mythic_progbar:client:ProgressWithTickEvent")
+AddEventHandler("mythic_progbar:client:ProgressWithTickEvent", function(action, tick, finish)
+    ProgressWithTickEvent(action, tick, finish)
+end)
+
+RegisterNetEvent("mythic_progbar:client:ProgressWithStartAndTick")
+AddEventHandler("mythic_progbar:client:ProgressWithStartAndTick", function(action, start, tick, finish)
+    ProgressWithStartAndTick(action, start, tick, finish)
 end)
 
 RegisterNetEvent("mythic_progbar:client:cancel")
