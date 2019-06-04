@@ -16,5 +16,5 @@ exports {
     'progress',
     'ProgressWithStartEvent',
     'ProgressWithTickEvent',
-    'progressWithStartTickEvents'
+    'ProgressWithStartAndTick'
 }
