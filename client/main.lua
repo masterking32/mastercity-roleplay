@@ -89,8 +89,8 @@ function ProgressWithStartEvent(action, start, finish)
                         TriggerEvent("mythic_progbar:client:cancel")
                     end
                 end
-                if cb ~= nil then
-                    cb(wasCancelled)
+                if finish ~= nil then
+                    finish(wasCancelled)
                 end
             end)
         else
@@ -181,8 +181,8 @@ function ProgressWithStartAndTick(action, start, tick, finish)
 end
 
 RegisterNetEvent("mythic_progbar:client:progress")
-AddEventHandler("mythic_progbar:client:progress", function(action, cb)
-    Progress(action, cb)
+AddEventHandler("mythic_progbar:client:progress", function(action, finish)
+    Progress(action, finish)
 end)
 
 RegisterNetEvent("mythic_progbar:client:ProgressWithStartEvent")
