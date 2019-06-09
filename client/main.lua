@@ -18,6 +18,9 @@ mythic_action = {
     },
     prop = {
         model = nil,
+        bone = nil,
+        coords = { x = 0.0, y = 0.0, z = 0.0 },
+        rotation = { x = 0.0, y = 0.0, z = 0.0 },
     },
 }
 
@@ -173,10 +176,10 @@ function ProgressWithStartAndTick(action, start, tick, finish)
                 end
             end)
         else
-            TriggerEvent("mythic_base:client:SendAlert", { text = "Already Doing An Action", type = "error", layout = "topRight", timeout = 1500 })
+            print('Already Doing An Action')
         end
     else
-        TriggerEvent("mythic_base:client:SendAlert", { text = "Cannot Perform An Action While Dead", type = "error", layout = "topRight", timeout = 1500 })
+        print('Cannot Perform An Action While Dead')
     end
 end
 
@@ -261,7 +264,19 @@ Citizen.CreateThread(function()
                 SetNetworkIdExistsOnAllMachines(netid, true)
                 NetworkSetNetworkIdDynamic(netid, true)
                 SetNetworkIdCanMigrate(netid, false)
-                AttachEntityToEntity(modelSpawn, GetPlayerPed(PlayerId()), GetPedBoneIndex(GetPlayerPed(PlayerId()), 60309), 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1, 1, 0, 1, 0, 1)
+                if mythic_action.prop.bone == nil then
+                    mythic_action.prop.bone = 60309
+                end
+
+                if mythic_action.prop.coords == nil then
+                    mythic_action.prop.coords = { x = 0.0, y = 0.0, z = 0.0 }
+                end
+
+                if mythic_action.prop.rotation == nil then
+                    mythic_action.prop.rotation = { x = 0.0, y = 0.0, z = 0.0 }
+                end
+
+                AttachEntityToEntity(modelSpawn, GetPlayerPed(PlayerId()), GetPedBoneIndex(GetPlayerPed(PlayerId()), mythic_action.prop.bone), mythic_action.prop.coords.x, mythic_action.prop.coords.y, mythic_action.prop.coords.z, mythic_action.prop.rotation.x, mythic_action.prop.rotation.y, mythic_action.prop.rotation.z, 1, 1, 0, 1, 0, 1)
                 prop_net = netid
 
                 isProp = true
