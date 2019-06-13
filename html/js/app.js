@@ -25,7 +25,6 @@ function DoShortHudText(data) {
     $('.notif-container').append($notification);
     setTimeout(function() {
         $.when($notification.fadeOut()).done(function() {
-            console.log("shortnotif removed");
             $notification.remove()
         });
     }, 1000);
@@ -40,7 +39,6 @@ function DoHudText(data) {
     $('.notif-container').append($notification);
     setTimeout(function() {
         $.when($notification.fadeOut()).done(function() {
-            console.log("notif removed");
             $notification.remove()
         });
     }, 2500);
@@ -55,7 +53,6 @@ function DoLongHudText(data) {
     $('.notif-container').append($notification);
     setTimeout(function() {
         $.when($notification.fadeOut()).done(function() {
-            console.log("longnotif removed");
             $notification.remove()
         });
     }, 5000);
@@ -70,7 +67,6 @@ function DoCustomHudText(data) {
     $('.notif-container').append($notification);
     setTimeout(function() {
         $.when($notification.fadeOut()).done(function() {
-            console.log("customnotif removed");
             $notification.remove()
         });
     }, data.length === undefined ? data.length : 2500);
