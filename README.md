@@ -20,3 +20,11 @@ There are 4 types of notifications;
 * DoHudText - Displays For 2500ms (2.5 Seconds)
 * DoLongHudText - Displays For 5000ms (5 Seconds)
 * DoCustomHudText - Displays For Set Time (In Milliseconds)
+
+You can also use the client event to fire off a notification, useful for sending a notification from the server
+
+```lua
+TriggerClientEvent('mythic_notify', source, { type = 'type', text = 'message' })
+```
+
+As of right now there is only a single event which does DoHudText (Displays notification for 2500ms or 2.5 seconds)
