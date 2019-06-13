@@ -1,6 +1,8 @@
 # mythic_notify
 A simple notification system inspired by NoPixel's
 
+![Image of Notification](https://i.imgur.com/yk0qeC7.png)
+
 # Use
 To display a notification simply make a call like below :
 
