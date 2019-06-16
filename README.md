@@ -7,7 +7,7 @@ A simple notification system inspired by NoPixel's
 To display a notification simply make a call like below :
 
 ```lua
-exports['mythic_notify'].DoHudText('type', 'message')
+exports['mythic_notify']:DoHudText('type', 'message')
 ```
 
 There 3 types;
