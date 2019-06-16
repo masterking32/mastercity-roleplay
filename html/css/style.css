@@ -26,16 +26,16 @@ body {
 }
 
 .success {
-    background: #0bb400;
+    background: rgb(114, 204, 114);
     color: #fff;
 }
 
 .inform {
-    background-color: #0089ff;
+    background-color: rgb(47, 92, 115);
     color: #ffffff;
 }
 
 .error {
-    background: #ff0000;
+    background: rgb(224, 50, 50);
     color: #fff;
 }
