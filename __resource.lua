@@ -12,9 +12,6 @@ files {
 	'html/ui.html',
 	'html/js/app.js', 
 	'html/css/style.css',
-    'html/js/popper.min.js',
-    'html/js/bootstrap.min.js',
-    'html/css/bootstrap.min.css',
 }
 
 client_scripts {

@@ -1,4 +1,4 @@
-# mythic_notify
+# Mythic Notifications
 A simple notification system inspired by NoPixel's
 
 ![Image of Notification](https://i.imgur.com/z2e25Ow.png)
