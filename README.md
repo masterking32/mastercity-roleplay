@@ -24,7 +24,7 @@ There are 4 types of notifications;
 You can also use the client event to fire off a notification, useful for sending a notification from the server
 
 ```lua
-TriggerClientEvent('mythic_notify', source, { type = 'type', text = 'message' })
+TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'type', text = 'message' })
 ```
 
 As of right now there is only a single event which does DoHudText (Displays notification for 2500ms or 2.5 seconds)
