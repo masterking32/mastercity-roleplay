@@ -22,5 +22,5 @@ function ShowNotif(data) {
         $.when($notification.fadeOut()).done(function() {
             $notification.remove()
         });
-    }, data.length === undefined ? data.length : 2500);
+    }, data.length != null ? data.length : 2500);
 }
