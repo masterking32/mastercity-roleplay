@@ -1,6 +1,6 @@
 ## Pillbox Hospital Interior
 ![enter image description here](https://drive.google.com/uc?id=1ix9Xv8KkNOApE1UgkTozhktn827hS8U-)
-Video: https://streamable.com/s/mwueo/ydanoq
+Video: https://streamable.com/mwueo
 
 ## Installation
 
