@@ -253,6 +253,9 @@ local weapons = {
 }
 
 local injured = {}
+local legCount = 0
+local armcount = 0
+local headCount = 0
 
 function IsInjuryCausingLimp()
     for k, v in pairs(BodyParts) do
@@ -327,9 +330,6 @@ function ProcessRunStuff(ped)
 end
 
 function ProcessDamage(ped)
-    local legCount = 0
-    local armcount = 0
-    local headCount = 0
     if not IsEntityDead(ped) or not (onDrugs > 0) then
         for k, v in pairs(injured) do
             if (v.part == 'LLEG' and v.severity > 1) or (v.part == 'RLEG' and v.severity > 1) or (v.part == 'LFOOT' and v.severity > 2) or (v.part == 'RFOOT' and v.severity > 2) then
