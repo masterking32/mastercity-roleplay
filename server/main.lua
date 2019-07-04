@@ -67,7 +67,6 @@ AddEventHandler('mythic_hospital:server:EnteredBed', function()
     end
 
 	-- YOU NEED TO IMPLEMENT YOUR FRAMEWORKS BILLING HERE
-	TriggerEvent('mythic_chat:server:System', src, 'You Were Billed For $' .. totalBill .. ' For Medical Services & Expenses')
 	TriggerClientEvent('mythic_hospital:client:FinishServices', src)
 end)
 
