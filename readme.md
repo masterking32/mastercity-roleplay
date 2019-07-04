@@ -1,7 +1,7 @@
 # Mythic Hostpial
 This is a lightweight hosptial & limb damage resource. This was largely done as an experiment so some of it is rough around the edges.
 
-![Mythic Hospital Resource Usage}(https://i.imgur.com/kZhUzw8.png)
+![Mythic Hospital Resource Usage](https://i.imgur.com/kZhUzw8.png)
 
 Dependencies :
 - [Mythic Notify](https://github.com/mythicrp/mythic_notify)
