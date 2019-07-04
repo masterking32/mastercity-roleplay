@@ -25,6 +25,8 @@ AddEventHandler('mythic_hospital:server:RequestBed', function()
             return
         end
     end
+
+    TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'error', text = 'No Beds Available' })
 end)
 
 RegisterServerEvent('mythic_hospital:server:RPRequestBed')
