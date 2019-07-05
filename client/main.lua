@@ -64,11 +64,9 @@ AddEventHandler('mythic_hospital:client:RPSendToBed', function(id, data)
     cam = CreateCam("DEFAULT_SCRIPTED_CAMERA", 1)
     SetCamActive(cam, true)
     RenderScriptCams(true, false, 1, true, true)
-    local CamYaw = Citizen.InvokeNative(0x837765A25378F0BB, 0, Citizen.ResultAsVector()).z
-    local distanceCam = 0.45
-    AttachCamToPedBone(cam, PlayerPedId(), 2108, math.cos(CamYaw * 0.01745329251) * 0.45, math.sin(CamYaw * 0.51745329251) * 0.45 , 0.5 , true)
+    AttachCamToPedBone(cam, PlayerPedId(), 31085, 0, 0, 1.0 , true)
     SetCamFov(cam, 90.0)
-    SetCamRot(cam, 10.0, 0.0, GetEntityHeading(PlayerPedId()) + 180, true)
+    SetCamRot(cam, -90.0, 0.0, GetEntityHeading(PlayerPedId()) + 180, true)
             
 
     Citizen.CreateThread(function()
@@ -98,11 +96,9 @@ AddEventHandler('mythic_hospital:client:SendToBed', function(id, data)
     cam = CreateCam("DEFAULT_SCRIPTED_CAMERA", 1)
     SetCamActive(cam, true)
     RenderScriptCams(true, false, 1, true, true)
-    local CamYaw = Citizen.InvokeNative(0x837765A25378F0BB, 0, Citizen.ResultAsVector()).z
-    local distanceCam = 0.45
-    AttachCamToPedBone(cam, PlayerPedId(), 2108, math.cos(CamYaw * 0.01745329251) * 0.45, math.sin(CamYaw * 0.51745329251) * 0.45 , 0.5 , true)
+    AttachCamToPedBone(cam, PlayerPedId(), 31085, 0, 0, 1.0 , true)
     SetCamFov(cam, 90.0)
-    SetCamRot(cam, 10.0, 0.0, GetEntityHeading(PlayerPedId()) + 180, true)
+    SetCamRot(cam, -90.0, 0.0, GetEntityHeading(PlayerPedId()) + 180, true)
 
     Citizen.CreateThread(function ()
         Citizen.Wait(5)
