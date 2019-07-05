@@ -14,6 +14,14 @@ local inBedDict = "anim@gangops@morgue@table@"
 local inBedAnim = "ko_front"
 local getOutDict = 'switch@franklin@bed'
 local getOutAnim = 'sleep_getup_rubeyes'
+ESX = nil
+
+Citizen.CreateThread(function()
+	while ESX == nil do
+		TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
+		Citizen.Wait(0)
+	end
+end)
 
 function PrintHelpText(message)
     SetTextComponentFormat("STRING")
@@ -123,6 +131,8 @@ RegisterNetEvent('mythic_hospital:client:ForceLeaveBed')
 AddEventHandler('mythic_hospital:client:ForceLeaveBed', function()
     LeaveBed()
 end)
+---Make Damage Persistant (Disable Auto-Heal)
+SetPlayerHealthRechargeMultiplier(PlayerId(), 0.0)
 
 Citizen.CreateThread(function()
     while true do
@@ -130,11 +140,12 @@ Citizen.CreateThread(function()
 			local plyCoords = GetEntityCoords(PlayerPedId(), 0)
             local distance = #(vector3(hospitalCheckin.x, hospitalCheckin.y, hospitalCheckin.z) - plyCoords)
             if distance < 10 then
-                DrawMarker(27, hospitalCheckin.x, hospitalCheckin.y, hospitalCheckin.z - 0.99, 0, 0, 0, 0, 0, 0, 0.5, 0.5, 1.0, 1, 157, 0, 155, false, false, 2, false, false, false, false)
+                --DrawMarker(27, hospitalCheckin.x, hospitalCheckin.y, hospitalCheckin.z - 0.99, 0, 0, 0, 0, 0, 0, 0.5, 0.5, 1.0, 1, 157, 0, 155, false, false, 2, false, false, false, false)
 
                 if not IsPedInAnyVehicle(PlayerPedId(), true) then
                     if distance < 1 then
-                        PrintHelpText('Press ~INPUT_CONTEXT~ ~s~to check in')
+                        --PrintHelpText('Press ~INPUT_CONTEXT~ ~s~to check in')
+			ESX.Game.Utils.DrawText3D(vector3(hospitalCheckin.x, hospitalCheckin.y, hospitalCheckin.z + 0.5), '[E] Check in', 0.4)
                         if IsControlJustReleased(0, 54) then
                             if (GetEntityHealth(PlayerPedId()) < 200) or (IsInjuredOrBleeding()) then
                                 exports['mythic_progbar']:Progress({
