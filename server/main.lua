@@ -63,16 +63,18 @@ AddEventHandler('mythic_hospital:server:EnteredBed', function()
     local src = source
     local injuries = GetCharsInjuries(src)
 
-    local totalBill = 0
+    local totalBill = totalBill
 
-    for k, v in pairs(injuries.limbs) do
-        if v.isDamaged then
-            totalBill = totalBill + (injuryBasePrice * v.severity)
+    if injuries ~= nil then
+        for k, v in pairs(injuries.limbs) do
+            if v.isDamaged then
+                totalBill = totalBill + (injuryBasePrice * v.severity)
+            end
         end
-    end
 
-    if injuries.isBleeding > 0 then
-        totalBill = totalBill + (injuryBasePrice * injuries.isBleeding)
+        if injuries.isBleeding > 0 then
+            totalBill = totalBill + (injuryBasePrice * injuries.isBleeding)
+        end
     end
 
 	-- YOU NEED TO IMPLEMENT YOUR FRAMEWORKS BILLING HERE
