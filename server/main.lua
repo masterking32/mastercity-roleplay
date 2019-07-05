@@ -68,7 +68,7 @@ AddEventHandler('mythic_hospital:server:EnteredBed', function()
     local src = source
     local injuries = GetCharsInjuries(src)
 
-    local totalBill = totalBill
+    local totalBill = injuryBasePrice
 
     if injuries ~= nil then
         for k, v in pairs(injuries.limbs) do
