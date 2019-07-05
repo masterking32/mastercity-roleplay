@@ -13,6 +13,7 @@ client_scripts {
 server_scripts {
 	'server/wound.lua',
 	'server/main.lua',
+	'server/items.lua',
 }
 
 dependencies {
