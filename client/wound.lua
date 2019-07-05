@@ -13,6 +13,9 @@ local legCount = 0
 local armcount = 0
 local headCount = 0
 
+local playerHealth = nil
+local playerArmour = nil
+
 local WeaponClasses = {
     ['SMALL_CALIBER'] = 1,
     ['MEDIUM_CALIBER'] = 2,
@@ -129,131 +132,131 @@ local parts = {
 
 local weapons = {
     --[[ Small Caliber ]]--
-    [GetHashKey('WEAPON_PISTOL')] = WeaponClasses['SMALL_CALIBER'],
-    [GetHashKey('WEAPON_COMBATPISTOL')] = WeaponClasses['SMALL_CALIBER'],
-    [GetHashKey('WEAPON_APPISTOL')] = WeaponClasses['SMALL_CALIBER'],
-    [GetHashKey('WEAPON_COMBATPDW')] = WeaponClasses['SMALL_CALIBER'],
-    [GetHashKey('WEAPON_MACHINEPISTOL')] = WeaponClasses['SMALL_CALIBER'],
-    [GetHashKey('WEAPON_MICROSMG')] = WeaponClasses['SMALL_CALIBER'],
-    [GetHashKey('WEAPON_MINISMG')] = WeaponClasses['SMALL_CALIBER'],
-    [GetHashKey('WEAPON_PISTOL_MK2')] = WeaponClasses['SMALL_CALIBER'],
-    [GetHashKey('WEAPON_SNSPISTOL')] = WeaponClasses['SMALL_CALIBER'],
-    [GetHashKey('WEAPON_SNSPISTOL_MK2')] = WeaponClasses['SMALL_CALIBER'],
-    [GetHashKey('WEAPON_VINTAGEPISTOL')] = WeaponClasses['SMALL_CALIBER'],
+    [`WEAPON_PISTOL`] = WeaponClasses['SMALL_CALIBER'],
+    [`WEAPON_COMBATPISTOL`] = WeaponClasses['SMALL_CALIBER'],
+    [`WEAPON_APPISTOL`] = WeaponClasses['SMALL_CALIBER'],
+    [`WEAPON_COMBATPDW`] = WeaponClasses['SMALL_CALIBER'],
+    [`WEAPON_MACHINEPISTOL`] = WeaponClasses['SMALL_CALIBER'],
+    [`WEAPON_MICROSMG`] = WeaponClasses['SMALL_CALIBER'],
+    [`WEAPON_MINISMG`] = WeaponClasses['SMALL_CALIBER'],
+    [`WEAPON_PISTOL_MK2`] = WeaponClasses['SMALL_CALIBER'],
+    [`WEAPON_SNSPISTOL`] = WeaponClasses['SMALL_CALIBER'],
+    [`WEAPON_SNSPISTOL_MK2`] = WeaponClasses['SMALL_CALIBER'],
+    [`WEAPON_VINTAGEPISTOL`] = WeaponClasses['SMALL_CALIBER'],
 
     --[[ Medium Caliber ]]--
-    [GetHashKey('WEAPON_ADVANCEDRIFLE')] = WeaponClasses['MEDIUM_CALIBER'],
-    [GetHashKey('WEAPON_ASSAULTSMG')] = WeaponClasses['MEDIUM_CALIBER'],
-    [GetHashKey('WEAPON_BULLPUPRIFLE')] = WeaponClasses['MEDIUM_CALIBER'],
-    [GetHashKey('WEAPON_BULLPUPRIFLE_MK2')] = WeaponClasses['MEDIUM_CALIBER'],
-    [GetHashKey('WEAPON_CARBINERIFLE')] = WeaponClasses['MEDIUM_CALIBER'],
-    [GetHashKey('WEAPON_CARBINERIFLE_MK2')] = WeaponClasses['MEDIUM_CALIBER'],
-    [GetHashKey('WEAPON_COMPACTRIFLE')] = WeaponClasses['MEDIUM_CALIBER'],
-    [GetHashKey('WEAPON_DOUBLEACTION')] = WeaponClasses['MEDIUM_CALIBER'],
-    [GetHashKey('WEAPON_GUSENBERG')] = WeaponClasses['MEDIUM_CALIBER'],
-    [GetHashKey('WEAPON_HEAVYPISTOL')] = WeaponClasses['MEDIUM_CALIBER'],
-    [GetHashKey('WEAPON_MARKSMANPISTOL')] = WeaponClasses['MEDIUM_CALIBER'],
-    [GetHashKey('WEAPON_PISTOL50')] = WeaponClasses['MEDIUM_CALIBER'],
-    [GetHashKey('WEAPON_REVOLVER')] = WeaponClasses['MEDIUM_CALIBER'],
-    [GetHashKey('WEAPON_REVOLVER_MK2')] = WeaponClasses['MEDIUM_CALIBER'],
-    [GetHashKey('WEAPON_SMG')] = WeaponClasses['MEDIUM_CALIBER'],
-    [GetHashKey('WEAPON_SMG_MK2')] = WeaponClasses['MEDIUM_CALIBER'],
-    [GetHashKey('WEAPON_SPECIALCARBINE')] = WeaponClasses['MEDIUM_CALIBER'],
-    [GetHashKey('WEAPON_SPECIALCARBINE_MK2')] = WeaponClasses['MEDIUM_CALIBER'],
+    [`WEAPON_ADVANCEDRIFLE`] = WeaponClasses['MEDIUM_CALIBER'],
+    [`WEAPON_ASSAULTSMG`] = WeaponClasses['MEDIUM_CALIBER'],
+    [`WEAPON_BULLPUPRIFLE`] = WeaponClasses['MEDIUM_CALIBER'],
+    [`WEAPON_BULLPUPRIFLE_MK2`] = WeaponClasses['MEDIUM_CALIBER'],
+    [`WEAPON_CARBINERIFLE`] = WeaponClasses['MEDIUM_CALIBER'],
+    [`WEAPON_CARBINERIFLE_MK2`] = WeaponClasses['MEDIUM_CALIBER'],
+    [`WEAPON_COMPACTRIFLE`] = WeaponClasses['MEDIUM_CALIBER'],
+    [`WEAPON_DOUBLEACTION`] = WeaponClasses['MEDIUM_CALIBER'],
+    [`WEAPON_GUSENBERG`] = WeaponClasses['MEDIUM_CALIBER'],
+    [`WEAPON_HEAVYPISTOL`] = WeaponClasses['MEDIUM_CALIBER'],
+    [`WEAPON_MARKSMANPISTOL`] = WeaponClasses['MEDIUM_CALIBER'],
+    [`WEAPON_PISTOL50`] = WeaponClasses['MEDIUM_CALIBER'],
+    [`WEAPON_REVOLVER`] = WeaponClasses['MEDIUM_CALIBER'],
+    [`WEAPON_REVOLVER_MK2`] = WeaponClasses['MEDIUM_CALIBER'],
+    [`WEAPON_SMG`] = WeaponClasses['MEDIUM_CALIBER'],
+    [`WEAPON_SMG_MK2`] = WeaponClasses['MEDIUM_CALIBER'],
+    [`WEAPON_SPECIALCARBINE`] = WeaponClasses['MEDIUM_CALIBER'],
+    [`WEAPON_SPECIALCARBINE_MK2`] = WeaponClasses['MEDIUM_CALIBER'],
 
     --[[ High Caliber ]]--
-    [GetHashKey('WEAPON_ASSAULTRIFLE')] = WeaponClasses['HIGH_CALIBER'],
-    [GetHashKey('WEAPON_ASSAULTRIFLE_MK2')] = WeaponClasses['HIGH_CALIBER'],
-    [GetHashKey('WEAPON_COMBATMG')] = WeaponClasses['HIGH_CALIBER'],
-    [GetHashKey('WEAPON_COMBATMG_MK2')] = WeaponClasses['HIGH_CALIBER'],
-    [GetHashKey('WEAPON_HEAVYSNIPER')] = WeaponClasses['HIGH_CALIBER'],
-    [GetHashKey('WEAPON_HEAVYSNIPER_MK2')] = WeaponClasses['HIGH_CALIBER'],
-    [GetHashKey('WEAPON_MARKSMANRIFLE')] = WeaponClasses['HIGH_CALIBER'],
-    [GetHashKey('WEAPON_MARKSMANRIFLE_MK2')] = WeaponClasses['HIGH_CALIBER'],
-    [GetHashKey('WEAPON_MG')] = WeaponClasses['HIGH_CALIBER'],
-    [GetHashKey('WEAPON_MINIGUN')] = WeaponClasses['HIGH_CALIBER'],
-    [GetHashKey('WEAPON_MUSKET')] = WeaponClasses['HIGH_CALIBER'],
-    [GetHashKey('WEAPON_RAILGUN')] = WeaponClasses['HIGH_CALIBER'],
+    [`WEAPON_ASSAULTRIFLE`] = WeaponClasses['HIGH_CALIBER'],
+    [`WEAPON_ASSAULTRIFLE_MK2`] = WeaponClasses['HIGH_CALIBER'],
+    [`WEAPON_COMBATMG`] = WeaponClasses['HIGH_CALIBER'],
+    [`WEAPON_COMBATMG_MK2`] = WeaponClasses['HIGH_CALIBER'],
+    [`WEAPON_HEAVYSNIPER`] = WeaponClasses['HIGH_CALIBER'],
+    [`WEAPON_HEAVYSNIPER_MK2`] = WeaponClasses['HIGH_CALIBER'],
+    [`WEAPON_MARKSMANRIFLE`] = WeaponClasses['HIGH_CALIBER'],
+    [`WEAPON_MARKSMANRIFLE_MK2`] = WeaponClasses['HIGH_CALIBER'],
+    [`WEAPON_MG`] = WeaponClasses['HIGH_CALIBER'],
+    [`WEAPON_MINIGUN`] = WeaponClasses['HIGH_CALIBER'],
+    [`WEAPON_MUSKET`] = WeaponClasses['HIGH_CALIBER'],
+    [`WEAPON_RAILGUN`] = WeaponClasses['HIGH_CALIBER'],
 
     --[[ Shotguns ]]--
-    [GetHashKey('WEAPON_ASSAULTSHOTGUN')] = WeaponClasses['SHOTGUN'],
-    [GetHashKey('WEAPON_BULLUPSHOTGUN')] = WeaponClasses['SHOTGUN'],
-    [GetHashKey('WEAPON_DBSHOTGUN')] = WeaponClasses['SHOTGUN'],
-    [GetHashKey('WEAPON_HEAVYSHOTGUN')] = WeaponClasses['SHOTGUN'],
-    [GetHashKey('WEAPON_PUMPSHOTGUN')] = WeaponClasses['SHOTGUN'],
-    [GetHashKey('WEAPON_PUMPSHOTGUN_MK2')] = WeaponClasses['SHOTGUN'],
-    [GetHashKey('WEAPON_SAWNOFFSHOTGUN')] = WeaponClasses['SHOTGUN'],
-    [GetHashKey('WEAPON_SWEEPERSHOTGUN')] = WeaponClasses['SHOTGUN'],
+    [`WEAPON_ASSAULTSHOTGUN`] = WeaponClasses['SHOTGUN'],
+    [`WEAPON_BULLUPSHOTGUN`] = WeaponClasses['SHOTGUN'],
+    [`WEAPON_DBSHOTGUN`] = WeaponClasses['SHOTGUN'],
+    [`WEAPON_HEAVYSHOTGUN`] = WeaponClasses['SHOTGUN'],
+    [`WEAPON_PUMPSHOTGUN`] = WeaponClasses['SHOTGUN'],
+    [`WEAPON_PUMPSHOTGUN_MK2`] = WeaponClasses['SHOTGUN'],
+    [`WEAPON_SAWNOFFSHOTGUN`] = WeaponClasses['SHOTGUN'],
+    [`WEAPON_SWEEPERSHOTGUN`] = WeaponClasses['SHOTGUN'],
 
     --[[ Animals ]]--
-    [4194021054] = WeaponClasses['WILDLIFE'], -- Animal
-    [148160082] = WeaponClasses['WILDLIFE'], -- Cougar
-    [1223143800] = WeaponClasses['WILDLIFE'], -- Barbed Wire
+    [`WEAPON_ANIMAL`] = WeaponClasses['WILDLIFE'], -- Animal
+    [`WEAPON_COUGAR`] = WeaponClasses['WILDLIFE'], -- Cougar
+    [`WEAPON_BARBED_WIRE`] = WeaponClasses['WILDLIFE'], -- Barbed Wire
     
     --[[ Cutting Weapons ]]--
-    [GetHashKey('WEAPON_BATTLEAXE')] = WeaponClasses['CUTTING'],
-    [GetHashKey('WEAPON_BOTTLE')] = WeaponClasses['CUTTING'],
-    [GetHashKey('WEAPON_DAGGER')] = WeaponClasses['CUTTING'],
-    [GetHashKey('WEAPON_HATCHET')] = WeaponClasses['CUTTING'],
-    [GetHashKey('WEAPON_KNIFE')] = WeaponClasses['CUTTING'],
-    [GetHashKey('WEAPON_MACHETE')] = WeaponClasses['CUTTING'],
-    [GetHashKey('WEAPON_SWITCHBLADE')] = WeaponClasses['CUTTING'],
+    [`WEAPON_BATTLEAXE`] = WeaponClasses['CUTTING'],
+    [`WEAPON_BOTTLE`] = WeaponClasses['CUTTING'],
+    [`WEAPON_DAGGER`] = WeaponClasses['CUTTING'],
+    [`WEAPON_HATCHET`] = WeaponClasses['CUTTING'],
+    [`WEAPON_KNIFE`] = WeaponClasses['CUTTING'],
+    [`WEAPON_MACHETE`] = WeaponClasses['CUTTING'],
+    [`WEAPON_SWITCHBLADE`] = WeaponClasses['CUTTING'],
 
     --[[ Light Impact ]]--
-    [3794977420] = WeaponClasses['WILDLIFE'], -- Garbage Bag
-    [2294779575] = WeaponClasses['WILDLIFE'], -- Briefcase
-    [28811031] = WeaponClasses['WILDLIFE'], -- Briefcase 2
-    [GetHashKey('WEAPON_BALL')] = WeaponClasses['LIGHT_IMPACT'],
-    [GetHashKey('WEAPON_FLASHLIGHT')] = WeaponClasses['LIGHT_IMPACT'],
-    [GetHashKey('WEAPON_KNUCKLE')] = WeaponClasses['LIGHT_IMPACT'],
-    [GetHashKey('WEAPON_NIGHTSTICK')] = WeaponClasses['LIGHT_IMPACT'],
-    [GetHashKey('WEAPON_SNOWBALL')] = WeaponClasses['LIGHT_IMPACT'],
-    [GetHashKey('WEAPON_UNARMED')] = WeaponClasses['LIGHT_IMPACT'],
-    [GetHashKey('WEAPON_PARACHUTE')] = WeaponClasses['LIGHT_IMPACT'],
-    [GetHashKey('WEAPON_NIGHTVISION')] = WeaponClasses['LIGHT_IMPACT'],
+    [`WEAPON_GARBAGEBAG`] = WeaponClasses['WILDLIFE'], -- Garbage Bag
+    [`WEAPON_BRIEFCASE`] = WeaponClasses['WILDLIFE'], -- Briefcase
+    [`WEAPON_BRIEFCASE_02`] = WeaponClasses['WILDLIFE'], -- Briefcase 2
+    [`WEAPON_BALL`] = WeaponClasses['LIGHT_IMPACT'],
+    [`WEAPON_FLASHLIGHT`] = WeaponClasses['LIGHT_IMPACT'],
+    [`WEAPON_KNUCKLE`] = WeaponClasses['LIGHT_IMPACT'],
+    [`WEAPON_NIGHTSTICK`] = WeaponClasses['LIGHT_IMPACT'],
+    [`WEAPON_SNOWBALL`] = WeaponClasses['LIGHT_IMPACT'],
+    [`WEAPON_UNARMED`] = WeaponClasses['LIGHT_IMPACT'],
+    [`WEAPON_PARACHUTE`] = WeaponClasses['LIGHT_IMPACT'],
+    [`WEAPON_NIGHTVISION`] = WeaponClasses['LIGHT_IMPACT'],
     
     --[[ Heavy Impact ]]--
-    [GetHashKey('WEAPON_BAT')] = WeaponClasses['HEAVY_IMPACT'],
-    [GetHashKey('WEAPON_CROWBAR')] = WeaponClasses['HEAVY_IMPACT'],
-    [GetHashKey('WEAPON_FIREEXTINGUISHER')] = WeaponClasses['HEAVY_IMPACT'],
-    [GetHashKey('WEAPON_FIRWORK')] = WeaponClasses['HEAVY_IMPACT'],
-    [GetHashKey('WEAPON_GOLFLCUB')] = WeaponClasses['HEAVY_IMPACT'],
-    [GetHashKey('WEAPON_HAMMER')] = WeaponClasses['HEAVY_IMPACT'],
-    [GetHashKey('WEAPON_PETROLCAN')] = WeaponClasses['HEAVY_IMPACT'],
-    [GetHashKey('WEAPON_POOLCUE')] = WeaponClasses['HEAVY_IMPACT'],
-    [GetHashKey('WEAPON_WRENCH')] = WeaponClasses['HEAVY_IMPACT'],
+    [`WEAPON_BAT`] = WeaponClasses['HEAVY_IMPACT'],
+    [`WEAPON_CROWBAR`] = WeaponClasses['HEAVY_IMPACT'],
+    [`WEAPON_FIREEXTINGUISHER`] = WeaponClasses['HEAVY_IMPACT'],
+    [`WEAPON_FIRWORK`] = WeaponClasses['HEAVY_IMPACT'],
+    [`WEAPON_GOLFLCUB`] = WeaponClasses['HEAVY_IMPACT'],
+    [`WEAPON_HAMMER`] = WeaponClasses['HEAVY_IMPACT'],
+    [`WEAPON_PETROLCAN`] = WeaponClasses['HEAVY_IMPACT'],
+    [`WEAPON_POOLCUE`] = WeaponClasses['HEAVY_IMPACT'],
+    [`WEAPON_WRENCH`] = WeaponClasses['HEAVY_IMPACT'],
     
     --[[ Explosives ]]--
-    [539292904] = WeaponClasses['EXPLOSIVE'], -- Explosion
-    [GetHashKey('WEAPON_GRENADE')] = WeaponClasses['EXPLOSIVE'],
-    [GetHashKey('WEAPON_COMPACTLAUNCHER')] = WeaponClasses['EXPLOSIVE'],
-    [GetHashKey('WEAPON_HOMINGLAUNCHER')] = WeaponClasses['EXPLOSIVE'],
-    [GetHashKey('WEAPON_PIPEBOMB')] = WeaponClasses['EXPLOSIVE'],
-    [GetHashKey('WEAPON_PROXMINE')] = WeaponClasses['EXPLOSIVE'],
-    [GetHashKey('WEAPON_RPG')] = WeaponClasses['EXPLOSIVE'],
-    [GetHashKey('WEAPON_STICKYBOMB')] = WeaponClasses['EXPLOSIVE'],
+    [`WEAPON_EXPLOSION`] = WeaponClasses['EXPLOSIVE'], -- Explosion
+    [`WEAPON_GRENADE`] = WeaponClasses['EXPLOSIVE'],
+    [`WEAPON_COMPACTLAUNCHER`] = WeaponClasses['EXPLOSIVE'],
+    [`WEAPON_HOMINGLAUNCHER`] = WeaponClasses['EXPLOSIVE'],
+    [`WEAPON_PIPEBOMB`] = WeaponClasses['EXPLOSIVE'],
+    [`WEAPON_PROXMINE`] = WeaponClasses['EXPLOSIVE'],
+    [`WEAPON_RPG`] = WeaponClasses['EXPLOSIVE'],
+    [`WEAPON_STICKYBOMB`] = WeaponClasses['EXPLOSIVE'],
     
     --[[ Other ]]--
-    [3452007600] = WeaponClasses['OTHER'], -- Fall
-    [3425972830] = WeaponClasses['OTHER'], -- Water Cannon
-    [133987706] = WeaponClasses['OTHER'], -- Rammed
-    [2741846334] = WeaponClasses['OTHER'], -- Ran Over
-    [341774354] = WeaponClasses['OTHER'], -- Heli Crash
-    [GetHashKey('WEAPON_STUNGUN')] = WeaponClasses['OTHER'],
+    [`WEAPON_FALL`] = WeaponClasses['OTHER'], -- Fall
+    [`WEAPON_HIT_BY_WATER_CANNON`] = WeaponClasses['OTHER'], -- Water Cannon
+    [`WEAPON_RAMMED_BY_CAR`] = WeaponClasses['OTHER'], -- Rammed
+    [`WEAPON_RUN_OVER_BY_CAR`] = WeaponClasses['OTHER'], -- Ran Over
+    [`WEAPON_HELI_CRASH`] = WeaponClasses['OTHER'], -- Heli Crash
+    [`WEAPON_STUNGUN`] = WeaponClasses['OTHER'],
     
     --[[ Fire ]]--
-    [2461879995] = WeaponClasses['FIRE'], -- Electric Fence 
-    [3750660587] = WeaponClasses['FIRE'], -- Fire
-    [GetHashKey('WEAPON_MOLOTOV')] = WeaponClasses['FIRE'],
-    [GetHashKey('WEAPON_FLARE')] = WeaponClasses['FIRE'],
-    [GetHashKey('WEAPON_FLAREGUN')] = WeaponClasses['FIRE'],
+    [`WEAPON_ELECTRIC_FENCE`] = WeaponClasses['FIRE'], -- Electric Fence 
+    [`WEAPON_FIRE`] = WeaponClasses['FIRE'], -- Fire
+    [`WEAPON_MOLOTOV`] = WeaponClasses['FIRE'],
+    [`WEAPON_FLARE`] = WeaponClasses['FIRE'],
+    [`WEAPON_FLAREGUN`] = WeaponClasses['FIRE'],
 
     --[[ Suffocate ]]--
-    [4284007675] = WeaponClasses['SUFFOCATING'], -- Drowning
-    [1936677264] = WeaponClasses['SUFFOCATING'], -- Drowning Veh
-    [910830060] = WeaponClasses['SUFFOCATING'], -- Exhaust
-    [GetHashKey('WEAPON_BZGAS')] = WeaponClasses['SUFFOCATING'],
-    [GetHashKey('WEAPON_SMOKEGRENADE')] = WeaponClasses['SUFFOCATING'],
+    [`WEAPON_DROWNING`] = WeaponClasses['SUFFOCATING'], -- Drowning
+    [`WEAPON_DROWNING_IN_VEHICLE`] = WeaponClasses['SUFFOCATING'], -- Drowning Veh
+    [`WEAPON_EXHAUSTION`] = WeaponClasses['SUFFOCATING'], -- Exhaust
+    [`WEAPON_BZGAS`] = WeaponClasses['SUFFOCATING'],
+    [`WEAPON_SMOKEGRENADE`] = WeaponClasses['SUFFOCATING'],
 }
 
 local injured = {}
@@ -285,6 +288,7 @@ end
 function GetDamagingWeapon(ped)
     for k, v in pairs(weapons) do
         if HasPedBeenDamagedByWeapon(ped, k, 0) then
+            ClearEntityLastDamageEntity(ped)
             return v
         end
     end
@@ -592,8 +596,9 @@ Citizen.CreateThread(function()
 					--Function.Call(Hash.SET_FLASH, 0, 0, 100, 500, 100);
 				end
 				exports['mythic_notify']:DoCustomHudText('inform', 'You Have ' .. BleedingStates[isBleeding], 25000)
-				ApplyDamageToPed(player, tonumber(isBleeding) * 4, false)
-				lastHp = lastHp - (tonumber(isBleeding) * 4)
+                local bleedDamage = tonumber(isBleeding) * 4
+                ApplyDamageToPed(player, bleedDamage, false)
+                playerHealth = playerHealth - bleedDamage
 				blackoutTimer = blackoutTimer + 1
 				advanceBleedTimer = advanceBleedTimer + 1
 			
@@ -612,21 +617,52 @@ end)
 
 Citizen.CreateThread(function()
     local player = PlayerPedId()
-	local lastBone = 0
-    local lastHp = GetEntityHealth(player)
-    local lastArmor = GetPedArmour(player)
-	while true do
-		local currHp = GetEntityHealth(player)
-		local currArmor = GetPedArmour(player)
-		local hit, bone = GetPedLastDamageBone(player)
-		if hit and parts[bone] ~= 'NONE' and (currHp ~= lastHp or currArmor ~= lastArmor or lastBone ~= bone) then
-			lastBone = bone
-			lastHp = currHp
-			lastArmor = currArmor
+    
+    while true do
+        local ped = PlayerPedId()
+        local health = GetEntityHealth(ped)
+        local armour = GetPedArmour(ped)
 
-			CheckDamage(player, bone, GetDamagingWeapon(player))
-		end
-		Citizen.Wait(333)
+        if not playerHealth then
+            playerHealth = health
+        end
+
+        if not playerArmour then
+            playerArmour = armour
+        end
+
+        if player ~= ped then
+            player = ped
+            playerHealth = health
+            playerArmour = armour
+        end
+
+
+        local armourDamaged = (playerArmour ~= armour and armour < playerArmour and armour > 0) -- Players armour was damaged
+        local healthDamaged = (playerHealth ~= health and health < playerHealth) -- Players health was damaged
+        
+        if armourDamaged or healthDamaged then
+            local hit, bone = GetPedLastDamageBone(player)
+            local bodypart = parts[bone]
+
+            if hit and bodypart ~= 'NONE' then
+                local checkDamage = true
+                local weapon = GetDamagingWeapon(player)
+                if weapon ~= nil then
+                    if armourDamaged and (bodypart == 'SPINE' or bodypart == 'LOWER_BODY') and weapon <= WeaponClasses['LIGHT_IMPACT'] and weapon ~= WeaponClasses['NOTHING'] then
+                        checkDamage = false -- Don't check damage if the it was a body shot and the weapon class isn't that strong
+                    end
+
+                    if checkDamage then
+                        CheckDamage(player, bone, weapon)
+                    end
+                end
+            end
+        end
+
+        playerHealth = health
+        playerArmour = armour
+        Citizen.Wait(333)
 
 		ProcessRunStuff(player)
 		Citizen.Wait(333)
