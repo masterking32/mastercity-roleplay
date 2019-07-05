@@ -9,6 +9,10 @@ local wasOnPainKillers = false
 local onDrugs = 0
 local wasOnDrugs = false
 
+local legCount = 0
+local armcount = 0
+local headCount = 0
+
 local WeaponClasses = {
     ['SMALL_CALIBER'] = 1,
     ['MEDIUM_CALIBER'] = 2,
@@ -253,9 +257,6 @@ local weapons = {
 }
 
 local injured = {}
-local legCount = 0
-local armcount = 0
-local headCount = 0
 
 function IsInjuryCausingLimp()
     for k, v in pairs(BodyParts) do
@@ -450,7 +451,6 @@ function CheckDamage(ped, bone, weapon)
 
             if BodyParts[parts[bone]].severity < 4 then
                 BodyParts[parts[bone]].severity = BodyParts[parts[bone]].severity + 1
-
                 TriggerServerEvent('mythic_hospital:server:SyncInjuries', {
                     limbs = BodyParts,
                     isBleeding = tonumber(isBleeding)
@@ -539,8 +539,8 @@ AddEventHandler('mythic_hospital:client:UseAdrenaline', function(tier)
 end)  
     
 Citizen.CreateThread(function()
-	local player = PlayerPedId()
-	while isLoggedIn do
+    local player = PlayerPedId()
+	while true do
 		if not IsEntityDead(player) and not (#injured == 0) then
 			if #injured > 0 then
 				local str = ''
@@ -591,10 +591,9 @@ Citizen.CreateThread(function()
 					SetFlash(0, 0, 100, 500, 100)
 					--Function.Call(Hash.SET_FLASH, 0, 0, 100, 500, 100);
 				end
-			
 				exports['mythic_notify']:DoCustomHudText('inform', 'You Have ' .. BleedingStates[isBleeding], 25000)
-			
 				ApplyDamageToPed(player, tonumber(isBleeding) * 4, false)
+				lastHp = lastHp - (tonumber(isBleeding) * 4)
 				blackoutTimer = blackoutTimer + 1
 				advanceBleedTimer = advanceBleedTimer + 1
 			
@@ -612,12 +611,19 @@ Citizen.CreateThread(function()
 end)
 
 Citizen.CreateThread(function()
-	local player = PlayerPedId()
-	local lastBone = nil
-	while isLoggedIn do
+    local player = PlayerPedId()
+	local lastBone = 0
+    local lastHp = GetEntityHealth(player)
+    local lastArmor = GetPedArmour(player)
+	while true do
+		local currHp = GetEntityHealth(player)
+		local currArmor = GetPedArmour(player)
 		local hit, bone = GetPedLastDamageBone(player)
-		if hit and bone ~= lastBone and parts[bone] ~= 'NONE' then
+		if hit and parts[bone] ~= 'NONE' and (currHp ~= lastHp or currArmor ~= lastArmor or lastBone ~= bone) then
 			lastBone = bone
+			lastHp = currHp
+			lastArmor = currArmor
+
 			CheckDamage(player, bone, GetDamagingWeapon(player))
 		end
 		Citizen.Wait(333)

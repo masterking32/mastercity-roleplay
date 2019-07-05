@@ -16,11 +16,18 @@ local beds = {
 local bedsTaken = {}
 local injuryBasePrice = 100
 
+AddEventHandler('playerDropped', function()
+    if bedsTaken[source] ~= nil then
+        beds[bedsTaken[source]].taken = false
+    end
+end)
+
 RegisterServerEvent('mythic_hospital:server:RequestBed')
 AddEventHandler('mythic_hospital:server:RequestBed', function()
     for k, v in pairs(beds) do
         if not v.taken then
             v.taken = true
+            bedsTaken[source] = k
             TriggerClientEvent('mythic_hospital:client:SendToBed', source, k, v)
             return
         end
