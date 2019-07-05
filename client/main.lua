@@ -8,8 +8,11 @@ local pillboxTeleports = {
 local bedOccupying = nil
 local bedOccupyingData = nil
 
-local inBedDict = 'switch@franklin@bed'
-local inBedAnim = 'sleep_loop'
+local cam = nil
+
+local inBedDict = "anim@gangops@morgue@table@"
+local inBedAnim = "ko_front"
+local getOutDict = 'switch@franklin@bed'
 local getOutAnim = 'sleep_getup_rubeyes'
 
 function PrintHelpText(message)
@@ -19,7 +22,16 @@ function PrintHelpText(message)
 end
 
 function LeaveBed()
-    TaskPlayAnim(PlayerPedId(), inBedDict , getOutAnim ,8.0, -8.0, -1, 0, 0, false, false, false )
+    RequestAnimDict(getOutDict)
+    while not HasAnimDictLoaded(getOutDict) do
+        Citizen.Wait(0)
+    end
+
+    RenderScriptCams(0, true, 200, true, true)
+    DestroyCam(cam, false)
+
+    SetEntityHeading(PlayerPedId(), bedOccupyingData.h - 90)
+    TaskPlayAnim(PlayerPedId(), getOutDict , getOutAnim ,8.0, -8.0, -1, 0, 0, false, false, false )
     Citizen.Wait(5000)
     ClearPedTasks(PlayerPedId())
     FreezeEntityPosition(PlayerPedId(), false)
@@ -39,13 +51,25 @@ AddEventHandler('mythic_hospital:client:RPSendToBed', function(id, data)
     bedOccupying = id
     bedOccupyingData = data
 
-    SetEntityCoords(PlayerPedId(), data.x, data.y, data.z - 0.3)
+    SetEntityCoords(PlayerPedId(), data.x, data.y, data.z - 0.5)
+    
     RequestAnimDict(inBedDict)
     while not HasAnimDictLoaded(inBedDict) do
         Citizen.Wait(0)
     end
+
     TaskPlayAnim(PlayerPedId(), inBedDict , inBedAnim ,8.0, -8.0, -1, 1, 0, false, false, false )
-    SetEntityHeading(PlayerPedId(), data.h - 90.0)
+    SetEntityHeading(PlayerPedId(), data.h + 180)
+
+    cam = CreateCam("DEFAULT_SCRIPTED_CAMERA", 1)
+    SetCamActive(cam, true)
+    RenderScriptCams(true, false, 1, true, true)
+    local CamYaw = Citizen.InvokeNative(0x837765A25378F0BB, 0, Citizen.ResultAsVector()).z
+    local distanceCam = 0.45
+    AttachCamToPedBone(cam, PlayerPedId(), 2108, math.cos(CamYaw * 0.01745329251) * 0.45, math.sin(CamYaw * 0.51745329251) * 0.45 , 0.5 , true)
+    SetCamFov(cam, 90.0)
+    SetCamRot(cam, 10.0, 0.0, GetEntityHeading(PlayerPedId()) + 180, true)
+            
 
     Citizen.CreateThread(function()
         while bedOccupyingData ~= nil do
@@ -69,7 +93,16 @@ AddEventHandler('mythic_hospital:client:SendToBed', function(id, data)
         Citizen.Wait(0)
     end
     TaskPlayAnim(PlayerPedId(), inBedDict , inBedAnim ,8.0, -8.0, -1, 1, 0, false, false, false )
-    SetEntityHeading(PlayerPedId(), data.h - 90.0)
+    SetEntityHeading(PlayerPedId(), data.h + 180)
+
+    cam = CreateCam("DEFAULT_SCRIPTED_CAMERA", 1)
+    SetCamActive(cam, true)
+    RenderScriptCams(true, false, 1, true, true)
+    local CamYaw = Citizen.InvokeNative(0x837765A25378F0BB, 0, Citizen.ResultAsVector()).z
+    local distanceCam = 0.45
+    AttachCamToPedBone(cam, PlayerPedId(), 2108, math.cos(CamYaw * 0.01745329251) * 0.45, math.sin(CamYaw * 0.51745329251) * 0.45 , 0.5 , true)
+    SetCamFov(cam, 90.0)
+    SetCamRot(cam, 10.0, 0.0, GetEntityHeading(PlayerPedId()) + 180, true)
 
     Citizen.CreateThread(function ()
         Citizen.Wait(5)
@@ -83,7 +116,7 @@ end)
 
 RegisterNetEvent('mythic_hospital:client:FinishServices')
 AddEventHandler('mythic_hospital:client:FinishServices', function()
-    SetEntityHealth(PlayerPedId(), GetEntityMaxHealth(PlayerPedId()))
+	SetEntityHealth(PlayerPedId(), GetEntityMaxHealth(PlayerPedId()))
     TriggerEvent('mythic_hospital:client:RemoveBleed')
     TriggerEvent('mythic_hospital:client:ResetLimbs')
     exports['mythic_notify']:DoHudText('inform', 'You\'ve Been Treated & Billed')
@@ -98,8 +131,7 @@ end)
 Citizen.CreateThread(function()
     while true do
         Citizen.Wait(1)
-        if not exports['mythic_base']:GetIfChoosing() then
-            local plyCoords = GetEntityCoords(PlayerPedId(), 0)
+			local plyCoords = GetEntityCoords(PlayerPedId(), 0)
             local distance = #(vector3(hospitalCheckin.x, hospitalCheckin.y, hospitalCheckin.z) - plyCoords)
             if distance < 10 then
                 DrawMarker(27, hospitalCheckin.x, hospitalCheckin.y, hospitalCheckin.z - 0.99, 0, 0, 0, 0, 0, 0, 0.5, 0.5, 1.0, 1, 157, 0, 155, false, false, 2, false, false, false, false)
@@ -152,6 +184,5 @@ Citizen.CreateThread(function()
             else
                 Citizen.Wait(1000)
             end
-        end
     end
 end)
