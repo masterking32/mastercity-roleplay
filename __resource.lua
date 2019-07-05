@@ -16,7 +16,6 @@ server_scripts {
 }
 
 dependencies {
-	'mythic_base',
 	'mythic_progbar',
 	'mythic_notify',
 }
