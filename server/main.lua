@@ -51,13 +51,15 @@ AddEventHandler('mythic_hospital:server:RPRequestBed', function(plyCoords)
                 TriggerClientEvent('mythic_hospital:client:RPSendToBed', source, k, v)
                 return
             else
-                TriggerEvent('mythic_chat:server:System', source, 'That Bed Is Taken')
+                --TriggerEvent('mythic_chat:server:System', source, 'That Bed Is Taken')
+		TriggerClientEvent('esx:showNotification', source, '~r~That Bed Is Taken')
             end
         end
     end
 
     if not foundbed then
-        TriggerEvent('mythic_chat:server:System', source, 'Not Near A Hospital Bed')
+        --TriggerEvent('mythic_chat:server:System', source, 'Not Near A Hospital Bed')
+	TriggerClientEvent('esx:showNotification', source, '~r~Not Near A Hospital Bed')		
     end
 end)
 
