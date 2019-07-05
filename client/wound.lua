@@ -13,6 +13,9 @@ local legCount = 0
 local armcount = 0
 local headCount = 0
 
+local playerHealth = nil
+local playerArmour = nil
+
 local WeaponClasses = {
     ['SMALL_CALIBER'] = 1,
     ['MEDIUM_CALIBER'] = 2,
@@ -593,8 +596,9 @@ Citizen.CreateThread(function()
 					--Function.Call(Hash.SET_FLASH, 0, 0, 100, 500, 100);
 				end
 				exports['mythic_notify']:DoCustomHudText('inform', 'You Have ' .. BleedingStates[isBleeding], 25000)
-				ApplyDamageToPed(player, tonumber(isBleeding) * 4, false)
-				lastHp = lastHp - (tonumber(isBleeding) * 4)
+                local bleedDamage = tonumber(isBleeding) * 4
+                ApplyDamageToPed(player, bleedDamage, false)
+                playerHealth = playerHealth - bleedDamage
 				blackoutTimer = blackoutTimer + 1
 				advanceBleedTimer = advanceBleedTimer + 1
 			
@@ -613,21 +617,52 @@ end)
 
 Citizen.CreateThread(function()
     local player = PlayerPedId()
-	local lastBone = 0
-    local lastHp = GetEntityHealth(player)
-    local lastArmor = GetPedArmour(player)
-	while true do
-		local currHp = GetEntityHealth(player)
-		local currArmor = GetPedArmour(player)
-		local hit, bone = GetPedLastDamageBone(player)
-		if hit and parts[bone] ~= 'NONE' and (currHp ~= lastHp or currArmor ~= lastArmor or lastBone ~= bone) then
-			lastBone = bone
-			lastHp = currHp
-			lastArmor = currArmor
+    
+    while true do
+        local ped = PlayerPedId()
+        local health = GetEntityHealth(ped)
+        local armour = GetPedArmour(ped)
 
-			CheckDamage(player, bone, GetDamagingWeapon(player))
-		end
-		Citizen.Wait(333)
+        if not playerHealth then
+            playerHealth = health
+        end
+
+        if not playerArmour then
+            playerArmour = armour
+        end
+
+        if player ~= ped then
+            player = ped
+            playerHealth = health
+            playerArmour = armour
+        end
+
+
+        local armourDamaged = (playerArmour ~= armour and armour < playerArmour and armour > 0) -- Players armour was damaged
+        local healthDamaged = (playerHealth ~= health and health < playerHealth) -- Players health was damaged
+        
+        if armourDamaged or healthDamaged then
+            local hit, bone = GetPedLastDamageBone(player)
+            local bodypart = parts[bone]
+
+            if hit and bodypart ~= 'NONE' then
+                local checkDamage = true
+                local weapon = GetDamagingWeapon(player)
+                if weapon ~= nil then
+                    if armourDamaged and (bodypart == 'SPINE' or bodypart == 'LOWER_BODY') and weapon <= WeaponClasses['LIGHT_IMPACT'] and weapon ~= WeaponClasses['NOTHING'] then
+                        checkDamage = false -- Don't check damage if the it was a body shot and the weapon class isn't that strong
+                    end
+
+                    if checkDamage then
+                        CheckDamage(player, bone, weapon)
+                    end
+                end
+            end
+        end
+
+        playerHealth = health
+        playerArmour = armour
+        Citizen.Wait(333)
 
 		ProcessRunStuff(player)
 		Citizen.Wait(333)
