@@ -20,7 +20,7 @@ There are 3 Pre-Defined Durations As Well As A Function To Define Your Own Durat
 * DoHudText ( type, text, style ) - Displays For 2500ms (2.5 Seconds)
 * DoLongHudText ( type, text, style ) - Displays For 5000ms (5 Seconds)
 * DoCustomHudText ( type, text, duration, style ) - Displays For Set Time (In Milliseconds)
-* PersistentHudText ( action, * ) - Creates A Notification That Will Remain On Screen Until End Function Is Called With Same ID. Valid Actions : start, update, end
+* PersistentHudText ( action, * ) - Creates A Notification That Will Remain On Screen Until End Function Is Called With Same ID. Valid Actions : start & end
 
 There are also ClientEvents that can be used to trigger notifications from server
 * mythic_notify:client:SendAlert OBJECT { type, text, duration } - If no duration is given, will default to 2500ms
