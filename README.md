@@ -16,10 +16,10 @@ There 3 types;
 * Success - 'success'
 
 There are 3 Pre-Defined Durations As Well As A Function To Define Your Own Duration
-* DoShortHudText( type, text ) - Displays 1000ms (1 Second)
-* DoHudText ( type, text ) - Displays For 2500ms (2.5 Seconds)
-* DoLongHudText ( type, text ) - Displays For 5000ms (5 Seconds)
-* DoCustomHudText ( type, text, duration ) - Displays For Set Time (In Milliseconds)
+* DoShortHudText( type, text, style ) - Displays 1000ms (1 Second)
+* DoHudText ( type, text, style ) - Displays For 2500ms (2.5 Seconds)
+* DoLongHudText ( type, text, style ) - Displays For 5000ms (5 Seconds)
+* DoCustomHudText ( type, text, duration, style ) - Displays For Set Time (In Milliseconds)
 * PersistentHudText ( action, * ) - Creates A Notification That Will Remain On Screen Until End Function Is Called With Same ID. Valid Actions : start, update, end
 
 There are also ClientEvents that can be used to trigger notifications from server
@@ -27,5 +27,24 @@ There are also ClientEvents that can be used to trigger notifications from serve
 * mythic_notify:client:PersistentHudText OBJECT { action, id, type, text } - Note: If using end action, type & text can be excluded)
 
 Persistent Notifications Actions -
-* start - ( id, type, text ) - Additionally, you can call PersistentHudText with the start action and pass an already existing ID to update the notification on the screen.
+* start - ( id, type, text, style ) - Additionally, you can call PersistentHudText with the start action and pass an already existing ID to update the notification on the screen.
 * end - ( id )
+
+> Note About ID: This is expected to be an entirely unique value that your resource is responsible for tracking. I’d suggest using something related to your resource name so there’s no chance of interferring with any other persistent notifications that may exist.
+
+### Custom Style Format -
+The custom style is a simple array in key, value format where the key is the CSS style attribute and the value is whatever you want to set that CSS attribute to.
+
+##### Examples -
+Client:
+```
+exports['mythic_notify']:DoHudText('inform', 'Hype! Custom Styling!', { ['background-color'] = '#ffffff', ['color'] = '#000000' })
+```
+
+Server:
+```
+TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'inform', text = 'Hype! Custom Styling!', style = { ['background-color'] = '#ffffff', ['color'] = '#000000' } })
+```
+
+Result:
+![Custom Styling](https://i.imgur.com/FClWCqm.png)

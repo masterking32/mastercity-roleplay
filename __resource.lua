@@ -2,7 +2,7 @@ resource_manifest_version '44febabe-d386-4d18-afbe-5e627f4af937'
 
 name 'Mythic Framework Notification System'
 author 'Alzar - https://github.com/Alzar'
-version 'v1.0.2'
+version 'v1.0.3'
 
 ui_page {
     'html/ui.html',

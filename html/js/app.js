@@ -1,45 +1,55 @@
 var persistentNotifs = {};
 
 window.addEventListener('message', function (event) {
-    if (event.data.persist === undefined) {
-        ShowNotif(event.data);
-    } else {
-        if (event.data.persist.toUpperCase() == 'START') {
-            if (persistentNotifs[event.data.id] === undefined) {
-                CreatePersistentNotif(event.data);
-            } else {
-                let $notification = $(persistentNotifs[event.data.id])
-                $notification.addClass('notification').addClass(event.data.type);
-                $notification.html(event.data.text);
-            }
-        } else if (event.data.persist.toUpperCase() == 'END') {
-            let $notification = $(persistentNotifs[event.data.id]);
-            $.when($notification.fadeOut()).done(function() {
-                $notification.remove()
-            });
-            persistentNotifs[event.data.id] = undefined;
-        }
-    }
+    ShowNotif(event.data);
 });
 
-function CreatePersistentNotif(data) {
+function CreateNotification(data) {
     var $notification = $(document.createElement('div'));
     $notification.addClass('notification').addClass(data.type);
     $notification.html(data.text);
     $notification.fadeIn();
-    $('.notif-container').append($notification);
-    persistentNotifs[event.data.id] = $notification;
+    if (data.style !== undefined) {
+        Object.keys(data.style).forEach(function(css) {
+            $notification.css(css, data.style[css])
+        });
+    }
+
+    return $notification;
 }
 
 function ShowNotif(data) {
-    var $notification = $(document.createElement('div'));
-    $notification.addClass('notification').addClass(data.type);
-    $notification.html(data.text);
-    $notification.fadeIn();
-    $('.notif-container').append($notification);
-    setTimeout(function() {
-        $.when($notification.fadeOut()).done(function() {
-            $notification.remove()
-        });
-    }, data.length != null ? data.length : 2500);
+    if (data.persist === undefined) {
+        var $notification = CreateNotification(data);
+        $('.notif-container').append($notification);
+        setTimeout(function() {
+            $.when($notification.fadeOut()).done(function() {
+                $notification.remove()
+            });
+        }, data.length != null ? data.length : 2500);
+    } else {
+        if (data.persist.toUpperCase() == 'START') {
+            var $notification = CreateNotification(data);
+            $('.notif-container').append($notification);
+            if (persistentNotifs[data.id] === undefined) {
+                persistentNotifs[data.id] = $notification;
+            } else {
+                let $notification = $(persistentNotifs[data.id])
+                $notification.addClass('notification').addClass(data.type);
+                $notification.html(data.text);
+
+                if (data.style !== undefined) {
+                    Object.keys(data.style).forEach(function(css) {
+                        $notification.css(css, data.style[css])
+                    });
+                }
+            }
+        } else if (data.persist.toUpperCase() == 'END') {
+            let $notification = $(persistentNotifs[data.id]);
+            $.when($notification.fadeOut()).done(function() {
+                $notification.remove();
+                delete persistentNotifs[data.id];
+            });
+        }
+    }
 }
