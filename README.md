@@ -37,12 +37,12 @@ The custom style is a simple array in key, value format where the key is the CSS
 
 ##### Examples -
 Client:
-```
+```LUA
 exports['mythic_notify']:DoHudText('inform', 'Hype! Custom Styling!', { ['background-color'] = '#ffffff', ['color'] = '#000000' })
 ```
 
 Server:
-```
+```LUA
 TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'inform', text = 'Hype! Custom Styling!', style = { ['background-color'] = '#ffffff', ['color'] = '#000000' } })
 ```
 
