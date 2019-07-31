@@ -1,4 +1,4 @@
-# pNotify
+# pNotify Fix
 In-game notifications for the FiveM GTA V mod
 
 Reformatted to remove the nested folder, and added the resource manifest to the __resource file.
