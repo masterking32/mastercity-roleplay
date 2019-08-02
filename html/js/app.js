@@ -29,9 +29,9 @@ function ShowNotif(data) {
         }, data.length != null ? data.length : 2500);
     } else {
         if (data.persist.toUpperCase() == 'START') {
-            var $notification = CreateNotification(data);
-            $('.notif-container').append($notification);
             if (persistentNotifs[data.id] === undefined) {
+                var $notification = CreateNotification(data);
+                $('.notif-container').append($notification);
                 persistentNotifs[data.id] = $notification;
             } else {
                 let $notification = $(persistentNotifs[data.id])
