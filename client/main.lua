@@ -22,6 +22,12 @@ mythic_action = {
         coords = { x = 0.0, y = 0.0, z = 0.0 },
         rotation = { x = 0.0, y = 0.0, z = 0.0 },
     },
+    propTwo = {
+        model = nil,
+        bone = nil,
+        coords = { x = 0.0, y = 0.0, z = 0.0 },
+        rotation = { x = 0.0, y = 0.0, z = 0.0 },
+    },
 }
 
 local isDoingAction = false
@@ -29,12 +35,16 @@ local disableMouse = false
 local wasCancelled = false
 local isAnim = false
 local isProp = false
+local isPropTwo = false
 local prop_net = nil
+local propTwo_net = nil
+local runProgThread = false
 
 function Progress(action, finish)
+    ActionStart()
     mythic_action = action
 
-    if not IsEntityDead(GetPlayerPed(-1)) or mythic_action.useWhileDead then
+    if not IsEntityDead(PlayerPedId()) or mythic_action.useWhileDead then
         if not isDoingAction then
             isDoingAction = true
             wasCancelled = false
@@ -53,23 +63,28 @@ function Progress(action, finish)
                     if IsControlJustPressed(0, 178) and mythic_action.canCancel then
                         TriggerEvent("mythic_progbar:client:cancel")
                     end
+
+                    if IsEntityDead(PlayerPedId()) and not mythic_action.useWhileDead then
+                        TriggerEvent("mythic_progbar:client:cancel")
+                    end
                 end
                 if finish ~= nil then
                     finish(wasCancelled)
                 end
             end)
         else
-            print('Action Already Performing') -- Replace with alert call if you want the player to see this warning on-screen
+            exports['mythic_notify']:SendAlert('error', 'Action Already Performing')
         end
     else
-        print('Cannot do action while dead') -- Replace with alert call if you want the player to see this warning on-screen
+        exports['mythic_notify']:SendAlert('error', 'Cannot do that action while dead')
     end
 end
 
 function ProgressWithStartEvent(action, start, finish)
+    ActionStart()
     mythic_action = action
 
-    if not IsEntityDead(GetPlayerPed(-1)) or mythic_action.useWhileDead then
+    if not IsEntityDead(PlayerPedId()) or mythic_action.useWhileDead then
         if not isDoingAction then
             isDoingAction = true
             wasCancelled = false
@@ -91,23 +106,28 @@ function ProgressWithStartEvent(action, start, finish)
                     if IsControlJustPressed(0, 178) and mythic_action.canCancel then
                         TriggerEvent("mythic_progbar:client:cancel")
                     end
+
+                    if IsEntityDead(PlayerPedId()) and not mythic_action.useWhileDead then
+                        TriggerEvent("mythic_progbar:client:cancel")
+                    end
                 end
                 if finish ~= nil then
                     finish(wasCancelled)
                 end
             end)
         else
-            TriggerEvent("mythic_base:client:SendAlert", { text = "Already Doing An Action", type = "error", layout = "topRight", timeout = 1500 })
+            exports['mythic_notify']:SendAlert('error', 'Already Doing An Action', 1000)
         end
     else
-        TriggerEvent("mythic_base:client:SendAlert", { text = "Cannot Perform An Action While Dead", type = "error", layout = "topRight", timeout = 1500 })
+        exports['mythic_notify']:SendAlert('error', 'Cannot Perform An Action While Dead', 1000)
     end
 end
 
 function ProgressWithTickEvent(action, tick, finish)
+    ActionStart()
     mythic_action = action
 
-    if not IsEntityDead(GetPlayerPed(-1)) or mythic_action.useWhileDead then
+    if not IsEntityDead(PlayerPedId()) or mythic_action.useWhileDead then
         if not isDoingAction then
             isDoingAction = true
             wasCancelled = false
@@ -129,23 +149,28 @@ function ProgressWithTickEvent(action, tick, finish)
                     if IsControlJustPressed(0, 178) and mythic_action.canCancel then
                         TriggerEvent("mythic_progbar:client:cancel")
                     end
+
+                    if IsEntityDead(PlayerPedId()) and not mythic_action.useWhileDead then
+                        TriggerEvent("mythic_progbar:client:cancel")
+                    end
                 end
                 if finish ~= nil then
                     finish(wasCancelled)
                 end
             end)
         else
-            TriggerEvent("mythic_base:client:SendAlert", { text = "Already Doing An Action", type = "error", layout = "topRight", timeout = 1500 })
+            exports['mythic_notify']:SendAlert('error', 'Already Doing An Action', 1000)
         end
     else
-        TriggerEvent("mythic_base:client:SendAlert", { text = "Cannot Perform An Action While Dead", type = "error", layout = "topRight", timeout = 1500 })
+        exports['mythic_notify']:SendAlert('error', 'Cannot Perform An Action While Dead', 1000)
     end
 end
 
 function ProgressWithStartAndTick(action, start, tick, finish)
+    ActionStart()
     mythic_action = action
 
-    if not IsEntityDead(GetPlayerPed(-1)) or mythic_action.useWhileDead then
+    if not IsEntityDead(PlayerPedId()) or mythic_action.useWhileDead then
         if not isDoingAction then
             isDoingAction = true
             wasCancelled = false
@@ -170,22 +195,26 @@ function ProgressWithStartAndTick(action, start, tick, finish)
                     if IsControlJustPressed(0, 178) and mythic_action.canCancel then
                         TriggerEvent("mythic_progbar:client:cancel")
                     end
+
+                    if IsEntityDead(PlayerPedId()) and not mythic_action.useWhileDead then
+                        TriggerEvent("mythic_progbar:client:cancel")
+                    end
                 end
                 if finish ~= nil then
                     finish(wasCancelled)
                 end
             end)
         else
-            print('Already Doing An Action')
+            exports['mythic_notify']:SendAlert('error', 'Already Doing An Action', 1000)
         end
     else
-        print('Cannot Perform An Action While Dead')
+        exports['mythic_notify']:SendAlert('error', 'Cannot Perform An Action While Dead', 1000)
     end
 end
 
 RegisterNetEvent("mythic_progbar:client:progress")
-AddEventHandler("mythic_progbar:client:progress", function(action, finish)
-    Progress(action, finish)
+AddEventHandler("mythic_progbar:client:progress", function(action, cb)
+    progress(action, cb)
 end)
 
 RegisterNetEvent("mythic_progbar:client:ProgressWithStartEvent")
@@ -218,75 +247,121 @@ end)
 RegisterNetEvent("mythic_progbar:client:actionCleanup")
 AddEventHandler("mythic_progbar:client:actionCleanup", function()
     local ped = PlayerPedId()
-    ClearPedTasks(ped)
-    StopAnimTask(ped, mythic_action.animDict, mythic_action.anim, 1.0)
+    --ClearPedTasks(ped)
+
+    if mythic_action.animation.task ~= nil or (mythic_action.animation.animDict ~= nil and mythic_action.animation.anim ~= nil) then
+        ClearPedSecondaryTask(ped)
+        StopAnimTask(ped, mythic_action.animDict, mythic_action.anim, 1.0)
+    else
+        ClearPedTasks(ped)
+    end
+
     DetachEntity(NetToObj(prop_net), 1, 1)
     DeleteEntity(NetToObj(prop_net))
+    DetachEntity(NetToObj(propTwo_net), 1, 1)
+    DeleteEntity(NetToObj(propTwo_net))
     prop_net = nil
+    propTwo_net = nil
+    runProgThread = false
 end)
 
 -- Disable controls while GUI open
-Citizen.CreateThread(function()
-    while true do
-        if isDoingAction then
-            if not isAnim then
-                if mythic_action.animation ~= nil then
-                    if mythic_action.animation.task ~= nil then
-                        TaskStartScenarioInPlace(PlayerPedId(), mythic_action.animation.task, 0, true)
-                    elseif mythic_action.animation.animDict ~= nil and mythic_action.animation.anim ~= nil then
-                        if mythic_action.animation.flags == nil then
-                            mythic_action.animation.flags = 1
+function ActionStart()
+    runProgThread = true
+    Citizen.CreateThread(function()
+        while runProgThread do
+            if isDoingAction then
+                if not isAnim then
+                    if mythic_action.animation ~= nil then
+                        if mythic_action.animation.task ~= nil then
+                            TaskStartScenarioInPlace(PlayerPedId(), mythic_action.animation.task, 0, true)
+                        elseif mythic_action.animation.animDict ~= nil and mythic_action.animation.anim ~= nil then
+                            if mythic_action.animation.flags == nil then
+                                mythic_action.animation.flags = 1
+                            end
+
+                            local player = PlayerPedId()
+                            if ( DoesEntityExist( player ) and not IsEntityDead( player )) then
+                                loadAnimDict( mythic_action.animation.animDict )
+                                TaskPlayAnim( player, mythic_action.animation.animDict, mythic_action.animation.anim, 3.0, 1.0, -1, mythic_action.animation.flags, 0, 0, 0, 0 )     
+                            end
+                        else
+                            TaskStartScenarioInPlace(PlayerPedId(), 'PROP_HUMAN_BUM_BIN', 0, true)
+                        end
+                    end
+
+                    isAnim = true
+                end
+                if not isProp and mythic_action.prop ~= nil and mythic_action.prop.model ~= nil then
+                    RequestModel(mythic_action.prop.model)
+
+                    while not HasModelLoaded(GetHashKey(mythic_action.prop.model)) do
+                        Citizen.Wait(0)
+                    end
+
+                    local pCoords = GetOffsetFromEntityInWorldCoords(PlayerPedId(), 0.0, 0.0, 0.0)
+                    local modelSpawn = CreateObject(GetHashKey(mythic_action.prop.model), pCoords.x, pCoords.y, pCoords.z, true, true, true)
+
+                    local netid = ObjToNet(modelSpawn)
+                    SetNetworkIdExistsOnAllMachines(netid, true)
+                    NetworkSetNetworkIdDynamic(netid, true)
+                    SetNetworkIdCanMigrate(netid, false)
+                    if mythic_action.prop.bone == nil then
+                        mythic_action.prop.bone = 60309
+                    end
+
+                    if mythic_action.prop.coords == nil then
+                        mythic_action.prop.coords = { x = 0.0, y = 0.0, z = 0.0 }
+                    end
+
+                    if mythic_action.prop.rotation == nil then
+                        mythic_action.prop.rotation = { x = 0.0, y = 0.0, z = 0.0 }
+                    end
+
+                    AttachEntityToEntity(modelSpawn, PlayerPedId(), GetPedBoneIndex(PlayerPedId(), mythic_action.prop.bone), mythic_action.prop.coords.x, mythic_action.prop.coords.y, mythic_action.prop.coords.z, mythic_action.prop.rotation.x, mythic_action.prop.rotation.y, mythic_action.prop.rotation.z, 1, 1, 0, 1, 0, 1)
+                    prop_net = netid
+
+                    isProp = true
+                    
+                    if not isPropTwo and mythic_action.propTwo ~= nil and mythic_action.propTwo.model ~= nil then
+                        RequestModel(mythic_action.propTwo.model)
+
+                        while not HasModelLoaded(GetHashKey(mythic_action.propTwo.model)) do
+                            Citizen.Wait(0)
                         end
 
-                        local player = PlayerPedId()
-                        if ( DoesEntityExist( player ) and not IsEntityDead( player )) then
-                            loadAnimDict( mythic_action.animation.animDict )
-                            TaskPlayAnim( player, mythic_action.animation.animDict, mythic_action.animation.anim, 3.0, 1.0, -1, mythic_action.animation.flags, 0, 0, 0, 0 )     
+                        local pCoords = GetOffsetFromEntityInWorldCoords(PlayerPedId(), 0.0, 0.0, 0.0)
+                        local modelSpawn = CreateObject(GetHashKey(mythic_action.propTwo.model), pCoords.x, pCoords.y, pCoords.z, true, true, true)
+
+                        local netid = ObjToNet(modelSpawn)
+                        SetNetworkIdExistsOnAllMachines(netid, true)
+                        NetworkSetNetworkIdDynamic(netid, true)
+                        SetNetworkIdCanMigrate(netid, false)
+                        if mythic_action.propTwo.bone == nil then
+                            mythic_action.propTwo.bone = 60309
                         end
-                    else
-                        TaskStartScenarioInPlace(PlayerPedId(), 'PROP_HUMAN_BUM_BIN', 0, true)
+
+                        if mythic_action.propTwo.coords == nil then
+                            mythic_action.propTwo.coords = { x = 0.0, y = 0.0, z = 0.0 }
+                        end
+
+                        if mythic_action.propTwo.rotation == nil then
+                            mythic_action.propTwo.rotation = { x = 0.0, y = 0.0, z = 0.0 }
+                        end
+
+                        AttachEntityToEntity(modelSpawn, PlayerPedId(), GetPedBoneIndex(PlayerPedId(), mythic_action.propTwo.bone), mythic_action.propTwo.coords.x, mythic_action.propTwo.coords.y, mythic_action.propTwo.coords.z, mythic_action.propTwo.rotation.x, mythic_action.propTwo.rotation.y, mythic_action.propTwo.rotation.z, 1, 1, 0, 1, 0, 1)
+                        propTwo_net = netid
+
+                        isPropTwo = true
                     end
                 end
 
-                isAnim = true
+                DisableActions(PlayerPedId())
             end
-            if not isProp and mythic_action.prop ~= nil and mythic_action.prop.model ~= nil then
-                RequestModel(mythic_action.prop.model)
-
-                while not HasModelLoaded(GetHashKey(mythic_action.prop.model)) do
-                    Citizen.Wait(0)
-                end
-
-                local pCoords = GetOffsetFromEntityInWorldCoords(GetPlayerPed(PlayerId()), 0.0, 0.0, 0.0)
-                local modelSpawn = CreateObject(GetHashKey(mythic_action.prop.model), pCoords.x, pCoords.y, pCoords.z, true, true, true)
-
-                local netid = ObjToNet(modelSpawn)
-                SetNetworkIdExistsOnAllMachines(netid, true)
-                NetworkSetNetworkIdDynamic(netid, true)
-                SetNetworkIdCanMigrate(netid, false)
-                if mythic_action.prop.bone == nil then
-                    mythic_action.prop.bone = 60309
-                end
-
-                if mythic_action.prop.coords == nil then
-                    mythic_action.prop.coords = { x = 0.0, y = 0.0, z = 0.0 }
-                end
-
-                if mythic_action.prop.rotation == nil then
-                    mythic_action.prop.rotation = { x = 0.0, y = 0.0, z = 0.0 }
-                end
-
-                AttachEntityToEntity(modelSpawn, GetPlayerPed(PlayerId()), GetPedBoneIndex(GetPlayerPed(PlayerId()), mythic_action.prop.bone), mythic_action.prop.coords.x, mythic_action.prop.coords.y, mythic_action.prop.coords.z, mythic_action.prop.rotation.x, mythic_action.prop.rotation.y, mythic_action.prop.rotation.z, 1, 1, 0, 1, 0, 1)
-                prop_net = netid
-
-                isProp = true
-            end
-
-            DisableActions(GetPlayerPed(-1))
+            Citizen.Wait(0)
         end
-        Citizen.Wait(0)
-    end
-end)
+    end)
+end
 
 function loadAnimDict(dict)
 	while (not HasAnimDictLoaded(dict)) do
@@ -318,7 +393,7 @@ function DisableActions(ped)
     end
 
     if mythic_action.controlDisables.disableCombat then
-        DisablePlayerFiring(ped, true) -- Disable weapon firing
+        DisablePlayerFiring(PlayerId(), true) -- Disable weapon firing
         DisableControlAction(0, 24, true) -- disable attack
         DisableControlAction(0, 25, true) -- disable aim
         DisableControlAction(1, 37, true) -- disable weapon select
