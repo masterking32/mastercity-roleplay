@@ -1,10 +1,5 @@
 html {
-    overflow: scroll;
-}
-
-::-webkit-scrollbar {
-    width: 0px;
-    background: transparent;
+    overflow: hidden;
 }
 
 body {
@@ -66,8 +61,4 @@ body {
     height: 40px;
     transition: width 0.3s;
     transition-timing-function: ease-out;
-}
-
-@keyframes animate-stripes {
-    0% {background-position: 0 0;} 100% {background-position: 60px 0;}
 }
