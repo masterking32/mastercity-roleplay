@@ -214,7 +214,7 @@ end
 
 RegisterNetEvent("mythic_progbar:client:progress")
 AddEventHandler("mythic_progbar:client:progress", function(action, cb)
-    progress(action, cb)
+    Progress(action, cb)
 end)
 
 RegisterNetEvent("mythic_progbar:client:ProgressWithStartEvent")
