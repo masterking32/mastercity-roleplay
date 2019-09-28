@@ -49,7 +49,7 @@ end)
 Citizen.CreateThread(function()
 	while true do
 		Citizen.Wait(0)
-		local playerCoords = GetEntityCoords(PlayerPedId())
+		local playerCoords, letSleep = GetEntityCoords(PlayerPedId()), true
 
 		for k,doorID in ipairs(Config.DoorList) do
 			local distance
@@ -68,6 +68,8 @@ Citizen.CreateThread(function()
 			end
 
 			if distance < 50 then
+				letSleep = false
+
 				if doorID.doors then
 					for _,v in ipairs(doorID.doors) do
 						FreezeEntityPosition(v.object, doorID.locked)
@@ -108,6 +110,10 @@ Citizen.CreateThread(function()
 					end
 				end
 			end
+		end
+
+		if letSleep then
+			Citizen.Wait(500)
 		end
 	end
 end)
