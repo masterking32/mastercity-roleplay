@@ -1,0 +1,280 @@
+@import url('https://fonts.googleapis.com/css?family=Oswald&display=swap');
+
+body {
+    font-family: Oswald;
+    background: none !important;
+}
+
+.background {
+    background-image: url(../img/bg.jpg);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    position: absolute;
+    z-index: -99;
+}
+
+.jumbotron {
+    margin: 0 !important;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 0;
+}
+
+.vertical-center {
+    min-height: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+}
+
+.navbar-brand {
+    font-weight: bold;
+    font-size: 40px;
+    color: #fff !important;
+    padding: 0 !important;
+    text-shadow: #000 1px 0 10px;
+}
+
+.navbar {
+    padding: 0 !important;
+    margin-left: 5px;
+}
+
+.container {
+    max-width: 1300px !important;
+    position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-top: -390px;
+	margin-left: -650px;
+	padding-bottom: 20px;
+}
+
+.nav-item {
+    width: 200px;
+    background: #000;
+    text-align: center;
+    margin-top: 15px;
+    margin-right: 5px;
+    margin-left: 5px;
+}
+
+.nav-item a {
+    color: #fff !important;
+    font-weight: bold;
+}
+
+.nav-link.active {
+    background: #fff !important;
+    border-radius: 0px !important;
+}
+
+a.nav-link.active {
+    color: #000 !important;
+}
+
+.tab-content {
+    height: 650px;
+    color: #fff;
+}
+
+.inner-tabs {
+    width: 100px;
+    margin-left: 5px;
+    float: left;
+    width: 410px;
+    display: flex;
+}
+
+.nav-link-inner {
+    background: #000;
+    color: #fff;
+    height: 40px;
+    margin-bottom: 10px;
+    font-weight: bold;
+    border-radius: 0px !important;
+}
+
+a.nav-link-inner {
+    color: #fff;
+    text-decoration: none;
+}
+
+.nav-link-inner.active {
+    background: #fff;
+    color: #000;
+}
+
+.tab-content-inner {
+    width: 840px;
+    height: 650px;
+    float: left;
+    background: rgba(0, 0, 0, 0.7);
+    margin-left: 10px;
+    padding: 10px;
+}
+
+.tab-content-inner p {
+    height: 30px;
+    padding-top: 1px;
+}
+
+kbd {
+    background-color: #fff !important;
+    color: #000 !important;
+    font-family: Oswald;
+}
+
+code {
+    color: #fff;
+    font-family: Oswald;
+    background: #3c3c3c;
+    padding-left: 4px;
+    padding-right: 4px;
+    padding-top: 1px;
+    padding-bottom: 1px;
+}
+
+.home-tab {
+    background: rgba(0, 0, 0, 0.7);
+    margin-left: 5px;
+    height: 650px;
+    background-image: url(../img/home.png);
+}
+
+.home-tab img {
+    width: 500px;
+    float: right;
+    padding: 20px;
+}
+
+.home-tab h1 {
+    padding: 20px;
+    font-size: 40px;
+    font-family: Oswald;
+    text-transform: uppercase;
+}
+
+.home-tab h2 {
+    padding: 20px;
+    font-size: 20px;
+}
+
+.home-tab p {
+    padding: 20px;
+    font-family: Oswald;
+}
+
+.home-tab ul {
+    height: 470px;
+    list-style: none;
+}
+
+.player {
+    width: 270px;
+    height: 40px;
+}
+
+audio {
+    width: 270px;
+    height: 40px;
+    border-radius: 50px;
+}
+
+.discord {
+  width: 270px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.discord img {
+  width: 100px;
+  padding: 0;
+  margin-top: 5px;
+}
+
+.discord p {
+  color: #7289DA;
+  font-weight: bold;
+  text-shadow: #000 1px 0 10px;
+  padding: 0;
+}
+
+.loading {
+    width: 1265px;
+    position: fixed;
+    top: 50%;
+    flex-direction: column;
+    align-items: center;
+}
+
+#cursor {
+    width: 19px;
+    height: 17px;
+    position: fixed;
+    z-index: 10000;
+    overflow:visible;
+    pointer-events:none;
+    background:none !important;
+}
+
+.lds-loader {
+    display: inline-block;
+    position: relative;
+    width: 64px;
+    height: 64px;
+  }
+  .lds-loader div {
+    display: inline-block;
+    position: absolute;
+    left: 6px;
+    width: 13px;
+    background: #fff;
+    animation: lds-loader 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
+  }
+  .lds-loader div:nth-child(1) {
+    left: 6px;
+    animation-delay: -0.24s;
+  }
+  .lds-loader div:nth-child(2) {
+    left: 26px;
+    animation-delay: -0.12s;
+  }
+  .lds-loader div:nth-child(3) {
+    left: 45px;
+    animation-delay: 0;
+  }
+  @keyframes lds-loader {
+    0% {
+      top: 6px;
+      height: 51px;
+    }
+    50%, 100% {
+      top: 19px;
+      height: 26px;
+    }
+  }
+
+#exit_gui {
+    width: 40px;
+    height: 40px;
+    background: #000;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    padding: .6rem 1rem;
+    position: absolute;
+    right: 0;
+    top: 125%;
+    font-size: 20px;
+}
+
+#exit_gui:hover {
+    background: #fff;
+    color: #000;
+}
