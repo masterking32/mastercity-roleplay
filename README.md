@@ -3,7 +3,7 @@
 ## Information
 > guidehud is a simple loading screen that contains helpful tips such as announcements, hotkeys, controls, and more, which is also accessible in game.
 
-#Features
+## Features
 1. Loading Screen
 2. In-Game HUD
 3. Announcements, rules, and hotkeys
