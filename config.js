@@ -1,14 +1,20 @@
 var config = {
   'title': 'FiveM RP',
   'welcomeMessage': 'WELCOME TO FIVEM RP',
-  // Adjust music volume 0-1
-  'volume': '0.05',
+  // Turn on/off music
+  enableMusic: true,
+  // Music list. (Youtube video IDs). Last one should not have a comma at the end.
+  music: [
+    "vraG1S_SPAc", "dBb060OPegg", "VXUlwPSS-SQ", "tgIqecROs5M"
+  ],
+  // Change music volume 0-100.
+  musicVolume: 05,
   // Change Discord settings and link.
   'discord': {
     'show': true,
     'discordLink': 'https://website.com/discord',
   },
-  // Change which key you have set in GuideHud's client.
+  // Change which key you have set in guidehud/client/client.lua
   'menuHotkey': 'F2',
   // Turn on/off rule tabs. true/false
   'rules': {

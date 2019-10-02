@@ -10,7 +10,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
 function loadingScreen() {
   cursor();
-  playAudio();
   community();
 }
 
@@ -23,11 +22,6 @@ function announcementItem() {
     li.textContent = announcement;
     announcementList.appendChild(li);
   });
-}
-
-function playAudio() {
-  var audio = document.getElementById('music');
-  audio.volume = config.volume;
 }
 
 function community() {

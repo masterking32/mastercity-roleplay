@@ -173,17 +173,6 @@ code {
     list-style: none;
 }
 
-.player {
-    width: 270px;
-    height: 40px;
-}
-
-audio {
-    width: 270px;
-    height: 40px;
-    border-radius: 50px;
-}
-
 .discord {
   width: 270px;
   display: flex;
@@ -278,3 +267,77 @@ audio {
     background: #fff;
     color: #000;
 }
+
+#musicControls {
+    display: flex;
+    flex-direction: row;
+    border-radius: 100px;
+    background-color: rgba(0, 0, 0, 0.75);
+    width: 270px;
+    height: 40px;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+  }
+  
+  #previous {
+    margin-left: 20px;
+    margin-right: 5px;
+    cursor: pointer;
+  }
+  
+  #play-pause {
+    margin-left: 5px;
+    margin-right: 5px;
+    cursor: pointer;
+  }
+  
+  #skip {
+    margin-left: 5px;
+    margin-right: 20px;
+    cursor: pointer;
+  }
+  
+  #mute {
+    margin-left: 20px;
+    margin-right: 5px;
+    cursor: pointer;
+  }
+  
+  .slider {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 7px;
+    border-radius: 50px;
+    background: #000;
+    margin-left: 5px;
+    margin-right: 20px;
+    justify-content: flex-end;
+  }
+  
+  .slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: #fff;
+    cursor: pointer;
+    border-color: #000;
+  }
+  
+  .slider::-moz-range-thumb {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: #fff;
+    cursor: pointer;
+    border-color: #000;
+  }
+  
+  .slider::-moz-range-track,
+  .slider::-moz-range-progress {
+    width: 100%;
+    height: 7px;
+    background: black;
+  }
