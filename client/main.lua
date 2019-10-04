@@ -249,11 +249,13 @@ AddEventHandler("mythic_progbar:client:actionCleanup", function()
     local ped = PlayerPedId()
     --ClearPedTasks(ped)
 
-    if mythic_action.animation.task ~= nil or (mythic_action.animation.animDict ~= nil and mythic_action.animation.anim ~= nil) then
-        ClearPedSecondaryTask(ped)
-        StopAnimTask(ped, mythic_action.animDict, mythic_action.anim, 1.0)
-    else
-        ClearPedTasks(ped)
+    if mythic_action.animation ~= nil then
+        if mythic_action.animation.task ~= nil or (mythic_action.animation.animDict ~= nil and mythic_action.animation.anim ~= nil) then
+            ClearPedSecondaryTask(ped)
+            StopAnimTask(ped, mythic_action.animDict, mythic_action.anim, 1.0)
+        else
+            ClearPedTasks(ped)
+        end
     end
 
     DetachEntity(NetToObj(prop_net), 1, 1)
