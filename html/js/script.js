@@ -29,9 +29,6 @@ $('document').ready(function() {
         cancelledTimer = setTimeout(function () {
             $(".progress-container").css({"display":"none"});
             $("#progress-bar").css("width", 0);
-            $.post('http://mythic_progbar/actionCancel', JSON.stringify({
-                })
-            );
         }, 1000);
     };
 
