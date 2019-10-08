@@ -9,8 +9,31 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 function loadingScreen() {
+  slider();
   cursor();
   community();
+}
+
+function slider() {
+  var background = document.getElementById('background');
+
+  config.images.forEach(function (image) {
+    var img = document.createElement('img');
+
+    img.src = image;
+    background.appendChild(img);
+  });
+
+  var current = 0;
+  var slides = background.childNodes;
+
+  setInterval(function() {
+    for (var i = 0; i < slides.length; i++) {
+      slides[i].style.opacity = 0;
+    }
+    current = (current != slides.length - 1) ? current + 1 : 0;
+    slides[current].style.opacity = 1;
+  }, 5000);
 }
 
 function announcementItem() {
@@ -134,7 +157,7 @@ function hotkeyItems() {
     p.innerHTML = item;
     rphotkeyList.appendChild(p);
   });
-  
+
   vehiclehotkeys.forEach(function (item) {
     var p = document.createElement('p');
 
@@ -152,9 +175,9 @@ function hotkeyItems() {
 
 function cursor() {
   document.body.addEventListener("mousemove", function (event) {
-      var x = event.pageX - 6 + "px"
-      var y = event.pageY + "px"
-      document.getElementById("cursor").style.left = x;
-      document.getElementById("cursor").style.top = y;
+    var x = event.pageX - 6 + "px"
+    var y = event.pageY + "px"
+    document.getElementById("cursor").style.left = x;
+    document.getElementById("cursor").style.top = y;
   })
 };

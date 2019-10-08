@@ -1,11 +1,15 @@
 var config = {
   'title': 'FiveM RP',
   'welcomeMessage': 'WELCOME TO FIVEM RP',
+  // Add images for the loading screen background.
+  images: [
+  'https://img.skordy.com/j/RGvCc.jpeg', 'https://img.skordy.com/j/nsQy5.jpeg', 'https://img.skordy.com/j/KNlLn.jpeg',
+  ],
   // Turn on/off music
   enableMusic: true,
   // Music list. (Youtube video IDs). Last one should not have a comma at the end.
   music: [
-    "vraG1S_SPAc", "dBb060OPegg", "VXUlwPSS-SQ", "tgIqecROs5M"
+    'vraG1S_SPAc', 'dBb060OPegg', 'VXUlwPSS-SQ', 'tgIqecROs5M'
   ],
   // Change music volume 0-100.
   musicVolume: 05,

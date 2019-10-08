@@ -8,7 +8,6 @@ files {
   'LoadingScreen/ui.html',
   'HUD/ui.html',
   'assets/css/style.css',
-  'assets/img/bg.jpg',
   'assets/img/cursor.png',
   'assets/img/discord.png',
   'assets/img/home.png',

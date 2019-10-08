@@ -8,6 +8,7 @@
 2. In-Game HUD
 3. Announcements, rules, and hotkeys
 4. Randomized YouTube music player
+5. Fading Background Slideshow
 
 ## Pictures
 ![alt text](https://img.skordy.com/j/gtRuS.jpeg "Image 1")
@@ -19,7 +20,7 @@
 
 ## Credit
 Thank you to the following people for help in improving this resource.
-- Fourthbeam (Suggesting YouTube music player)
+- Fourthbeam (Suggesting YouTube music player / Background Slideshow)
 * Buggeroff/Syntasu (Idea of YouTube music player came from Synn's loadscreen.)
 
 ## Installation

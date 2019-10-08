@@ -5,16 +5,24 @@ body {
     background: none !important;
 }
 
-.background {
-    background-image: url(../img/bg.jpg);
-    background-repeat: no-repeat;
-    background-size: 100%;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    position: absolute;
-    z-index: -99;
+#background {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: -99;
+}
+
+#background img {
+  transition: opacity 3s ease-in;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+#background img + img {
+  opacity: 0;
 }
 
 .jumbotron {
@@ -320,7 +328,7 @@ code {
     appearance: none;
     width: 15px;
     height: 15px;
-    border-radius: 50%;
+    border-radius: 50px;
     background: #fff;
     cursor: pointer;
     border-color: #000;
@@ -329,7 +337,7 @@ code {
   .slider::-moz-range-thumb {
     width: 15px;
     height: 15px;
-    border-radius: 50%;
+    border-radius: 50px;
     background: #fff;
     cursor: pointer;
     border-color: #000;
@@ -340,4 +348,5 @@ code {
     width: 100%;
     height: 7px;
     background: black;
+    border-radius: 50px;
   }
