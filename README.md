@@ -1,7 +1,7 @@
 # Mythic Progress Bar
 A simple action bar resource which allows actions to be visually displayed to the player and provides a callback function so actions can be peformed if the event was cancelled or not.
 
-![Mythic Progress Bar[(https://i.imgur.com/lFRCH7k.png)
+![Mythic Progress Bar](https://i.imgur.com/lFRCH7k.png)
  
 >(Note: Video Is An Old Style, Has Since Been Updated. Sorry if you don't like the new style, can go look at an old commit and find the CSS)
 
