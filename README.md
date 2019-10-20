@@ -1,34 +1,52 @@
 # Mythic Progress Bar
 A simple action bar resource which allows actions to be visually displayed to the player and provides a callback function so actions can be peformed if the event was cancelled or not.
 
+![Mythic Progress Bar[(https://i.imgur.com/lFRCH7k.png)
+ 
+>(Note: Video Is An Old Style, Has Since Been Updated. Sorry if you don't like the new style, can go look at an old commit and find the CSS)
+
+https://www.youtube.com/watch?v=Y8y3XK0-siI
+
 ## How To Use:
 To use, you just need to add a TriggerEvent into your client script where you're wanting the event to happen. Example TriggerEvent call;
 
 ```lua
-    TriggerEvent("mythic_progbar:client:progress", {
-        name = "unique_action_name",
-        duration = 10000,
-        label = "Action Label",
-        useWhileDead = false,
-        canCancel = true,
-        controlDisables = {
-            disableMovement = true,
-            disableCarMovement = true,
-            disableMouse = false,
-            disableCombat = true,
-        },
-        animation = {
-            animDict = "missheistdockssetup1clipboard@idle_a",
-            anim = "idle_a",
-        },
-        prop = {
-            model = "prop_paper_bag_small",
-        }
-    }, function(status)
-        if not status then
-            -- Do Something If Event Wasn't Cancelled
-        end
-    end)
+exports['mythic_progbar']:Progress({
+	name = "unique_action_name",
+	duration = 1000,
+	label = 'Doing Something',
+	useWhileDead = true,
+	canCancel = true,
+	controlDisables = {
+		disableMovement = true,
+		disableCarMovement = true,
+		disableMouse = false,
+		disableCombat = true,
+	},
+	animation = {
+		animDict = "missheistdockssetup1clipboard@base",
+		anim = "base",
+		flags = 49,
+	},
+	prop = {
+		model = "p_amb_clipboard_01",
+		bone = 18905,
+		coords = { x = 0.10, y = 0.02, z = 0.08 },
+		rotation = { x = -80.0, y = 0.0, z = 0.0 },
+	},
+	propTwo = {
+		model = "prop_pencil_01",
+		bone = 58866,
+		coords = { x = 0.12, y = 0.0, z = 0.001 },
+		rotation = { x = -150.0, y = 0.0, z = 0.0 },
+	},
+}, function(cancelled)
+	if not cancelled then
+		-- Do Something If Action Wasn't Cancelled
+	else
+		-- Do Something If Action Was Cancelled
+	end
+end)
 ```
 
 Most of these flags are fairly self-explanatory, but theres's a few that have several options;
@@ -47,5 +65,5 @@ animation - This allows you to define an animation to play while the event occur
 * empty animation { } | Final fallback, if the animation list is still provided but nothing set (Or no valid names set) it will default to playing the PROP_HUMAN_BUM_BIN task.
 
 
-prop - This will spawn the given prop name onto the player peds hand
+prop & propTwo - This will spawn the given prop name onto the player peds hand
 * model | This will be the model name used to spawn the prop onto the player ped.

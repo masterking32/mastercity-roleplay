@@ -5,38 +5,43 @@ $('document').ready(function() {
 
     MythicProgBar.Progress = function(data) {
         clearTimeout(cancelledTimer);
-        $(".progress-container").css({"display":"block"});
         $("#progress-label").text(data.label);
-        $("#progress-bar").stop().css({"width": 0, "background-color": "#8b1014"}).animate({
-          width: '100%'
-        }, {
-          duration: parseInt(data.duration),
-          complete: function() {
-            $(".progress-container").css({"display":"none"});
-            $("#progress-bar").css("width", 0);
-            $.post('http://mythic_progbar/actionFinish', JSON.stringify({
+
+        $(".progress-container").fadeIn('fast', function() {
+            $("#progress-bar").stop().css({"width": 0, "background-color": "rgba(0, 0, 0, 0.75)"}).animate({
+              width: '100%'
+            }, {
+              duration: parseInt(data.duration),
+              complete: function() {
+                $(".progress-container").fadeOut('fast', function() {
+                    $('#progress-bar').removeClass('cancellable');
+                    $("#progress-bar").css("width", 0);
+                    $.post('http://mythic_progbar/actionFinish', JSON.stringify({
+                        })
+                    );
                 })
-            );
-          }
+              }
+            });
         });
     };
 
     MythicProgBar.ProgressCancel = function() {
-        $(".progress-container").css({"display":"block"});
         $("#progress-label").text("CANCELLED");
-        $("#progress-bar").stop().css( {"width": "100%", "background-color": "#2e2e2e"});
+        $("#progress-bar").stop().css( {"width": "100%", "background-color": "rgba(71, 0, 0, 0.8)"});
+        $('#progress-bar').removeClass('cancellable');
 
         cancelledTimer = setTimeout(function () {
-            $(".progress-container").css({"display":"none"});
-            $("#progress-bar").css("width", 0);
+            $(".progress-container").fadeOut('fast', function() {
+                $("#progress-bar").css("width", 0);
+                $.post('http://mythic_progbar/actionCancel', JSON.stringify({
+                    })
+                );
+            });
         }, 1000);
     };
 
     MythicProgBar.CloseUI = function() {
-        $('.main-container').css({"display":"none"});
-        $(".character-box").removeClass('active-char');
-        $(".character-box").attr("data-ischar", "false")
-        $("#delete").css({"display":"none"});
+        $('.main-container').fadeOut('fast');
     };
     
     window.addEventListener('message', function(event) {
@@ -48,5 +53,5 @@ $('document').ready(function() {
                 MythicProgBar.ProgressCancel();
                 break;
         }
-    })
+    });
 });
