@@ -75,7 +75,7 @@ AddEventHandler("charselect:animation", function(status)
         if status == true then
             while enable == true do
                 Citizen.Wait(1)
-                ESX.ShowHelpNotification("Naciśnij ~INPUT_FRONTEND_ACCEPT~ aby wybrać postać")
+                ESX.ShowHelpNotification("Press ~INPUT_FRONTEND_ACCEPT~ to select character.")
                 RequestAnimDict("mp_character_creation@customise@male_a")
                 TaskPlayAnim(PlayerPedId(), "mp_character_creation@customise@male_a", "loop", 8.0, -8.0, -1, 0, 1, 0, 0, 0)
                 if IsControlJustReleased(1, 201) then
@@ -86,7 +86,7 @@ AddEventHandler("charselect:animation", function(status)
         if status == false then
             while enable == true do
                 Citizen.Wait(1)
-                ESX.ShowHelpNotification("Naciśnij ~INPUT_FRONTEND_ACCEPT~ aby przejść do kreatora postaci")
+                ESX.ShowHelpNotification("Press ~INPUT_FRONTEND_ACCEPT~ to go to the character creation.")
                 RequestAnimDict("mp_character_creation@customise@male_a")
                 TaskPlayAnim(PlayerPedId(), "mp_character_creation@customise@male_a", "loop", 8.0, -8.0, -1, 0, 1, 0, 0, 0)
                 if IsControlJustReleased(1, 201) then
