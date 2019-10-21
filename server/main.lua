@@ -9,7 +9,7 @@ AddEventHandler("charselect:createsign", function(xPlayer)
     local result = MySQL.Sync.fetchAll("SELECT * FROM users WHERE identifier=@username", {['@username'] = player})
     if result[1] then
         if xPlayer ~= nil then
-            TriggerClientEvent("charselect:createsign", _source, (result[1].firstname .. " " .. result[1].lastname), xPlayer.job.label, ("Gotówka: " .. result[1].money .. "$"))
+            TriggerClientEvent("charselect:createsign", _source, (result[1].firstname .. " " .. result[1].lastname), xPlayer.job.label, ("Cash: " .. result[1].money .. "$"))
         end
     end
 end)    
@@ -24,7 +24,6 @@ AddEventHandler("charselect:select", function(xPlayer)
         if result[1] then   
             TriggerClientEvent("charselect:animation", _source, true)
         else
-            print("Dla jednego z graczy nie została odnaleziona postać.")
         end
     end
 end)    
