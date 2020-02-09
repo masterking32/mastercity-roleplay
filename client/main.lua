@@ -41,14 +41,14 @@ Citizen.CreateThread(function()
 							v.distanceToPlayer = #(playerCoords - GetEntityCoords(v2.object))
 						end
 					else
-						v2.object = GetClosestObjectOfType(v2.objCoords, 1.0, GetHashKey(v2.objName) or v2.objHash, false, false, false)
+						v2.object = GetClosestObjectOfType(v2.objCoords, 1.0, v2.objHash, false, false, false)
 					end
 				end
 			else
 				if v.object and DoesEntityExist(v.object) then
 					v.distanceToPlayer = #(playerCoords - GetEntityCoords(v.object))
 				else
-					v.object = GetClosestObjectOfType(v.objCoords, 1.0, GetHashKey(v.objName) or v.objHash, false, false, false)
+					v.object = GetClosestObjectOfType(v.objCoords, 1.0, v.objHash, false, false, false)
 				end
 			end
 		end

@@ -7,7 +7,7 @@ RegisterServerEvent('esx_doorlock:updateState')
 AddEventHandler('esx_doorlock:updateState', function(doorIndex, state)
 	local xPlayer = ESX.GetPlayerFromId(source)
 
-	if xPlayer and type(doorIndex) == 'number' and type(state) == 'boolean' and Config.DoorList[doorIndex] and IsAuthorized(xPlayer.job.name, Config.DoorList[doorIndex]) then
+	if xPlayer and type(doorIndex) == 'number' and type(state) == 'boolean' and Config.DoorList[doorIndex] and isAuthorized(xPlayer.job.name, Config.DoorList[doorIndex]) then
 		doorState[doorIndex] = state
 		TriggerClientEvent('esx_doorlock:setDoorState', -1, doorIndex, state)
 	end
