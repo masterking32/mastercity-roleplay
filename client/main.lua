@@ -26,7 +26,6 @@ AddEventHandler('esx:setJob', function(job) ESX.PlayerData.job = job end)
 RegisterNetEvent('esx_doorlock:setDoorState')
 AddEventHandler('esx_doorlock:setDoorState', function(index, state) Config.DoorList[index].locked = state end)
 
--- Get door objects once every second
 Citizen.CreateThread(function()
 	while true do
 		local playerCoords = GetEntityCoords(PlayerPedId())
@@ -40,20 +39,30 @@ Citizen.CreateThread(function()
 						if k2 == 1 then
 							v.distanceToPlayer = #(playerCoords - GetEntityCoords(v2.object))
 						end
+
+						if v.locked and v2.objHeading and ESX.Math.Round(GetEntityHeading(v2.object)) ~= v2.objHeading then
+							SetEntityHeading(v2.object, v2.objHeading)
+						end
 					else
+						v.distanceToPlayer = nil
 						v2.object = GetClosestObjectOfType(v2.objCoords, 1.0, v2.objHash, false, false, false)
 					end
 				end
 			else
 				if v.object and DoesEntityExist(v.object) then
 					v.distanceToPlayer = #(playerCoords - GetEntityCoords(v.object))
+
+					if v.locked and v.objHeading and ESX.Math.Round(GetEntityHeading(v.object)) ~= v.objHeading then
+						SetEntityHeading(v.object, v.objHeading)
+					end
 				else
+					v.distanceToPlayer = nil
 					v.object = GetClosestObjectOfType(v.objCoords, 1.0, v.objHash, false, false, false)
 				end
 			end
 		end
 
-		Citizen.Wait(1000)
+		Citizen.Wait(500)
 	end
 end)
 
@@ -69,17 +78,9 @@ Citizen.CreateThread(function()
 				if v.doors then
 					for k2,v2 in ipairs(v.doors) do
 						FreezeEntityPosition(v2.object, v.locked)
-
-						if v.locked and v2.objHeading and GetEntityHeading(v2.object) ~= v2.objHeading then
-							SetEntityHeading(v2.object, v2.objHeading)
-						end
 					end
 				else
 					FreezeEntityPosition(v.object, v.locked)
-
-					if v.locked and v.objHeading and GetEntityHeading(v.object) ~= v.objHeading then
-						SetEntityHeading(v.object, v.objHeading)
-					end
 				end
 			end
 

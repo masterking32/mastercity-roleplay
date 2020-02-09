@@ -14,8 +14,8 @@ Config.DoorList = {
 		locked = false,
 		maxDistance = 2.5,
 		doors = {
-			{objHash = GetHashKey('v_ilev_ph_door01'), objHeading = -90.0, objCoords = vector3(434.7, -980.6, 30.8)},
-			{objHash = GetHashKey('v_ilev_ph_door002'), objHeading = -90.0, objCoords = vector3(434.7, -983.2, 30.8)}
+			{objHash = GetHashKey('v_ilev_ph_door01'), objHeading = 270.0, objCoords = vector3(434.7, -980.6, 30.8)},
+			{objHash = GetHashKey('v_ilev_ph_door002'), objHeading = 270.0, objCoords = vector3(434.7, -983.2, 30.8)}
 		}
 	},
 
@@ -55,7 +55,7 @@ Config.DoorList = {
 	-- Armory
 	{
 		objHash = GetHashKey('v_ilev_arm_secdoor'),
-		objHeading = -90.0,
+		objHeading = 270.0,
 		objCoords = vector3(452.6, -982.7, 30.6),
 		textCoords = vector3(453.0, -982.6, 31.7),
 		authorizedJobs = {'police'},
@@ -66,7 +66,7 @@ Config.DoorList = {
 	-- Captain Office
 	{
 		objHash = GetHashKey('v_ilev_ph_gendoor002'),
-		objHeading = -180.0,
+		objHeading = 180.0,
 		objCoords = vector3(447.2, -980.6, 30.6),
 		textCoords = vector3(447.2, -980.0, 31.7),
 		authorizedJobs = {'police'},
@@ -104,7 +104,7 @@ Config.DoorList = {
 	-- Cell 1
 	{
 		objHash = GetHashKey('v_ilev_ph_cellgate'),
-		objHeading = -90.0,
+		objHeading = 270.0,
 		objCoords = vector3(462.3, -993.6, 24.9),
 		textCoords = vector3(461.8, -993.3, 25.0),
 		authorizedJobs = {'police'},
@@ -199,7 +199,7 @@ Config.DoorList = {
 		locked = false,
 		maxDistance = 2.5,
 		doors = {
-			{objHash = GetHashKey('v_ilev_shrf2door'), objHeading = -45.0, objCoords  = vector3(-443.1, 6015.6, 31.7)},
+			{objHash = GetHashKey('v_ilev_shrf2door'), objHeading = 315.0, objCoords  = vector3(-443.1, 6015.6, 31.7)},
 			{objHash = GetHashKey('v_ilev_shrf2door'), objHeading = 135.0, objCoords  = vector3(-443.9, 6016.6, 31.7)}
 		}
 	},
