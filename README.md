@@ -57,7 +57,6 @@ TriggerEvent("charselect:enable")
 Citizen.Wait(1000)
 DoScreenFadeIn(1000)
 DisplayRadar(true)
-
 ```
 
 esx_identity:
