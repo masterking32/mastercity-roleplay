@@ -28,6 +28,11 @@ AddEventHandler("charselect:register", function()
     Visible()
 end)
 
+RegisterNetEvent("charselect:enable")
+AddEventHandler("charselect:enable", function()
+    enable = false
+end)
+
 local enable = false
 local heading = 360.00
 local signmodel = GetHashKey("prop_police_id_board")
@@ -182,7 +187,6 @@ function CreateChar()
     DeleteObject(SignProp1)
     DeleteObject(SignProp2)
     CharCreator()
-    enable = false
 end
 
 function CharCreator()
