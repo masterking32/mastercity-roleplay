@@ -28,11 +28,6 @@ AddEventHandler("charselect:register", function()
     Visible()
 end)
 
-RegisterNetEvent("charselect:enable")
-AddEventHandler("charselect:enable", function()
-    enable = false
-end)
-
 local enable = false
 local heading = 360.00
 local signmodel = GetHashKey("prop_police_id_board")
@@ -133,6 +128,11 @@ end)
 RegisterNetEvent("charselect:lastpos")
 AddEventHandler("charselect:lastpos", function(position) 
     coords = position
+end)
+
+RegisterNetEvent("charselect:enable")
+AddEventHandler("charselect:enable", function()
+    enable = false
 end)
 
 function Session()
