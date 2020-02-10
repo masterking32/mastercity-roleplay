@@ -53,6 +53,7 @@ esx_skin:
 DoScreenFadeOut(1000)
 Citizen.Wait(1500)
 SetEntityCoords(PlayerPedId(), -205.90, -1012.74, 30.20, 0.0, 0.0, 0.0, true)
+TriggerEvent("charselect:enable")
 Citizen.Wait(1000)
 DoScreenFadeIn(1000)
 DisplayRadar(true)
