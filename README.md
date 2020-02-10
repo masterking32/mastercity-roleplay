@@ -70,4 +70,3 @@ Citizen.Wait(500)
 TriggerEvent('charselect:register')
 SetTimecycleModifier('default')
 ```
-d
