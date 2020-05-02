@@ -67,27 +67,29 @@ end)
 
 AddEventHandler('es_db:updateUser', function(identifier, new, callback)
 	Citizen.CreateThread(function()
-		local updateString = ''
-		local params = {identifier = identifier}
+		if(#new ~= 0)then
+			local updateString = ''
+			local params = {identifier = identifier}
 
-		local length = tLength(new)
-		local cLength = 1
-		for k,v in pairs(new) do
-			if (type(k) == 'string') then
-				updateString = updateString .. '`' .. k .. '`=@' .. k
-				params[k] = v
-				if cLength < length then
-					updateString = updateString .. ', '
+			local length = tLength(new)
+			local cLength = 1
+			for k,v in pairs(new) do
+				if (type(k) == 'string') then
+					updateString = updateString .. '`' .. k .. '`=@' .. k
+					params[k] = v
+					if cLength < length then
+						updateString = updateString .. ', '
+					end
 				end
+				cLength = cLength + 1
 			end
-			cLength = cLength + 1
-		end
 
-		MySQL.Async.execute('UPDATE users SET ' .. updateString .. ' WHERE `identifier`=@identifier', params, function(rowsChanged)
-			if callback then
-				callback(true)
-			end
-		end)
+			MySQL.Async.execute('UPDATE users SET ' .. updateString .. ' WHERE `identifier`=@identifier', params, function(rowsChanged)
+				if callback then
+					callback(true)
+				end
+			end)
+		end
 	end)
 end)
 
