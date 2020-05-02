@@ -18,5 +18,5 @@ server_scripts {
 dependencies {
 	'essentialmode',
 	'mysql-async',
-	'fxmigrant'
+	--'fxmigrant'
 }
