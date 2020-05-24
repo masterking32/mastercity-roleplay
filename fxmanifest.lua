@@ -1,22 +1,11 @@
-fx_version 'adamant'
-
+fx_version 'bodacious'
 game 'gta5'
-
 description 'Skin Changer'
-
-version '1.0.3'
+version '1.0.5'
 
 client_scripts {
 	'locale.lua',
-	'locales/br.lua',
-	'locales/de.lua',
-	'locales/en.lua',
-	'locales/es.lua',
-	'locales/fi.lua',
-	'locales/fr.lua',
-	'locales/pl.lua',
-	'locales/sv.lua',
-	'locales/tr.lua',
+	'locales/*.lua',
 	'config.lua',
 	'client/main.lua'
 }
