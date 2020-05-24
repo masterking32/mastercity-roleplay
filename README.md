@@ -86,11 +86,11 @@ end)
 # Legal
 ### License
 
-####skinchanger - extendedmode edit
+#### skinchanger - extendedmode edit
 
 All changes after 24/05/2020 are provided by their respective authors under the GNUGPLv3 license.
 
-####skinchanger - make your own skin!
+#### skinchanger - make your own skin!
 
 Copyright (C) 2015-2018 Jérémie N'gadi
 
