@@ -23,6 +23,8 @@ you can now edit the line
 If you need Help you can contact me on Discord:
                      
                   ^Mika#4672
+            https://discord.gg/jmACDV6
+                 For More Scripts
 
 
 
