@@ -29,7 +29,7 @@ If you need Help you can contact me on Discord:
 
 
 
-##Legal##
+## Legal ##
 License
 
 UnknownlifeUI
