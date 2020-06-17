@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="design.css" type="text/css" rel="stylesheet">
+    <script src="script.js" type="text/javascript"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+</head>
+
+
+<body>
+    <div class="container">
+        <div class="column">
+            <div class="wrapper" id="vehicle-container">
+
+                <div class="row center-align">
+                    <div class="speedometer">
+                        <svg class="circle" width="50" height="50">
+                            <circle class="outer" stroke="#FFF" stroke-width="0.5" style="stroke-opacity: 1;" fill="transparent" r="18" cx="25" cy="25" stroke-dasharray="70 30" stroke-dashoffset="0"/>
+                            <circle class="background" stroke="#000" stroke-width="3" style="stroke-opacity: 0.4;" fill="transparent" r="18" cx="25" cy="25" stroke-dasharray="70 30" stroke-dashoffset="0"/>
+                            <circle class="progress progress-speed" stroke-width="2.5" style="stroke-opacity: 1;" fill="transparent" r="18" cx="25" cy="25" stroke-dasharray="70 30" stroke-dashoffset="0"/>                   
+                        </svg>
+                        <div class="gear-text">
+                            <span class="gear"></span>
+                        </div>
+                        <div class="text">
+                            <span class="speed"></span>
+                            <span class="kmh">Km/h</span>
+                        </div>
+                    </div>
+                    <div class="small-container">
+                        <div class="row">
+                            <!-- <div class="fuel-container">
+                                <img src="images/gasolina.png">
+                                <div class="text">
+                                    <span class="fuel"></span>
+                                </div>
+                            </div> -->
+                            <div class="column">
+                                <div class="row multiple-items">
+                                    <div class="item">
+                                        <svg height="512pt" viewBox="0 -76 512 512" width="512pt" xmlns="http://www.w3.org/2000/svg">
+                                            <path id="hl1" fill="white"
+                                                d="m264.300781 0h-60.003906c24.027344 48.402344 35.703125 102.390625 35.703125 150 0 47.386719-11.578125 101.402344-35.707031 150h60.007812c24.292969-49.019531 35.699219-102.953125 35.699219-150 0-47.003906-11.386719-100.945312-35.699219-150zm0 0" />
+                                            <path id="hl2" fill="white"
+                                                d="m181.566406 21.664062-10.753906-21.664062h-20.8125c-82.703125 0-150 67.296875-150 150s67.296875 150 150 150h20.8125c22.804688-45.9375 39.1875-92.023438 39.1875-150 0-70.222656-28.152344-127.761719-28.433594-128.335938zm0 0" />
+                                            <path id="hl3" fill="white"
+                                                d="m512 60.777344-177.253906-60-9.492188 28.445312 177.253906 60zm0 0" />
+                                            <path id="hl4" fill="white"
+                                                d="m325.253906 119.222656 177.253906 60 9.492188-28.445312-177.253906-60zm0 0" />
+                                            <path id="hl5" fill="white"
+                                                d="m325.253906 209.222656 177.253906 60 9.492188-28.445312-177.253906-60zm0 0" />
+                                            <path id="hl6" fill="white"
+                                                d="m325.253906 299.222656 177.253906 60 9.492188-28.445312-177.253906-60zm0 0" />
+                                            </svg>
+                                    </div>
+                                    <div class="item">
+                                        <img id="seatbelt" src="images/cinto0.png">
+                                    </div>
+                                </div>
+                                <div class="fuel-container-bar">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="wrapper" id="stats-wrapper">
+                <div class="row stats-row">
+                    <div class="row mic-row">
+                        <img src="images/microphone.svg">
+                        <img id="signal" src="images/signal.svg">
+                        <span id="micrange"></span>
+                    </div>
+                    <span id="date"></span>
+                    <div class="row">
+                        <div class="stat" id="health">
+                            <img src="images/vida.png">
+                        </div>
+
+                        <div class="stat" id="armour">
+                            <img src="images/escudo.png">
+                        </div>
+
+                        <div class="stat" id="stamina">
+                            <img src="images/speed.png">
+                        </div>
+
+                        <div class="stat" id="hunger">
+                            <img src="images/hambre.png">
+                        </div>
+
+                        <div class="stat" id="thirst">
+                            <img src="images/sed.png">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

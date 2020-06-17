@@ -1,0 +1,334 @@
+    /* @font-face {
+    font-family: 'Hurme Geometric Black';
+    src: url(fonts/HurmeGeometricSans3W03Blk.ttf);
+} */
+    
+    @font-face {
+        font-family: 'Hurme Geometric Light';
+        src: url(fonts/HurmeGeometricSans3W03Lt.ttf);
+    }
+    
+    @font-face {
+        font-family: 'Hurme Geometric Italic';
+        src: url(fonts/HurmeGeometricSans3W03SBObl.ttf);
+    }
+    
+    @font-face {
+        font-family: 'Hurme Geometric SemiBold';
+        src: url(fonts/HurmeGeometricSans3SemiBold.otf);
+    }
+    
+    body {
+        /* background-image: url(https://i.pinimg.com/originals/2a/c3/3a/2ac33ac33ee4fcc300e82307e39cebf9.jpg);
+        background-size: cover; */
+        font-family: "Hurme Geometric Light";
+        font-weight: 600;
+        user-select: none;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        overflow: hidden;
+    }
+    
+    .container {
+        position: absolute;
+        right: 0;
+        bottom: 10%;
+        /* 12% */
+    }
+    
+    .wrapper {
+        /* border: 1px solid yellowgreen; */
+        background: linear-gradient(to left, rgba(10, 10, 10, 0.5) 85%, rgba(5, 5, 5, 0.3), rgba(0, 0, 0, 0.0));
+        width: 280px;
+    }
+    
+    .row {
+        /* border: 1px solid yellowgreen; */
+        display: flex;
+        flex-direction: row;
+    }
+    
+    .column {
+        /* border: 1px solid red; */
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .center-align {
+        /* border: 1px solid violet; */
+        justify-content: space-between;
+    }
+    
+    #vehicle-container {
+        transform: translateX(100%);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    
+    .small-container {
+        /* border: 1px solid springgreen; */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-content: center;
+        height: fit-content;
+        margin: auto 0;
+    }
+    
+    .small-container .multiple-items {
+        /* border: 1px solid teal; */
+        width: 90px;
+        height: 25px;
+        display: flex;
+        justify-content: space-evenly;
+        background-color: rgba(0, 0, 0, 0.5);
+        margin-right: 10px;
+    }
+    
+    .small-container .multiple-items .item {
+        /* border: 1px solid yellow; */
+        height: 100%;
+        width: 35px;
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        align-content: center;
+        flex-direction: column;
+    }
+    
+    .small-container .multiple-items .item svg {
+        width: auto;
+        height: 70%;
+    }
+    
+    .small-container .multiple-items .item img {
+        width: auto;
+        height: 90%;
+    }
+    /* PARTE VISUAL DA HUD DE VIDA/COLETE */
+    /* PARTE VISUAL DA HUD DE VIDA/COLETE */
+    /* PARTE VISUAL DA HUD DE VIDA/COLETE */
+    
+    #stats-wrapper {
+        width: 100%;
+    }
+    
+    #stats-wrapper .row {
+        padding-top: 2px;
+        padding-bottom: 2px;
+        align-items: center;
+        color: white;
+    }
+    
+    .stats-row {
+        /* border: 1px solid yellowgreen; */
+        font-size: 0.6em;
+        justify-content: space-between;
+        margin-left: 25px;
+        margin-right: 10px;
+    }
+    
+    .stat {
+        width: 25px;
+        height: 25px;
+        margin-right: 0.6vw;
+        background: rgba(0, 0, 0, 0.5);
+        /* border-radius: 50%; */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        align-content: center;
+    }
+    
+    .stat:last-child {
+        margin-right: 0;
+    }
+    
+    .stat img {
+        /* border: 1px solid yellowgreen; */
+        max-width: 80%;
+    }
+    
+    .mic-row {
+        margin-left: 3px;
+    }
+    
+    .mic-row img {
+        width: 14px;
+        margin-right: 9px;
+    }
+    
+    .mic-row #signal {
+        position: absolute;
+        opacity: 0.0;
+        /* transform: translateY(-20px); */
+        transform: scale(1) translateX(-12px) rotate(90deg) scale(0.8);
+    }
+    
+    .background,
+    .outer {
+        -webkit-transform: rotate(-180deg);
+        -ms-transform: rotate(-180deg);
+        transform: rotate(-180deg);
+        -webkit-transform-origin: 50% 50%;
+        -ms-transform-origin: 50% 50%;
+        transform-origin: 50% 50%;
+    }
+    
+    .progress {
+        -webkit-transition: 0.35s stroke-dashoffset;
+        -o-transition: 0.35s stroke-dashoffset;
+        transition: 0.35s stroke-dashoffset;
+        -webkit-transform: rotate(140deg);
+        -ms-transform: rotate(140deg);
+        transform: rotate(140deg);
+        -webkit-transform-origin: 50% 50%;
+        -ms-transform-origin: 50% 50%;
+        transform-origin: 50% 50%;
+    }
+    
+    .speedometer {
+        /* border: 1px solid wheat; */
+        width: 85px;
+        height: 70px;
+        text-align: center;
+        clip-path: polygon(100% 45%, 80% 45%, 60% 100%, 0% 100%, 0% 0%, 100% 0%);
+        font-family: "Hurme Geometric Italic";
+        /* margin-bottom: 10px; */
+    }
+    
+    .speedometer svg {
+        /* border: 1px solid green; */
+        opacity: 1;
+        position: absolute;
+        left: 18%;
+        top: 50%;
+        transform: scale(1.8) translate(-25%, -25%);
+    }
+    
+    .speedometer .outer {
+        /* border: 1px solid red; */
+        opacity: .0;
+        transform: rotate(180deg) scale(1.2);
+    }
+    
+    .speedometer .text {
+        /* border: 1px solid yellow; */
+        width: 100%;
+        position: absolute;
+        left: 19%;
+        top: 47%;
+        transform: translate(-50%, -50%);
+        margin: 0;
+    }
+    
+    .speedometer .text .speed {
+        color: white;
+        font-size: 1.2em;
+        display: block;
+    }
+    
+    .speedometer .text .kmh {
+        color: white;
+        font-size: 0.7em;
+        display: block;
+        text-transform: uppercase;
+        margin-top: -6px;
+        margin-left: -7px;
+    }
+    
+    .speedometer .gear-text {
+        /* border: 1px solid blue; */
+        right: 0;
+        top: 0;
+        text-align: right;
+        padding: 2.5%;
+    }
+    
+    .speedometer .gear-text .gear {
+        color: rgb(0,0,0,0);
+        font-size: 0.7em;
+    }
+    
+    .fuel-container {
+        position: relative;
+        width: 35px;
+        height: 35px;
+        display: flex;
+        border: 15px;
+        align-items: center;
+        margin-right: -10px;
+    }
+    
+    .fuel-container img {
+        width: 100%;
+        height: auto;
+        /* margin-left: 7px;
+        margin-bottom: 5px; */
+    }
+    
+    .fuel-container .text {
+        font-family: "Hurme Geometric Light";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        padding: 2px;
+    }
+    
+    .fuel-container .text .fuel {
+        color: white;
+        font-size: 0.7em;
+        color: white;
+    }
+    
+    .fuel-container-bar {
+        /* border: 1px solid tomato; */
+        background: linear-gradient(to top, rgba(49, 225, 143, 0.5) 40%, rgba(34, 34, 34, 0.5) 40%);
+        margin-top: 5px;
+        height: 5px;
+        width: 90px;
+    }
+    
+    .slide-in {
+        animation: slide-in 0.5s forwards;
+    }
+    
+    .slide-out {
+        animation: slide-out 0.5s forwards;
+    }
+    
+    @keyframes slide-in {
+        100% {
+            transform: translateX(0%);
+        }
+    }
+    
+    @keyframes slide-out {
+        0% {
+            transform: translateX(0%);
+        }
+        100% {
+            transform: translateX(100%);
+        }
+    }
+    
+    .pulse {
+        animation: pulse 1s infinite;
+    }
+    
+    @keyframes pulse {
+        0% {
+            opacity: 1.0;
+        }
+        50% {
+            opacity: 0.0;
+        }
+        100% {
+            opacity: 1.0;
+        }
+    }
+    
+    #date {
+        font-size: 1.2em;
+        margin-right: 1.5em;
+    }
