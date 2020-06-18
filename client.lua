@@ -5,22 +5,29 @@ local atBank = false
 local bankMenu = true
 local inMenu = false
 local atATM = false
+local bankColor = "green"
 
 local bankLocations = {
     {i = 108, c = 77, x = 241.727, y = 220.706, z = 106.286, s = 0.8, n = "Pacific Bank"}, -- blip id, blip color, x, y, z, scale, name/label
-	{i = 108, c = 0, x = 150.266, y = -1040.203, z = 29.374, s = 0.7, n = "Bank"},
-	{i = 108, c = 0, x = -1212.980, y = -330.841, z = 37.787, s = 0.7, n = "Bank"},
-	{i = 108, c = 0, x = -2962.582, y = 482.627, z = 15.703, s = 0.7, n = "Bank"},
-	{i = 108, c = 0, x = -112.202, y = 6469.295, z = 31.626, s = 0.7, n = "Bank"},
-	{i = 108, c = 0, x = 314.187, y = -278.621, z = 54.170, s = 0.7, n = "Bank"},
-	{i = 108, c = 0, x = -351.534, y = -49.529, z = 49.042, s = 0.7, n = "Bank"},
-	{i = 108, c = 0, x = 1175.0643310547, y = 2706.6435546875, z = 38.094036102295, s = 0.7, n = "Bank"}
+	{i = 108, c = 0, x = 150.266, y = -1040.203, z = 29.374, s = 0.7, n = "Fleeca Bank"},
+	{i = 108, c = 0, x = -1212.980, y = -330.841, z = 37.787, s = 0.7, n = "Fleeca Bank"},
+	{i = 108, c = 0, x = -2962.582, y = 482.627, z = 15.703, s = 0.7, n = "Fleeca Bank"},
+	{i = 108, c = 0, x = -112.202, y = 6469.295, z = 31.626, s = 0.7, n = "Fleeca Bank"},
+	{i = 108, c = 0, x = 314.187, y = -278.621, z = 54.170, s = 0.7, n = "Fleeca Bank"},
+	{i = 108, c = 0, x = -351.534, y = -49.529, z = 49.042, s = 0.7, n = "Fleeca Bank"},
+	{i = 108, c = 0, x = 1175.0643310547, y = 2706.6435546875, z = 38.094036102295, s = 0.7, n = "Bank 7"}
 }
 
-local ATMs = {-870868698, -1126237515, -1364697528, 506770882} -- ATM Object Models
+-- ATM Object Models
+local ATMs = {
+    {o = -870868698, c = 'blue'}, 
+    {o = -1126237515, c = 'blue'}, 
+    {o = -1364697528, c = 'red'}, 
+    {o = 506770882, c = 'green'}
+}
 
 Citizen.CreateThread(function()
-	while ESX == nil do
+	while ESX == nil or ORP == nil do
 		TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
 		Citizen.Wait(2000)
 	end
@@ -54,7 +61,7 @@ RegisterCommand('atm', function(source, args) -- Command to access ATM when play
     end
 end)
 
-function openPlayersBank(type)
+function openPlayersBank(type, color)
     local dict = 'anim@amb@prop_human_atm@interior@male@enter'
     local anim = 'enter'
     local ped = GetPlayerPed(-1)
@@ -70,17 +77,17 @@ function openPlayersBank(type)
     exports['progressBars']:startUI(time, "Inserting card...")
     Citizen.Wait(time)
     ClearPedTasks(ped)
-
     if type == 'bank' then
         inMenu = true
         SetNuiFocus(true, true)
-        SendNUIMessage({type = 'openBank'})
+        bankColor = "green"
+        SendNUIMessage({type = 'openBank', color = bankColor})
         TriggerServerEvent('orp:bank:balance')
         atATM = false
     elseif type == 'atm' then
         inMenu = true
         SetNuiFocus(true, true)
-        SendNUIMessage({type = 'openBank'})
+        SendNUIMessage({type = 'openBank', color = bankColor})
         TriggerServerEvent('orp:bank:balance')
         atATM = true
     end
@@ -91,11 +98,11 @@ function playerNearATM() -- Check if a player is near ATM when they use command 
     local pos = GetEntityCoords(ped)
 
     for i = 1, #ATMs do
-        local atm = GetClosestObjectOfType(pos.x, pos.y, pos.z, 1.0, ATMs[i], false, false, false)
+        local atm = GetClosestObjectOfType(pos.x, pos.y, pos.z, 1.0, ATMs[i].o, false, false, false)
         local atmPos = GetEntityCoords(atm)
         local dist = GetDistanceBetweenCoords(pos.x, pos.y, pos.z, atmPos.x, atmPos.y, atmPos.z, true)
-
         if dist < 1.5 then
+            bankColor = ATMs[i].c
             return true
         end
     end
@@ -108,6 +115,7 @@ function playerNearBank() -- Checks if a player is near a bank
         local dist = GetDistanceBetweenCoords(search.x, search.y, search.z, pos.x, pos.y, pos.z, true)
 
         if dist <= 1.0 then
+            color = "green"
             return true
         end
     end
@@ -142,7 +150,7 @@ AddEventHandler('orp:bank:info', function(balance)
     SendNUIMessage({
 		type = "updateBalance",
 		balance = balance,
-		player = playerName
+        player = playerName,
 		})
 end)
 

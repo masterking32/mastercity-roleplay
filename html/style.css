@@ -44,7 +44,6 @@
     border: 3px solid rgba(38, 143, 58, 0.8);
     margin-top: 15%;
     font-family: 'Montserrat', sans-serif;
-    
 }
 
 .column {
@@ -97,6 +96,14 @@
     letter-spacing: -1.5px;
     color: rgba(38, 143, 58, 1);
     text-align: center;
+}
+
+.blue-color {
+    color: #3a526c;
+}
+
+.red-color {
+    color: #a23935;
 }
 
 .balance, .creation {
@@ -160,7 +167,7 @@
 input[type="number"] {
     width: 200px;
     height: 30px;
-    border: 1px solid #176325;
+    border: 1px solid #000000;
     margin: 5px 0;
     padding: 5px;
 }
@@ -177,8 +184,38 @@ input[type="number"] {
     transition: 0.2s ease-in-out all;
 }
 
+.blue-btn {
+    background-color: #3a526c;
+    border: 1px solid #233344;
+}
+
+.red-btn {
+    background-color: #ee222e;
+    border: 1px solid #80121a;
+}
+
+.red-border {
+    border: 2px solid #ee222e;
+}
+
+.blue-border {
+    border: 2px solid #3a526c;
+}
+
 .btn:hover, .btn-quick:hover {
     border: 3px solid green;
+}
+
+.red-btn:hover {
+    border: 3px solid #80121a;
+}
+
+.red-close {
+    background-color: #ee222e;
+}
+
+.blue-close {
+    background-color: #3a526c;
 }
 
 .column-2nd {

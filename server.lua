@@ -34,6 +34,7 @@ end)
 
 RegisterServerEvent('orp:bank:balance')
 AddEventHandler('orp:bank:balance', function()
+	
 	local _source = source
 	local xPlayer = ESX.GetPlayerFromId(_source)
 	balance = xPlayer.getAccount('bank').money

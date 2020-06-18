@@ -11,5 +11,7 @@ files {
     'html/index.html',
     'html/script.js',
     'html/style.css',
-    'html/img/logo.png'
+    'html/img/logo.png',
+    'html/img/logo-red.png',
+    'html/img/logo-blue.png',
 }
