@@ -15,3 +15,7 @@ Banking script created for ESX Framework that adds functionality to access the m
 
 ## Preview
 https://streamable.com/0773w4
+
+## Support Discord
+https://discord.gg/AfYDUGW
+
