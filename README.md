@@ -9,6 +9,7 @@ Banking script created for ESX Framework that adds functionality to access the m
 - Easy to modify
 - Can only deposit money into your bank when you're at an actual bank
 - Clean, custom and simple NUI.
+- Different designed NUI's depending on what ATM you're at
 
 ## Using orp-banking
 - Clone or download the repository
