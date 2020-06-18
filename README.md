@@ -1,3 +1,6 @@
+## Support Discord
+https://discord.gg/AfYDUGW
+
 # orp-banking
 Banking script created for ESX Framework that adds functionality to access the main banks and every ATM in the city without hard-coding every atm coordinate in like I see all too much.
 
@@ -15,7 +18,4 @@ Banking script created for ESX Framework that adds functionality to access the m
 
 ## Preview
 https://streamable.com/0773w4
-
-## Support Discord
-https://discord.gg/AfYDUGW
 
