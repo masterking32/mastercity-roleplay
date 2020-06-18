@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Onyx Banking</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="container" id="bankui">
+        <button class="close">X</button>
+        <div class="row">
+            <div class="column left">
+                <div class="logo">
+                    <img src="img/logo.png" class="logo">
+                </div>
+                <div class="account-info">
+                    <div class="welcome">Welcome back,</div>
+                    <div class="info-label"><i class="fas fa-dollar-sign"></i>
+                        <div class="balance"></div>
+                    </div>
+
+                </div>
+                <div class="quick-actions">
+                    <div class="quick-msg">Quick Actions</div>
+                    <button class="btn-quick" id="withdraw-100">Withdraw $100</button>
+                    <button class="btn-quick" id="withdraw-250">Withdraw $250</button>
+                    <button class="btn-quick" id="withdraw-500">Withdraw $500</button>
+                </div>
+            </div>
+            <div class="column right">
+                <div class="row-2nd">
+                    <div class="column-2nd b-right">
+                        <div class="account-services">
+                            <div class="label m-top">Account Services</div>
+                            <div class="deposit m-top-med">
+                                <div class="label-sm">Deposit Money</div>
+                                <input type="number" placeholder="Deposit Amount" id="depositval">
+                                <button class="btn" id="deposit">Deposit</button>
+                            </div>
+                            <div class="withdraw m-top-big">
+                                <div class="label-sm">Withdraw Money</div>
+                                <input type="number" placeholder="Withdraw Amount" id="withdrawval">
+                                <button class="btn" id="withdraw">Withdraw</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column-2nd">
+                        <div class="transfer-money">
+                            <div class="label m-top">Pay a Contact</div>
+                            <div class="input-section">
+                                <div class="label-sm m-top-med">Recipient's ID</div>
+                                <input type="number" placeholder="0" id="idval">
+                            </div>
+                            <div class="input-section">
+                                <div class="label-sm m-top">Amount to Transfer</div>
+                                <input type="number" placeholder="0" id="transferval">
+                            </div>
+                            <button class="btn" id="transfer">Transfer</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="nui://game/ui/jquery.js" type="text/javascript"></script>
+    <script src="https://kit.fontawesome.com/b6ec58ae28.js" crossorigin="anonymous"></script>
+    <script src="script.js"></script>
+
+</body>
+
+</html>
