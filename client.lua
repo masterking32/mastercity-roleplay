@@ -20,7 +20,7 @@ local bankLocations = {
 local ATMs = {-870868698, -1126237515, -1364697528, 506770882} -- ATM Object Models
 
 Citizen.CreateThread(function()
-	while ESX == nil or ORP == nil do
+	while ESX == nil do
 		TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
 		Citizen.Wait(2000)
 	end
