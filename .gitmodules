@@ -192,3 +192,23 @@
 	path = resources/[MasterkinG32]/skincreator
 	url = https://github.com/masterking32/mastercity-roleplay
 	branch = skincreator
+	
+[submodule "bob74_ipl"]
+	path = resources/[MasterkinG32]/[models]/[locations]/bob74_ipl
+	url = https://github.com/masterking32/mastercity-roleplay
+	branch = bob74_ipl
+	
+[submodule "mythic_hospital"]
+	path = resources/[MasterkinG32]/[models]/[locations]/mythic_hospital
+	url = https://github.com/masterking32/mastercity-roleplay
+	branch = mythic_hospital
+
+[submodule "PillboxHospital"]
+	path = resources/[MasterkinG32]/[models]/[locations]/PillboxHospital
+	url = https://github.com/masterking32/mastercity-roleplay
+	branch = PillboxHospital
+
+[submodule "Pillbox-Hospital-Interior"]
+	path = resources/[MasterkinG32]/[models]/[locations]/Pillbox-Hospital-Interior
+	url = https://github.com/masterking32/mastercity-roleplay
+	branch = Pillbox-Hospital-Interior
