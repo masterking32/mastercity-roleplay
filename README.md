@@ -3,6 +3,16 @@ It's my first working on the FiveM.
 I collected some of the modules of the ES and ESX.
 I hope that can help you to create a FiveM server from fresh.
 
+# How to download
+
+You can download the source with the Git.
+
+    git clone https://github.com/masterking32/mastercity-roleplay
+    cd mastercity-roleplay
+    git submodule init
+    git submodule update
+
+## Server.cfg requirements
 
     add_ace resource.essentialmode command.sets allow
     add_ace resource.essentialmode command.add_principal allow
