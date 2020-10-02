@@ -3,80 +3,75 @@
 	url = https://github.com/masterking32/mastercity-roleplay
 	branch = Unknownlife
 	
-[submodule "esx_addoninventory"]
-	path = resources/[esx]/esx_addoninventory
+[submodule "esx_addonaccount"]
+	path = resources/[esx]/esx_addonaccount
 	url = https://github.com/masterking32/mastercity-roleplay
-	branch = esx_addoninventory
+	branch = esx_addonaccount
 	
 [submodule "esx_addoninventory"]
 	path = resources/[esx]/esx_addoninventory
 	url = https://github.com/masterking32/mastercity-roleplay
 	branch = esx_addoninventory
 	
-[submodule "esx_addoninventory"]
-	path = resources/[esx]/esx_addoninventory
+[submodule "esx_adminplus"]
+	path = resources/[esx]/esx_adminplus
 	url = https://github.com/masterking32/mastercity-roleplay
-	branch = esx_addoninventory
+	branch = esx_adminplus
 	
-[submodule "esx_addoninventory"]
-	path = resources/[esx]/esx_addoninventory
+[submodule "esx_ambulancejob"]
+	path = resources/[esx]/esx_ambulancejob
 	url = https://github.com/masterking32/mastercity-roleplay
-	branch = esx_addoninventory
+	branch = esx_ambulancejob
 	
-[submodule "esx_addoninventory"]
-	path = resources/[esx]/esx_addoninventory
+[submodule "esx_basicneeds"]
+	path = resources/[esx]/esx_basicneeds
 	url = https://github.com/masterking32/mastercity-roleplay
-	branch = esx_addoninventory
+	branch = esx_basicneeds
 	
-[submodule "esx_addoninventory"]
-	path = resources/[esx]/esx_addoninventory
+[submodule "esx_billing"]
+	path = resources/[esx]/esx_billing
 	url = https://github.com/masterking32/mastercity-roleplay
-	branch = esx_addoninventory
+	branch = esx_billing
 	
-[submodule "esx_addoninventory"]
-	path = resources/[esx]/esx_addoninventory
+[submodule "esx_charselect"]
+	path = resources/[esx]/esx_charselect
 	url = https://github.com/masterking32/mastercity-roleplay
-	branch = esx_addoninventory
+	branch = esx_charselect
 	
-[submodule "esx_addoninventory"]
-	path = resources/[esx]/esx_addoninventory
+[submodule "esx_datastore"]
+	path = resources/[esx]/esx_datastore
 	url = https://github.com/masterking32/mastercity-roleplay
-	branch = esx_addoninventory
+	branch = esx_datastore
 	
-[submodule "esx_addoninventory"]
-	path = resources/[esx]/esx_addoninventory
+[submodule "esx_doorlock"]
+	path = resources/[esx]/esx_doorlock
 	url = https://github.com/masterking32/mastercity-roleplay
-	branch = esx_addoninventory
+	branch = esx_doorlock
 	
-[submodule "esx_addoninventory"]
-	path = resources/[esx]/esx_addoninventory
+[submodule "esx_identity"]
+	path = resources/[esx]/esx_identity
 	url = https://github.com/masterking32/mastercity-roleplay
-	branch = esx_addoninventory
-	
-[submodule "esx_addoninventory"]
-	path = resources/[esx]/esx_addoninventory
-	url = https://github.com/masterking32/mastercity-roleplay
-	branch = esx_addoninventory
+	branch = esx_identity
 	
 [submodule "esx_jail"]
 	path = resources/[esx]/esx_jail
 	url = https://github.com/masterking32/mastercity-roleplay
 	branch = esx_jail
 	
-[submodule "esx_jailwork"]
-	path = resources/[esx]/esx_jailwork
+[submodule "esx_menu_default"]
+	path = resources/[esx]/esx_menu_default
 	url = https://github.com/masterking32/mastercity-roleplay
-	branch = esx_jailwork
+	branch = esx_menu_default
+	
+[submodule "esx_menu_dialog"]
+	path = resources/[esx]/esx_menu_dialog
+	url = https://github.com/masterking32/mastercity-roleplay
+	branch = esx_menu_dialog
 	
 [submodule "esx_license"]
 	path = resources/[esx]/esx_license
 	url = https://github.com/masterking32/mastercity-roleplay
 	branch = esx_license
-	
-[submodule "esx_jailwork"]
-	path = resources/[esx]/esx_jailwork
-	url = https://github.com/masterking32/mastercity-roleplay
-	branch = esx_jailwork
 	
 [submodule "esx_menu_default"]
 	path = resources/[esx]/esx_menu_default]
@@ -92,16 +87,6 @@
 	path = resources/[esx]/esx_menu_list
 	url = https://github.com/masterking32/mastercity-roleplay
 	branch = esx_menu_list
-	
-[submodule "esx_jailwork"]
-	path = resources/[esx]/esx_jailwork
-	url = https://github.com/masterking32/mastercity-roleplay
-	branch = esx_jailwork
-	
-[submodule "esx_policejob"]
-	path = resources/[esx]/esx_policejob
-	url = https://github.com/masterking32/mastercity-roleplay
-	branch = esx_policejob
 	
 [submodule "esx_service"]
 	path = resources/[esx]/esx_service
