@@ -1,0 +1,4 @@
+[submodule "Unknownlife"]
+	path = resources/[Unknownlife]
+	url = https://github.com/masterking32/mastercity-roleplay
+	branch = Unknownlife
