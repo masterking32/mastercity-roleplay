@@ -66,7 +66,11 @@
 		});
 		
 		ESX_MENU.render();
-		$('#menu_' + namespace + '_' + name).find('.menu-item.selected')[0].scrollIntoView();
+		var elmnt = $('#menu_' + namespace + '_' + name).find('.menu-item.selected')[0];
+		if(elmnt)
+		{
+			elmnt.scrollIntoView();
+		}
 	};
 
 	ESX_MENU.close = function(namespace, name) {
@@ -234,7 +238,11 @@
 							ESX_MENU.change(focused.namespace, focused.name, elem);
 							ESX_MENU.render();
 
-							$('#menu_' + focused.namespace + '_' + focused.name).find('.menu-item.selected')[0].scrollIntoView();
+							var elmnt = $('#menu_' + focused.namespace + '_' + focused.name).find('.menu-item.selected')[0];
+							if(elmnt)
+							{
+								elmnt.scrollIntoView();
+							}
 						}
 
 						break;
@@ -269,7 +277,11 @@
 							ESX_MENU.change(focused.namespace, focused.name, elem);
 							ESX_MENU.render();
 
-							$('#menu_' + focused.namespace + '_' + focused.name).find('.menu-item.selected')[0].scrollIntoView();
+							var elmnt = $('#menu_' + focused.namespace + '_' + focused.name).find('.menu-item.selected')[0];
+							if(elmnt)
+							{
+								elmnt.scrollIntoView();
+							}
 						}
 
 						break;
@@ -301,8 +313,12 @@
 
 								default: break;
 							}
-
-							$('#menu_' + focused.namespace + '_' + focused.name).find('.menu-item.selected')[0].scrollIntoView();
+							
+							var elmnt = $('#menu_' + focused.namespace + '_' + focused.name).find('.menu-item.selected')[0];
+							if(elmnt)
+							{
+								elmnt.scrollIntoView();
+							}
 						}
 
 						break;
@@ -338,7 +354,11 @@
 								default: break;
 							}
 
-							$('#menu_' + focused.namespace + '_' + focused.name).find('.menu-item.selected')[0].scrollIntoView();
+							var elmnt = $('#menu_' + focused.namespace + '_' + focused.name).find('.menu-item.selected')[0];
+							if(elmnt)
+							{
+								elmnt.scrollIntoView();
+							}
 						}
 
 						break;
