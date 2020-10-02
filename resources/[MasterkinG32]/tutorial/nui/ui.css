@@ -1,0 +1,91 @@
+ body {
+    margin: 0;
+    padding: 0;
+ }
+ 
+.playerMenuContainer {
+    width: 1920px;
+    height: 1080px; 
+    overflow: hidden;
+    z-index:-9999;
+    background-color: #333333;
+   display: none; 
+}
+
+ #background 
+{ 
+     left: 0px; 
+     top: 0px; 
+     position: relative; 
+     margin-left: auto; 
+     margin-right: auto; 
+     width: 1920px;
+     height: 1080px; 
+     overflow: hidden;
+     z-index:0;
+    } 
+
+ #Background 
+{ 
+     left: 0px; 
+     top: 0px; 
+     position: absolute; 
+     width: 1920px;
+     height: 1080px;
+     z-index:1;
+} 
+
+ #Untitled3 
+{ 
+     left: 0px; 
+     top: 0px; 
+     position: absolute; 
+     width: 1920px;
+     height: 1080px;
+     z-index:2;
+} 
+
+ #Untitled2 
+{ 
+     left: 1712px; 
+     top: 10px; 
+     position: absolute; 
+     width: 200px;
+     height: 50px;
+     z-index:3;
+} 
+
+
+
+ #left 
+{ 
+     left: 190px; 
+     top: 280px; 
+     position: absolute; 
+    
+     z-index:5;
+} 
+
+ #right
+{ 
+     left: 1615px; 
+     top: 280px; 
+     position: absolute; 
+   
+     z-index:6;
+} 
+ #slides
+{ 
+     left: 345px; 
+     top: 280px; 
+     position: absolute; 
+   
+     z-index:6;
+} 
+#spawnbtn {
+	 left: 371px; 
+     top: 850px; 
+     position: absolute; 
+   
+     z-index:7;
+}

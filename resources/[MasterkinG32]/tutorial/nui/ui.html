@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>TUTORIALLAUNCH</title>
+	  <script src="nui://game/ui/jquery.js" type="text/javascript"></script>
+   
+       
+        <script src="ui.js" type="text/javascript"></script>
+	<link rel="stylesheet" type="text/css" href="bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="responsive.css">
+	<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>-->
+
+	
+
+</head>
+<body>
+	<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-12">
+		<h1 class="tutorialheader" id="tutorialHeadText"></h1>
+     	
+     	</div>
+    
+    </div>
+    <div class="row">
+  <div class="tutdesc text-center"><h2 class="tutorialdesc" id="tutorialDescText"></h2></div>
+</div>
+    <div class="row-fluid text-center">
+    	 <div class="col-xs-12">
+		
+			
+			 <span id="left"><img id="btnleft" src="btn-left.png" onmouseover="this.src='btn-left-hover.png'" onmouseout="this.src='btn-left.png'"></span>
+		<span id="slides" class="slidescontainer">
+				<div><img  src="slides/slide1.png"  /></div>
+				<div><img  src="slides/slide2.png"  /></div>
+				<div><img  src="slides/slide3.png"  /></div>
+				<div><img  src="slides/slide4.png"  /></div>
+				<div><img src="slides/slide5.png"  /></div>
+
+			</span>
+					<div id="spawnbtn"><img id="spawnclick" src="spawn.png" onmouseover="this.src='spawn-hover.png'" onmouseout="this.src='spawn.png'" /></div>
+    		 <span id="right"><img id="btnright" src="btn-right.png" onmouseover="this.src='btn-right-hover.png'" onmouseout="this.src='btn-right.png'" /></span>
+    		
+    	
+    	
+    </div>
+    
+    </div>
+    	 
+    </div>
+</div>
+</body>
+<script src="bootstrap.min.js"></script>
+
+<script src="slider.js"></script>
+<script src="tutorial_config.js"></script>
+<script>
+document.getElementById("tutorialHeadText").innerHTML = tutorialTitle;
+document.getElementById("tutorialDescText").innerHTML = tutorialDescription;
+</script>
+</html>
+
+
+

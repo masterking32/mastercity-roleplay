@@ -1,0 +1,83 @@
+body { 
+ 
+background-color:transparent;
+/*background:url('background.jpg') no-repeat center center fixed;*/
+  overflow: hidden;
+ 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none;
+}
+
+.container-fluid {
+	display:none;
+}
+
+@font-face {
+    font-family: sign;
+    src: url(signpainter.ttf);
+}
+@font-face {
+    font-family: gothicb;
+    src: url(gothicb.ttf);
+}
+
+h1.tutorialheader {
+	font-family:sign;
+	font-size:7.5vw;
+	color:#FFF;
+	text-shadow: .1vw .1vw  #000;
+	text-align: center;
+	margin-top:1vw;
+}
+div.tutdesc { 
+
+width: 100%;
+  position: absolute;
+    top: 7.5vw;
+    text-align:center;
+ }
+h2.tutorialdesc {
+	font-family:gothicb;
+	font-size:2.3vw;
+	color:#fcffe2;
+	text-shadow: 0vw 0vw .2vw #000;
+	  
+	
+}
+img {
+display: inline-block;
+				max-width: 98%;
+				height: auto;
+				width: 64.5vw;
+				margin: 1vw; position:absolute; left:17vw; top:10.3vw; z-index:3px;
+			}
+#btnleft {
+	display: inline-block;
+				max-width: 98%;
+				height: auto;
+				width:7.58vw;
+				margin: 1vw;  position:absolute; left:8.9vw; top:10.3vw;
+}
+#btnright {
+	display: inline-block;
+				max-width: 98%;
+				height: auto;
+				width: 7.58vw;
+				margin: 1vw; position:absolute; left:82vw; top:10.3vw; z-index:3px;
+}
+#spawnclick {
+	display: inline-block;
+				max-width: 98%;
+				height: auto;
+				width: 63vw;
+				z-index:5;
+				margin: 1vw; position:absolute; left:17.78vw; top:39.4vw; z-index:3;
+}
