@@ -63,20 +63,10 @@
 	url = https://github.com/masterking32/mastercity-roleplay
 	branch = esx_menu_default
 	
-[submodule "esx_menu_dialog"]
-	path = resources/[esx]/esx_menu_dialog
-	url = https://github.com/masterking32/mastercity-roleplay
-	branch = esx_menu_dialog
-	
 [submodule "esx_license"]
 	path = resources/[esx]/esx_license
 	url = https://github.com/masterking32/mastercity-roleplay
 	branch = esx_license
-	
-[submodule "esx_menu_default"]
-	path = resources/[esx]/esx_menu_default]
-	url = https://github.com/masterking32/mastercity-roleplay
-	branch = esx_menu_default
 	
 [submodule "esx_menu_dialog"]
 	path = resources/[esx]/[esx_menu_dialog
