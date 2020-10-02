@@ -1,0 +1,122 @@
+body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  height: 100%;
+  width: 100%;
+}
+#wrapper {
+  display: none;
+  margin-top: 100px;
+}
+
+@font-face {
+  font-family: Vazir;
+  src: url('https://cdn.fontcdn.ir/Font/Persian/Vazir/Vazir-Light.eot');
+  src: url('https://cdn.fontcdn.ir/Font/Persian/Vazir/Vazir-Light.eot?#iefix') format('embedded-opentype'),
+       url('https://cdn.fontcdn.ir/Font/Persian/Vazir/Vazir-Light.woff2') format('woff2'),
+       url('https://cdn.fontcdn.ir/Font/Persian/Vazir/Vazir-Light.woff') format('woff'),
+       url('https://cdn.fontcdn.ir/Font/Persian/Vazir/Vazir-Light.ttf') format('truetype');
+  font-weight: 300;
+}
+
+
+.iransans{
+	font-family: 'Vazir', Tahoma;
+}
+
+.rtl{
+	direction: rtl;
+}
+
+.text-left{
+	text-align:left;
+}
+
+.inner {
+  float: left;
+  display: inline-block;
+  width: 442px;
+  height: 672px;
+}
+.jleft {
+  background: url("../images/left.png");
+}
+.jright {
+  background: url("../images/right.png");
+}
+form {
+  width: 390px;
+  padding: 80px 20px 20px 20px;
+}
+.input-field input, .select-wrapper input {
+  color: #ffffff !important;
+}
+#register {
+  width: 100%;
+  background: #392c34 !important;
+}
+.caret {
+  display: none;
+}
+.dropdown-content {
+  top: 0 !important;
+}
+.select-wrapper li {
+  background: #b5a795 !important;
+}
+.select-wrapper li span {
+  color: #ffffff !important;
+}
+.select-wrapper .disabled {
+  background: #897d6e !important;
+}
+.select-wrapper .selected {
+  background: #d6c7b3 !important;
+}
+.datepicker-date-display {
+  background: #392c34;
+}
+.datepicker-container button {
+  color: #392c34;
+}
+.datepicker-container button:focus {
+  background: none;
+}
+.datepicker-container .is-selected {
+  background: #7a5f70 !important;
+}
+.dropdown-content li > a, .dropdown-content li > span  {
+  color: #392c34 !important;
+}
+.datepicker-container input {
+  color: #392c34 !important;
+}
+label {
+ color: #392c34 !important;
+ text-shadow: -1px 0 rgba(0, 0, 0, 0.2), 0 1px rgba(0, 0, 0, 0.2), 1px 0 rgba(0, 0, 0, 0.2), 0 -1px rgba(0, 0, 0, 0.2);
+ font-size: 20px;
+}
+.input-field input[type=text] {
+ border-bottom: 1px solid #392c34 !important;
+ box-shadow: 0 1px 0 0 #392c34 !important;
+}
+.input-field input[type=text]:focus + label {
+ color: #6b0742 !important;
+}
+.input-field input[type=text]:focus {
+ border-bottom: 1px solid #6b0742 !important;
+ box-shadow: 0 1px 0 0 #6b0742 !important;
+}
+::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+}
+::-webkit-scrollbar-thumb {
+    background: #FF0000;
+}
+@media only screen and (max-width: 1250px) {
+  .container {
+    width: 100% !important;
+  }
+}
