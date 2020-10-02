@@ -64,7 +64,11 @@ $(document).ready(function() {
         }
 
         if (data.health != null) {
-            $('#health').css('background', `linear-gradient(to top, rgba(225, 51, 49, 0.6) ${data.health}%, rgba(0, 0, 0, 0.5) ${data.health}%)`);
+            if (data.health == 105) {
+				$('#health').css('background', `linear-gradient(to top, rgba(225, 51, 49, 0.6) 100%, rgba(0, 0, 0, 0.5) 100%)`);
+			} else {
+				$('#health').css('background', `linear-gradient(to top, rgba(225, 51, 49, 0.6) ${data.health}%, rgba(0, 0, 0, 0.5) ${data.health}%)`);
+			}
         }
 
         if (data.armour != null) {

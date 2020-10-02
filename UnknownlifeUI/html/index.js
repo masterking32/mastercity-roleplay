@@ -98,9 +98,9 @@ $(document).ready(function(e) {
       */
    function init() {
       setInterval(time);
-      console.clear();
-      console.log(new Date().getTime());
-      log("Client", "FÃ¼r Hilfe gebe '/help' ein");
+      //console.clear();
+      //console.log(new Date().getTime());
+      log("Client", "Command '/help'");
 	  setInterval(favicon,500);
    }
 

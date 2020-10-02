@@ -36,6 +36,11 @@ function CalculateTimeToDisplay()
 	)
 end
 
+function notify(string)
+  SetNotificationTextEntry("STRING")
+  AddTextComponentString(string)
+  DrawNotification(false, true)
+end
 
 RegisterNUICallback(
 	'getMinimapAnchor',
@@ -132,6 +137,14 @@ function updateHud()
 			   ----------------------------------------------------
 			local health = (((GetEntityHealth(ped) - 100) / (GetEntityMaxHealth(ped) - 100)) * 100)
 
+			local health = GetEntityHealth(GetPlayerPed(-1)) - 100;
+
+			if IsEntityDead(ped) then
+				health = 0
+			elseif health == nil or health == 100 or health > 100 then
+				health = 105
+			end
+			
 			if lastHealth == nil or lastHealth ~= health then
 				SendNUIMessage(
 					{
@@ -152,7 +165,7 @@ function updateHud()
 				lastArmour = armour
 			end
 			   ----------------------------------------------------
-			local stamina = GetPlayerSprintStaminaRemaining(PlayerId())
+			local stamina = 100 - GetPlayerSprintStaminaRemaining(PlayerId())
 
 			if lastStamina == nil or lastStamina ~= stamina then
 				SendNUIMessage(
@@ -294,7 +307,6 @@ local sBuffer = {}
 local vBuffer = {}
 local CintoSeguranca = false
 local ExNoCarro = false
-local segundos = 0
 Citizen.CreateThread(
 	function()
 		while true do
@@ -302,9 +314,6 @@ Citizen.CreateThread(
 
 			local ped = PlayerPedId()
 
-			if segundos > 0 and GetEntityHealth(ped) > 100 then
-				SetPedToRagdoll(ped, 1000, 1000, 0, 0, 0, 0)
-			end
 
 			local car = GetVehiclePedIsIn(ped)
 
@@ -320,25 +329,26 @@ Citizen.CreateThread(
 				if sBuffer[2] ~= nil and not CintoSeguranca and GetEntitySpeedVector(car, true).y > 1.0 and sBuffer[1] > 10.25 and (sBuffer[2] - sBuffer[1]) > (sBuffer[1] * 0.255) then
 					local co = GetEntityCoords(ped)
 					local fw = Fwv(ped)
-					SetEntityHealth(ped, GetEntityHealth(ped) - 150)
 					SetEntityCoords(ped, co.x + fw.x, co.y + fw.y, co.z - 0.47, true, true, true)
 					SetEntityVelocity(ped, vBuffer[2].x, vBuffer[2].y, vBuffer[2].z)
-					segundos = 5
+					Citizen.Wait(1)
+					SetPedToRagdoll(ped, 1000, 1000, 0, 0, 0, 0)
 				end
 
 				vBuffer[2] = vBuffer[1]
 				vBuffer[1] = GetEntityVelocity(car)
 
 				if not changingSeatbeltState then
-					if IsControlJustReleased(1, 305) then
+					if IsControlJustReleased(1, 7) then
 						changingSeatbeltState = true
 						if CintoSeguranca then
-							TriggerEvent('InteractSound:source', 'unbelt', 0.5)
+							TriggerServerEvent('InteractSound_SV:PlayOnSource', 'unbuckle', 0.9)
 							SetTimeout(
 								1000,
 								function()
 									CintoSeguranca = false
 									changingSeatbeltState = false
+									notify('~y~Kamarbande Imeni~s~: ~r~Baz Shod.~s~')
 									SendNUIMessage(
 										{
 											seatbelt = CintoSeguranca
@@ -347,12 +357,13 @@ Citizen.CreateThread(
 								end
 							)
 						else
-							TriggerEvent('InteractSound:source', 'belt', 0.5)
+							TriggerServerEvent('InteractSound_SV:PlayOnSource', 'buckle', 0.9)
 							SetTimeout(
 								1000,
 								function()
 									CintoSeguranca = true
 									changingSeatbeltState = false
+									notify('~y~Kamarbande Imeni~s~: ~g~Baste Shod.~s~')
 									SendNUIMessage(
 										{
 											seatbelt = CintoSeguranca
@@ -364,6 +375,14 @@ Citizen.CreateThread(
 					end
 				end
 			elseif ExNoCarro then
+				if CintoSeguranca == true then
+					SendNUIMessage(
+						{
+							seatbelt = false
+						}
+					)
+				end
+				
 				ExNoCarro = false
 				CintoSeguranca = false
 				sBuffer[1], sBuffer[2] = 0.0, 0.0
@@ -383,10 +402,6 @@ Citizen.CreateThread(
 Citizen.CreateThread(
 	function()
 		while true do
-			if segundos > 0 then
-				segundos = segundos - 1
-			end
-
 			CalculateTimeToDisplay()
 			Citizen.Wait(1000)
 		end
