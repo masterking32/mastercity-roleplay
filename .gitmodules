@@ -147,3 +147,48 @@
 	path = resources/[MasterkinG32]/mpcreator
 	url = https://github.com/masterking32/mastercity-roleplay
 	branch = mpcreator
+	
+[submodule "cron"]
+	path = resources/[MasterkinG32]/cron
+	url = https://github.com/masterking32/mastercity-roleplay
+	branch = cron
+	
+[submodule "mysql-async"]
+	path = resources/[MasterkinG32]/mysql-async
+	url = https://github.com/masterking32/mastercity-roleplay
+	branch = mysql-async
+	
+[submodule "mythic_notify"]
+	path = resources/[MasterkinG32]/mythic_notify
+	url = https://github.com/masterking32/mastercity-roleplay
+	branch = mythic_notify
+	
+[submodule "mythic_progbar"]
+	path = resources/[MasterkinG32]/mythic_progbar
+	url = https://github.com/masterking32/mastercity-roleplay
+	branch = mythic_progbar
+	
+[submodule "orp-banking"]
+	path = resources/[MasterkinG32]/orp-banking
+	url = https://github.com/masterking32/mastercity-roleplay
+	branch = orp-banking
+	
+[submodule "pNotify"]
+	path = resources/[MasterkinG32]/pNotify
+	url = https://github.com/masterking32/mastercity-roleplay
+	branch = pNotify
+	
+[submodule "progressBars"]
+	path = resources/[MasterkinG32]/progressBars
+	url = https://github.com/masterking32/mastercity-roleplay
+	branch = progressBars
+	
+[submodule "skinchanger"]
+	path = resources/[MasterkinG32]/skinchanger
+	url = https://github.com/masterking32/mastercity-roleplay
+	branch = skinchanger
+	
+[submodule "skincreator"]
+	path = resources/[MasterkinG32]/skincreator
+	url = https://github.com/masterking32/mastercity-roleplay
+	branch = skincreator
