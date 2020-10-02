@@ -3,7 +3,7 @@ Config.Locale = 'en'
 
 -- Enable the below if you want to stop people from pressing enter immediately 
 -- and having boring default characters
-Config.DefaultPrevention = true
+Config.DefaultPrevention = false
 
 -- Increase the amount of items you want to check that are default for better
 -- default prevention, the more you have here the more the player will need to
