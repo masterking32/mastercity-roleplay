@@ -1,41 +1,42 @@
-# ESX_HUD
-Working version of Naiko's script.
-https://github.com/Naikzer/HUD-GTAVRP
+# Character Creator
 
-All credits go to him.
-
-# !!!WARNING!!! After the update this script no longer has the default esx_skin menu. ESX_clothshop will not work anymore.
-## I can use help to get this script working with esx_skin so that the shop still works.
-## There will be a new clothshop that will work without esx_skin.
+**Do not use these scripts if you are not comfortable with development.**
+**If you have some issues with code, ask the community on the official [FiveM's topic](https://forum.fivem.net/t/preview-enhanced-hud/634217).**
 
 ## How to install
 
+* Import ```outfits.sql``` to your database
+* Include [this code](#code) somewhere you init first player connection
 * Copy and paste ```skincreator``` folder to ```resources```
 * Add ```start skincreator``` to your ```server.cfg``` file
 
-* Make sure that all the spawnpoints are with the mp_m_freemode_01 model.
- Example : ```spawnpoint 'mp_m_freemode_01' { x = -1044.73, y = -2749.13, z = 21.3634 }```
- 
-* If you use any other scripts that uses esx_skin. You will have to change the dependencies :
+## Code
 
-```dependencies { 'es_extended', 'esx_skin' }```
+This function will add user to the outfits SQL's table. This code must be included somewhere you init player (something like isFirstConnection function). It's server-side function.
+```
+MySQL.Async.execute("INSERT INTO outfits (idSteam) VALUES ('[SteamID of user or anything ID you use to identify unique player]')")
+```
 
-into
+## Files
 
-```dependencies { 'es_extended', 'skincreator' }```
- 
-## To Do
-* Female skins (Still not finished)
+* ```ui/script.js``` JS for NUI elements
+* ```ui/front.js``` JS for HTML interaction
+* ```ui/styles.scss``` use this to edit CSS if you are comfortable with CSS pre-processor (must be compiled)
+* ```ui/index.html``` use this to change the locale of the resource. Adjust locales/en.js to the locale you wish to use.
 
-## Changes
-* HTML, CSS, Javascript changes.
-* Camera is now fixed.
-* All cloths are saved. Will add a few more options and female only menus.
-* Character now loads correctly after the initial login.
-* All native functions of ESX_SKIN are imported in this script.
-* Script updated to use ESX V1.2
-* Remove old esx_skin.
-* HTML, CSS and Javascript updates
-* Skinchanger correctly updated after creating the ped
-* HTML update for easy translations
-* HTML update for easy adding/changing outfits
+## Credits & licence
+
+Nicolas Marx (alias [Naiko](https://twitter.com/naikzer_)) is the only owner of these scripts. You are free to use and edit the source code as you want for personal or commercial use. 
+
+## Other UIs
+
+* [Character Creator](../skincreator)
+* [Menu](../menu)
+* [Speedometer](../speedometer) 
+* [Inventory]() 
+* [Messaging service]() 
+* [Hunger/Thirst]() 
+
+## Dependencies
+
+* [ESX](https://github.com/FXServer-ESX/fxserver-es_extended)

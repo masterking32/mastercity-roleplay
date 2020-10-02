@@ -1,9 +1,21 @@
+@font-face {
+  font-family: Vazir;
+  src: url('https://cdn.fontcdn.ir/Font/Persian/Vazir/Vazir-Light.eot');
+  src: url('https://cdn.fontcdn.ir/Font/Persian/Vazir/Vazir-Light.eot?#iefix') format('embedded-opentype'),
+       url('https://cdn.fontcdn.ir/Font/Persian/Vazir/Vazir-Light.woff2') format('woff2'),
+       url('https://cdn.fontcdn.ir/Font/Persian/Vazir/Vazir-Light.woff') format('woff'),
+       url('https://cdn.fontcdn.ir/Font/Persian/Vazir/Vazir-Light.ttf') format('truetype');
+  font-weight: 300;
+}
+
 [lang] {
   display: none;
 }
 
-[lang=fr] {
+[lang=fa] {
   display: unset;
+  font-family: Vazir, Tahoma;
+  direction: rtl;
 }
 
 input[type=range].gender {

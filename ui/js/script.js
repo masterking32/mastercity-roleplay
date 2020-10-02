@@ -1,6 +1,6 @@
 var CONFIG = {
-  "lang": "fr",
-  "supportedLangs": ["fr", "en"]
+  "lang": "fa",
+  "supportedLangs": ["fa", "en"]
 };
 
 function localize(language) {
