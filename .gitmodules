@@ -69,7 +69,7 @@
 	branch = esx_license
 	
 [submodule "esx_menu_dialog"]
-	path = resources/[esx]/[esx_menu_dialog
+	path = resources/[esx]/esx_menu_dialog
 	url = https://github.com/masterking32/mastercity-roleplay
 	branch = esx_menu_dialog
 	
@@ -107,3 +107,43 @@
 	path = resources/[esx]/esx_voice
 	url = https://github.com/masterking32/mastercity-roleplay
 	branch = esx_voice
+	
+[submodule "gcphone"]
+	path = resources/[MasterkinG32]/[gcphone]
+	url = https://github.com/masterking32/mastercity-roleplay
+	branch = gcphone
+	
+[submodule "async"]
+	path = resources/[MasterkinG32]/async
+	url = https://github.com/masterking32/mastercity-roleplay
+	branch = async
+	
+[submodule "es_admin2"]
+	path = resources/[MasterkinG32]/es_admin2
+	url = https://github.com/masterking32/mastercity-roleplay
+	branch = es_admin2
+	
+[submodule "esplugin_mysql"]
+	path = resources/[MasterkinG32]/esplugin_mysql
+	url = https://github.com/masterking32/mastercity-roleplay
+	branch = esplugin_mysql
+	
+[submodule "essentialmode"]
+	path = resources/[MasterkinG32]/essentialmode
+	url = https://github.com/masterking32/mastercity-roleplay
+	branch = essentialmode
+	
+[submodule "extendedmode"]
+	path = resources/[MasterkinG32]/extendedmode
+	url = https://github.com/masterking32/mastercity-roleplay
+	branch = extendedmode
+	
+[submodule "guidehud"]
+	path = resources/[MasterkinG32]/guidehud
+	url = https://github.com/masterking32/mastercity-roleplay
+	branch = guidehud
+	
+[submodule "mpcreator"]
+	path = resources/[MasterkinG32]/mpcreator
+	url = https://github.com/masterking32/mastercity-roleplay
+	branch = mpcreator
