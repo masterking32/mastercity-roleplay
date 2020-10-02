@@ -83,10 +83,13 @@ RegisterNUICallback('register', function(data, cb)
 	end
 	
 	if reason == "" then
+		--TriggerEvent('mpcreator:OpenMenu')	--##########Call Character creator#######
 		TriggerServerEvent('esx_identity:setIdentity', data, myIdentifiers)
 		EnableGui(false)
 		Citizen.Wait(500)
-		TriggerEvent('esx_skin:openSaveableMenu', myIdentifiers.id)
+		TriggerEvent('hud:loadMenu')	--##########Call Character creator#######
+		Wait(1000)
+		
 	else
 		ESX.ShowNotification(reason)
 	end
