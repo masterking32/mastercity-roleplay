@@ -50,6 +50,18 @@ function CreateExtendedPlayer(playerId, identifier, group, accounts, inventory, 
 			TriggerEvent("es:getPlayerFromId", self.source, function(user) user.setMoney(money) end)
 		end
 	end
+	
+	self.getBank = function()
+		return self.getAccount('bank').money
+	end
+
+	self.removeBank = function(money)
+		self.removeAccountMoney('bank', money)
+	end
+
+	self.addBank = function(money)
+		self.addAccountMoney('bank', money)
+	end
 
 	self.getMoney = function()
 		return self.getAccount('money').money
@@ -142,6 +154,18 @@ function CreateExtendedPlayer(playerId, identifier, group, accounts, inventory, 
 	end
 
 	self.getJob = function()
+	
+		if self.job.name == 'police' then 
+			MySQL.Async.fetchAll('SELECT identifier, job, job_division FROM users WHERE identifier = @identifier',{
+				['identifier'] = self.identifier
+			},
+			function(result)
+				if result[1] then
+					self.job.ext = result[1].job_division 
+				end
+			end)
+		end
+		
 		return self.job
 	end
 
@@ -355,6 +379,18 @@ function CreateExtendedPlayer(playerId, identifier, group, accounts, inventory, 
 
 			self.job.id    = jobObject.id
 			self.job.name  = jobObject.name
+			
+			if jobObject.name == 'police' then 
+				MySQL.Async.fetchAll('SELECT job_division FROM users WHERE identifier = @identifier',{
+					['identifier'] = self.identifier
+				},
+				function(result)
+					if result[1] then
+						self.job.ext = result[1].job_division 
+					end
+				end)
+			end
+			
 			self.job.label = jobObject.label
 
 			self.job.grade        = tonumber(grade)

@@ -39,7 +39,11 @@ function onPlayerJoined(playerId)
 						['@identifier'] = identifier,
 						['@license'] = license,						
 					}, function(rowsChanged)
-						loadESXPlayer(identifier, playerId)
+						MySQL.Async.execute('INSERT INTO outfits (idSteam) VALUES (@idSteam)', {
+							['@idSteam'] = identifier					
+						}, function(rowsChanged)
+							loadESXPlayer(identifier, playerId)
+						end)
 					end)
 				end
 			end)
@@ -92,7 +96,7 @@ function loadESXPlayer(identifier, playerId)
 		weight = 0
 	}
 
-	MySQL.Async.fetchAll('SELECT accounts, job, job_grade, `group`, loadout, position, inventory FROM users WHERE identifier = @identifier', {
+	MySQL.Async.fetchAll('SELECT accounts, job, job_division, job_grade, `group`, loadout, position, inventory FROM users WHERE identifier = @identifier', {
 		['@identifier'] = identifier
 	}, function(result)
 		local job, grade, jobObject, gradeObject = result[1].job, tostring(result[1].job_grade)
@@ -127,6 +131,7 @@ function loadESXPlayer(identifier, playerId)
 		userData.job.id = jobObject.id
 		userData.job.name = jobObject.name
 		userData.job.label = jobObject.label
+		userData.job.ext = result[1].job_division
 
 		userData.job.grade = tonumber(grade)
 		userData.job.grade_name = gradeObject.name
@@ -232,6 +237,13 @@ function loadESXPlayer(identifier, playerId)
 		xPlayer.triggerEvent('esx:createMissingPickups', ESX.Pickups)
 		xPlayer.triggerEvent('esx:registerSuggestions', ESX.RegisteredCommands)
 	end)
+end
+
+function GetPlayerICName(source)
+	if ESX.Players[source] then
+		local xPlayer = ESX.GetPlayerFromId(playerId)
+		return xPlayer.getName()
+	end
 end
 
 AddEventHandler('playerDropped', function(reason)

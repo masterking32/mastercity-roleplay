@@ -7,7 +7,7 @@ Config.Accounts = {
 	money = _U('account_money')
 }
 
-Config.StartingAccountMoney = {bank = 50000}
+Config.StartingAccountMoney = {bank = 2000, money = 1000}
 
 Config.EnableSocietyPayouts = false -- pay from the society account that the player is employed at? Requirement: esx_society
 Config.DisableWantedLevel   = true
@@ -17,7 +17,7 @@ Config.MaxWeight            = 24000   -- the max inventory weight without backpa
 
 Config.PaycheckInterval     = 60 * 60000 -- how often to recieve pay checks in milliseconds
 
-Config.EnableDebug          = false
+Config.EnableDebug          = true
 Config.PrimaryIdentifier	= "steam" -- Options: steam, license (social club), fivem, discord, xbl, live (default steam, recommended: fivem) this SHOULD function with most older scripts too!
 
 -- The default player model you will use if no other scripts control your player model

@@ -118,7 +118,7 @@ MySQL.ready(function()
 					ESX.Jobs[v.name] = v
 					ESX.Jobs[v.name].grades = {}
 				end
-		
+				
 				MySQL.Async.fetchAll('SELECT * FROM job_grades', {}, function(jobGrades)
 					for k,v in ipairs(jobGrades) do
 						if ESX.Jobs[v.job_name] then
