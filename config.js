@@ -1,6 +1,6 @@
 var config = {
-  'title': 'FiveM RP',
-  'welcomeMessage': 'WELCOME TO FIVEM RP',
+  'title': 'MasterCity',
+  'welcomeMessage': 'WELCOME TO MasterCity',
   // Add images for the loading screen background.
   images: [
   'https://img.skordy.com/j/RGvCc.jpeg', 'https://img.skordy.com/j/nsQy5.jpeg', 'https://img.skordy.com/j/KNlLn.jpeg',
@@ -16,7 +16,7 @@ var config = {
   // Change Discord settings and link.
   'discord': {
     'show': true,
-    'discordLink': 'https://website.com/discord',
+    'discordLink': 'https://mastercity.ir',
   },
   // Change which key you have set in guidehud/client/client.lua
   'menuHotkey': 'F2',
